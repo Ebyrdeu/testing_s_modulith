@@ -1,10 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<!--CREATE-->
+	<changeSet id="1738608103066-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="images"/>
+			</not>
+		</preConditions>
+		<createTable tableName="images">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
 
-	<changeSet id="0" author="admin">
+			<column name="title" type="varchar(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="description" type="text"/>
+			<column name="price" type="decimal(10,2)"/>
+			<column name="image_url" type="varchar(255)"/>
+			<column name="watermarked_image_url" type="varchar(255)"/>
 
+			<column name="created_at"
+			        type="timestamp"
+			        defaultValueComputed="now()"/>
+			<column name="updated_at"
+			        type="timestamp"
+			        defaultValueComputed="now()"/>
+		</createTable>
 	</changeSet>
+
+	<!--INDEX-->
+	<changeSet id="1738608462462-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="images"/>
+		</preConditions>
+		<createIndex tableName="images" indexName="images_title">
+			<column name="title" descending="true"/>
+		</createIndex>
+	</changeSet>
+
+	<!--RELATION-->
+	<changeSet id="1738608458323-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="images"/>
+		</preConditions>
+		<addForeignKeyConstraint
+			baseTableName="images"
+			baseColumnNames="user_id"
+			referencedTableName="users"
+			referencedColumnNames="id"
+			constraintName="fk_images_users"
+			onDelete="CASCADE"/>
+	</changeSet>
+
+	<!--VALIDATION-->
+	<changeSet id="1738608444132-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="images"/>
+		</preConditions>
+		<sql>
+			alter table images
+				add constraint title_length
+					check ( char_length(title) between 2 and 50)
+		</sql>
+	</changeSet>
+
 </databaseChangeLog>

@@ -1,10 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-	<changeSet id="0" author="admin">
+	<!--CREATE-->
+	<changeSet id="1738609478037-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="image_category"/>
+			</not>
+		</preConditions>
+		<createTable tableName="image_category">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
 
+			<column name="image_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="category_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="created_at"
+			        type="timestamp"
+			        defaultValueComputed="now()"/>
+			<column name="updated_at"
+			        type="timestamp"
+			        defaultValueComputed="now()"/>
+		</createTable>
 	</changeSet>
+
+	<!--RELATION-->
+	<changeSet id="1738609421234-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="image_category"/>
+		</preConditions>
+		<addForeignKeyConstraint
+			baseTableName="image_category"
+			baseColumnNames="image_id"
+			referencedTableName="images"
+			referencedColumnNames="id"
+			constraintName="fk_image_category_images"
+			onDelete="CASCADE"/>
+	</changeSet>
+
+	<changeSet id="1738609409842-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="image_category"/>
+		</preConditions>
+		<addForeignKeyConstraint
+			baseTableName="image_category"
+			baseColumnNames="category_id"
+			referencedTableName="categories"
+			referencedColumnNames="id"
+			constraintName="fk_image_category_categories"
+			onDelete="CASCADE"/>
+	</changeSet>
+
 </databaseChangeLog>

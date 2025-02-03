@@ -4,6 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
+	<!--CREATE-->
 	<changeSet id="1738604377051-1" author="Maxim Khnykin">
 		<preConditions onFail="MARK_RAN">
 			<not>
@@ -11,27 +12,60 @@
 			</not>
 		</preConditions>
 		<createTable tableName="roles">
-			<column name="id"
-			        type="bigint"
-			        autoIncrement="true">
+			<column name="id" type="bigint" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
+
 			<column name="role"
 			        type="varchar(10)"
-			        defaultValue="USER">
-				<constraints nullable="false"/>
-			</column>
+			        defaultValue="USER"/>
+
 			<column name="created_at"
 			        type="timestamp"
-			        defaultValueComputed="now()">
-				<constraints nullable="false"/>
-			</column>
+			        defaultValueComputed="now()"/>
 			<column name="updated_at"
 			        type="timestamp"
-			        defaultValueComputed="now()">
-				<constraints nullable="false"/>
-			</column>
+			        defaultValueComputed="now()"/>
 		</createTable>
 	</changeSet>
 
+	<!--CONSTRAINT-->
+	<changeSet id="1738604605696-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="roles"/>
+		</preConditions>
+		<sql>
+			alter table roles
+				add constraint role_enum
+					check ( role in ('USER', 'VENDOR', 'ADMIN'))
+		</sql>
+	</changeSet>
+
+	<!--INSERT-->
+	<changeSet id="1738604796974-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="roles"/>
+		</preConditions>
+		<insert tableName="roles">
+			<column name="role" value="USER"/>
+		</insert>
+	</changeSet>
+
+	<changeSet id="1738604873690-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="roles"/>
+		</preConditions>
+		<insert tableName="roles">
+			<column name="role" value="VENDOR"/>
+		</insert>
+	</changeSet>
+
+	<changeSet id="1738604878416-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="roles"/>
+		</preConditions>
+		<insert tableName="roles">
+			<column name="role" value="ADMIN"/>
+		</insert>
+	</changeSet>
 </databaseChangeLog>

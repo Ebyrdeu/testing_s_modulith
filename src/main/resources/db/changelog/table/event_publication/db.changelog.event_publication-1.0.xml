@@ -4,6 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
+	<!--CREATE-->
 	<changeSet id="1738589554433-1" author="Maxim Khnykin">
 		<preConditions onFail="MARK_RAN">
 			<not>
@@ -14,6 +15,7 @@
 			<column name="id" type="UUID">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
+
 			<column name="completion_date"
 			        type="JAVA.SQL.TYPES.TIMESTAMP_WITH_TIMEZONE"/>
 			<column name="event_type" type="VARCHAR(255)"/>

@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-	<changeSet id="0" author="admin">
+	<!--CREATE-->
+	<changeSet id="1738607287764-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="categories"/>
+			</not>
+		</preConditions>
+		<createTable tableName="categories">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
 
+			<column name="category" type="varchar(30)">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="created_at"
+			        type="timestamp"
+			        defaultValueComputed="now()">
+				<constraints nullable="false"/>
+			</column>
+			<column name="updated_at"
+			        type="timestamp"
+			        defaultValueComputed="now()">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
 	</changeSet>
+
+	<!--INDEX-->
+	<changeSet id="1738607621799-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="categories"/>
+		</preConditions>
+		<createIndex tableName="categories" indexName="categories_category">
+			<column name="category" descending="true"/>
+		</createIndex>
+	</changeSet>
+
+	<!--VALIDATION-->
+	<changeSet id="1732699071850-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="categories"/>
+		</preConditions>
+		<sql>
+			alter table categories
+				add constraint category_length
+					check ( char_length(category) between 3 and 30)
+		</sql>
+	</changeSet>
+
+	<!--INSERTION-->
+	<changeSet id="1738607637054-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="categories"/>
+		</preConditions>
+		<insert tableName="categories">
+			<column name="category" value="winter"/>
+		</insert>
+	</changeSet>
+
+	<changeSet id="1738607739732-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="categories"/>
+		</preConditions>
+		<insert tableName="categories">
+			<column name="category" value="summer"/>
+		</insert>
+	</changeSet>
+
+
 </databaseChangeLog>

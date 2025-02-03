@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="0" author="admin">
-
-    </changeSet>
+	<includeAll path="db/changelog/table/event_publication"/>
+	<includeAll path="db/changelog/table/users"/>
+	<includeAll path="db/changelog/table/images"/>
+	<includeAll path="db/changelog/table/roles"/>
+	<includeAll path="db/changelog/table/categories"/>
+	<includeAll path="db/changelog/table/user_role"/>
 </databaseChangeLog>

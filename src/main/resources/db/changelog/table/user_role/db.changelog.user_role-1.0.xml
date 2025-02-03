@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-	<changeSet id="0" author="admin">
+	<!--CREATE-->
+	<changeSet id="1738609105078-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="user_role"/>
+			</not>
+		</preConditions>
+		<createTable tableName="user_role">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
 
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="role_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="created_at"
+			        type="timestamp"
+			        defaultValueComputed="now()"/>
+			<column name="updated_at"
+			        type="timestamp"
+			        defaultValueComputed="now()"/>
+
+		</createTable>
 	</changeSet>
+
+	<!--RELATION-->
+	<changeSet id="1738609143218-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="user_role"/>
+		</preConditions>
+		<addForeignKeyConstraint
+			baseTableName="user_role"
+			baseColumnNames="user_id"
+			referencedTableName="users"
+			referencedColumnNames="id"
+			constraintName="fk_user_role_users"
+			onDelete="CASCADE"/>
+	</changeSet>
+
+	<changeSet id="1738609146940-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="user_role"/>
+		</preConditions>
+		<addForeignKeyConstraint
+			baseTableName="user_role"
+			baseColumnNames="role_id"
+			referencedTableName="roles"
+			referencedColumnNames="id"
+			constraintName="fk_user_role_roles"
+			onDelete="CASCADE"/>
+	</changeSet>
+
 </databaseChangeLog>
