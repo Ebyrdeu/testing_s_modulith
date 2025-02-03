@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="1738589554433-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="event_publication"/>
+			</not>
+		</preConditions>
+		<createTable tableName="event_publication">
+			<column name="id" type="UUID">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="completion_date"
+			        type="JAVA.SQL.TYPES.TIMESTAMP_WITH_TIMEZONE"/>
+			<column name="event_type" type="VARCHAR(255)"/>
+			<column name="listener_id" type="VARCHAR(255)"/>
+			<column name="publication_date"
+			        type="java.sql.Types.TIMESTAMP_WITH_TIMEZONE"/>
+			<column name="serialized_event" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

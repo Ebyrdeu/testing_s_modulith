@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="1738604377051-1" author="Maxim Khnykin">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="roles"/>
+			</not>
+		</preConditions>
+		<createTable tableName="roles">
+			<column name="id"
+			        type="bigint"
+			        autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="role"
+			        type="varchar(10)"
+			        defaultValue="USER">
+				<constraints nullable="false"/>
+			</column>
+			<column name="created_at"
+			        type="timestamp"
+			        defaultValueComputed="now()">
+				<constraints nullable="false"/>
+			</column>
+			<column name="updated_at"
+			        type="timestamp"
+			        defaultValueComputed="now()">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>
