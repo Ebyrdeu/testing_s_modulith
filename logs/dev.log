@@ -17957,3 +17957,567 @@ Caused by: java.io.FileNotFoundException: class path resource [dev/ebyrdeu/backe
 2025-02-04T13:08:34.978+01:00  INFO 281511 --- [dev] [restartedMain] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
 2025-02-04T13:08:34.978+01:00  INFO 281511 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Started Application in 0.7 seconds (process running for 4725.469)
 2025-02-04T13:08:34.979+01:00  INFO 281511 --- [dev] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-04T14:15:09.632+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Starting Application using Java 23.0.2 with PID 822714 (/home/ebyrdeu/code/testing/target/classes started by ebyrdeu in /home/ebyrdeu/code/testing)
+2025-02-04T14:15:09.632+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : The following 1 profile is active: "dev"
+2025-02-04T14:15:09.634+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /home/ebyrdeu/code/testing/docker-compose.yaml
+2025-02-04T14:15:09.731+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-02-04T14:15:09.811+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T14:15:09.812+01:00 DEBUG 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Scanning for JPA repositories in packages dev.ebyrdeu.backend, org.springframework.modulith.events.jpa.updating.
+2025-02-04T14:15:09.813+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/role/internal/infrastructure/repository/Rolerepository.class]
+2025-02-04T14:15:09.813+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/infrastructure/repository/UserRepository.class]
+2025-02-04T14:15:09.816+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 2 JPA repository interfaces.
+2025-02-04T14:15:09.891+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-04T14:15:09.892+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T14:15:09.892+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T14:15:09.896+01:00  INFO 822714 --- [dev] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T14:15:09.896+01:00  INFO 822714 --- [dev] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 164 ms
+2025-02-04T14:15:09.936+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.database                       : Set default schema name to public
+2025-02-04T14:15:09.949+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/event_publication/db.changelog.event_publication-1.0.xml
+2025-02-04T14:15:09.977+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/users/db.changelog-users-1.0.xml
+2025-02-04T14:15:09.983+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/images/db.changelog-images-1.0.xml
+2025-02-04T14:15:09.989+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/roles/db.changelog-roles-1.0.xml
+2025-02-04T14:15:09.994+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/categories/db.changelog-categories-1.0.xml
+2025-02-04T14:15:10.000+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/user_role/db.changelog.user_role-1.0.xml
+2025-02-04T14:15:10.013+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:15:10.028+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-02-04T14:15:10.029+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : UPDATE SUMMARY
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Run:                          0
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Previously run:              20
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Filtered out:                 0
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : -------------------------------
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Total change sets:           20
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Update summary generated
+2025-02-04T14:15:10.031+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.command                        : Command execution complete
+2025-02-04T14:15:10.043+01:00  INFO 822714 --- [dev] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T14:15:10.044+01:00  INFO 822714 --- [dev] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T14:15:10.049+01:00  INFO 822714 --- [dev] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T14:15:10.049+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2025-02-04T14:15:10.062+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@8ce8d63
+2025-02-04T14:15:10.062+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2025-02-04T14:15:10.064+01:00  INFO 822714 --- [dev] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-5)']
+	Database driver: undefined/unknown
+	Database version: 17.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T14:15:10.099+01:00  INFO 822714 --- [dev] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T14:15:10.106+01:00  INFO 822714 --- [dev] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:15:10.142+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Initializing JpaMetamodelMappingContext…
+2025-02-04T14:15:10.143+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Finished initializing JpaMetamodelMappingContext
+2025-02-04T14:15:10.149+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository…
+2025-02-04T14:15:10.150+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Looking up named query 'Role.findByRole'
+2025-02-04T14:15:10.150+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query Role.findByRole
+2025-02-04T14:15:10.153+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository.
+2025-02-04T14:15:10.157+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.role.internal.service.RoleServiceImpl.findOneByRoleType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:10.164+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository…
+2025-02-04T14:15:10.165+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findAllWithMinimalInfo.count
+2025-02-04T14:15:10.166+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findOneByIdWithMinimalInfo.count
+2025-02-04T14:15:10.169+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository.
+2025-02-04T14:15:10.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.finalAll' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:10.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.findOneById' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:10.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.patchUsername' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.194+01:00  WARN 822714 --- [dev] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-04T14:15:10.200+01:00 DEBUG 822714 --- [dev] [restartedMain] swordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-02-04T14:15:10.208+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-02-04T14:15:10.216+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 3 mappings in 'requestMappingHandlerMapping'
+2025-02-04T14:15:10.221+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/{s1:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}/{s3:[^\\.]*}] in 'viewControllerHandlerMapping'
+2025-02-04T14:15:10.233+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-02-04T14:15:10.257+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, OAuth2AuthorizationRequestRedirectFilter, OAuth2LoginAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-04T14:15:10.277+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-02-04T14:15:10.284+01:00 DEBUG 822714 --- [dev] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-02-04T14:15:10.297+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.getCompletedEntityType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsPublishedBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsByEventAndTargetIdentifier' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublicationsBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.298+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.create' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:10.320+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T14:15:10.322+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markCompleted' with attribute: PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT
+2025-02-04T14:15:10.332+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-04T14:15:10.334+01:00  INFO 822714 --- [dev] [restartedMain] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2025-02-04T14:15:10.334+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Started Application in 0.715 seconds (process running for 860.075)
+2025-02-04T14:15:10.335+01:00  INFO 822714 --- [dev] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-04T14:15:26.570+01:00  INFO 822714 --- [dev] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 9 class path changes (0 additions, 0 deletions, 9 modifications)
+2025-02-04T14:15:26.571+01:00  INFO 822714 --- [dev] [Thread-66] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T14:15:26.571+01:00  INFO 822714 --- [dev] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T14:15:26.573+01:00 TRACE 822714 --- [dev] [Thread-66] o.s.t.i.TransactionInterceptor           : Getting transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:15:26.574+01:00 DEBUG 822714 --- [dev] [Thread-66] org.hibernate.SQL                        : 
+    /* select
+        p 
+    from
+        DefaultJpaEventPublication p 
+    where
+        p.completionDate is null 
+    order by
+        p.publicationDate asc  */ select
+            djep1_0.id,
+            djep1_0.completion_date,
+            djep1_0.event_type,
+            djep1_0.listener_id,
+            djep1_0.publication_date,
+            djep1_0.serialized_event 
+        from
+            event_publication djep1_0 
+        where
+            djep1_0.completion_date is null 
+        order by
+            djep1_0.publication_date
+2025-02-04T14:15:26.577+01:00 TRACE 822714 --- [dev] [Thread-66] o.s.t.i.TransactionInterceptor           : Completing transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:15:26.577+01:00  INFO 822714 --- [dev] [Thread-66] .s.m.e.c.DefaultEventPublicationRegistry : Shutting down with the following publications left unfinished:
+2025-02-04T14:15:26.579+01:00  INFO 822714 --- [dev] [Thread-66] .s.m.e.c.DefaultEventPublicationRegistry : └─ dev.ebyrdeu.backend.common.event.UserCreatedEvent - dev.ebyrdeu.backend.role.internal.event.RoleAssignmentEventHandler.onUserCreated(dev.ebyrdeu.backend.common.event.UserCreatedEvent)
+2025-02-04T14:15:26.580+01:00  INFO 822714 --- [dev] [Thread-66] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:15:26.580+01:00  INFO 822714 --- [dev] [Thread-66] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2025-02-04T14:15:26.582+01:00  INFO 822714 --- [dev] [Thread-66] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2025-02-04T14:15:26.738+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Starting Application using Java 23.0.2 with PID 822714 (/home/ebyrdeu/code/testing/target/classes started by ebyrdeu in /home/ebyrdeu/code/testing)
+2025-02-04T14:15:26.738+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : The following 1 profile is active: "dev"
+2025-02-04T14:15:26.740+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /home/ebyrdeu/code/testing/docker-compose.yaml
+2025-02-04T14:15:26.893+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-02-04T14:15:27.006+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T14:15:27.008+01:00 DEBUG 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Scanning for JPA repositories in packages dev.ebyrdeu.backend, org.springframework.modulith.events.jpa.updating.
+2025-02-04T14:15:27.012+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/role/internal/infrastructure/repository/Rolerepository.class]
+2025-02-04T14:15:27.012+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/infrastructure/repository/UserRepository.class]
+2025-02-04T14:15:27.020+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 2 JPA repository interfaces.
+2025-02-04T14:15:27.123+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-04T14:15:27.123+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T14:15:27.123+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T14:15:27.128+01:00  INFO 822714 --- [dev] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T14:15:27.128+01:00  INFO 822714 --- [dev] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 234 ms
+2025-02-04T14:15:27.176+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.database                       : Set default schema name to public
+2025-02-04T14:15:27.194+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/event_publication/db.changelog.event_publication-1.0.xml
+2025-02-04T14:15:27.223+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/users/db.changelog-users-1.0.xml
+2025-02-04T14:15:27.229+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/images/db.changelog-images-1.0.xml
+2025-02-04T14:15:27.236+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/roles/db.changelog-roles-1.0.xml
+2025-02-04T14:15:27.242+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/categories/db.changelog-categories-1.0.xml
+2025-02-04T14:15:27.250+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/user_role/db.changelog.user_role-1.0.xml
+2025-02-04T14:15:27.264+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:15:27.275+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-02-04T14:15:27.275+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : UPDATE SUMMARY
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Run:                          0
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Previously run:              20
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Filtered out:                 0
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : -------------------------------
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Total change sets:           20
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Update summary generated
+2025-02-04T14:15:27.277+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.command                        : Command execution complete
+2025-02-04T14:15:27.292+01:00  INFO 822714 --- [dev] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T14:15:27.293+01:00  INFO 822714 --- [dev] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T14:15:27.301+01:00  INFO 822714 --- [dev] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T14:15:27.302+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2025-02-04T14:15:27.315+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@57962408
+2025-02-04T14:15:27.315+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2025-02-04T14:15:27.317+01:00  INFO 822714 --- [dev] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-6)']
+	Database driver: undefined/unknown
+	Database version: 17.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T14:15:27.357+01:00  INFO 822714 --- [dev] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T14:15:27.364+01:00  INFO 822714 --- [dev] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:15:27.403+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Initializing JpaMetamodelMappingContext…
+2025-02-04T14:15:27.403+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Finished initializing JpaMetamodelMappingContext
+2025-02-04T14:15:27.408+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository…
+2025-02-04T14:15:27.410+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Looking up named query 'Role.findByRole'
+2025-02-04T14:15:27.410+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query Role.findByRole
+2025-02-04T14:15:27.413+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository.
+2025-02-04T14:15:27.419+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.role.internal.service.RoleServiceImpl.findOneByRoleType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:27.427+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository…
+2025-02-04T14:15:27.429+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findAllWithMinimalInfo.count
+2025-02-04T14:15:27.431+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findOneByIdWithMinimalInfo.count
+2025-02-04T14:15:27.436+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository.
+2025-02-04T14:15:27.439+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.finalAll' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:27.440+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.findOneById' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:27.440+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.patchUsername' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.473+01:00  WARN 822714 --- [dev] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-04T14:15:27.480+01:00 DEBUG 822714 --- [dev] [restartedMain] swordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-02-04T14:15:27.486+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-02-04T14:15:27.493+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 3 mappings in 'requestMappingHandlerMapping'
+2025-02-04T14:15:27.498+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/{s1:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}/{s3:[^\\.]*}] in 'viewControllerHandlerMapping'
+2025-02-04T14:15:27.509+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-02-04T14:15:27.534+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, OAuth2AuthorizationRequestRedirectFilter, OAuth2LoginAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-04T14:15:27.550+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-02-04T14:15:27.557+01:00 DEBUG 822714 --- [dev] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-02-04T14:15:27.569+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.getCompletedEntityType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.569+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.569+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.569+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:27.570+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsPublishedBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:27.570+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsByEventAndTargetIdentifier' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:15:27.570+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.570+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.570+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.570+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublicationsBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.570+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.create' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:15:27.588+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T14:15:27.589+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markCompleted' with attribute: PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT
+2025-02-04T14:15:27.597+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-04T14:15:27.599+01:00  INFO 822714 --- [dev] [restartedMain] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2025-02-04T14:15:27.600+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Started Application in 0.877 seconds (process running for 877.34)
+2025-02-04T14:15:27.600+01:00  INFO 822714 --- [dev] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-04T14:16:35.190+01:00  INFO 822714 --- [dev] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-02-04T14:16:35.191+01:00  INFO 822714 --- [dev] [Thread-78] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T14:16:35.191+01:00  INFO 822714 --- [dev] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T14:16:35.192+01:00 TRACE 822714 --- [dev] [Thread-78] o.s.t.i.TransactionInterceptor           : Getting transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:16:35.193+01:00 DEBUG 822714 --- [dev] [Thread-78] org.hibernate.SQL                        : 
+    /* select
+        p 
+    from
+        DefaultJpaEventPublication p 
+    where
+        p.completionDate is null 
+    order by
+        p.publicationDate asc  */ select
+            djep1_0.id,
+            djep1_0.completion_date,
+            djep1_0.event_type,
+            djep1_0.listener_id,
+            djep1_0.publication_date,
+            djep1_0.serialized_event 
+        from
+            event_publication djep1_0 
+        where
+            djep1_0.completion_date is null 
+        order by
+            djep1_0.publication_date
+2025-02-04T14:16:35.195+01:00 TRACE 822714 --- [dev] [Thread-78] o.s.t.i.TransactionInterceptor           : Completing transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:16:35.195+01:00  INFO 822714 --- [dev] [Thread-78] .s.m.e.c.DefaultEventPublicationRegistry : Shutting down with the following publications left unfinished:
+2025-02-04T14:16:35.196+01:00  INFO 822714 --- [dev] [Thread-78] .s.m.e.c.DefaultEventPublicationRegistry : └─ dev.ebyrdeu.backend.common.event.UserCreatedEvent - dev.ebyrdeu.backend.role.internal.event.RoleAssignmentEventHandler.onUserCreated(dev.ebyrdeu.backend.common.event.UserCreatedEvent)
+2025-02-04T14:16:35.197+01:00  INFO 822714 --- [dev] [Thread-78] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:16:35.197+01:00  INFO 822714 --- [dev] [Thread-78] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2025-02-04T14:16:35.198+01:00  INFO 822714 --- [dev] [Thread-78] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2025-02-04T14:16:35.300+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Starting Application using Java 23.0.2 with PID 822714 (/home/ebyrdeu/code/testing/target/classes started by ebyrdeu in /home/ebyrdeu/code/testing)
+2025-02-04T14:16:35.300+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : The following 1 profile is active: "dev"
+2025-02-04T14:16:35.301+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /home/ebyrdeu/code/testing/docker-compose.yaml
+2025-02-04T14:16:35.398+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-02-04T14:16:35.468+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T14:16:35.469+01:00 DEBUG 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Scanning for JPA repositories in packages dev.ebyrdeu.backend, org.springframework.modulith.events.jpa.updating.
+2025-02-04T14:16:35.470+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/role/internal/infrastructure/repository/Rolerepository.class]
+2025-02-04T14:16:35.470+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/infrastructure/repository/UserRepository.class]
+2025-02-04T14:16:35.473+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2025-02-04T14:16:35.533+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-04T14:16:35.533+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T14:16:35.533+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T14:16:35.537+01:00  INFO 822714 --- [dev] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T14:16:35.537+01:00  INFO 822714 --- [dev] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 138 ms
+2025-02-04T14:16:35.574+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.database                       : Set default schema name to public
+2025-02-04T14:16:35.584+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/event_publication/db.changelog.event_publication-1.0.xml
+2025-02-04T14:16:35.605+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/users/db.changelog-users-1.0.xml
+2025-02-04T14:16:35.610+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/images/db.changelog-images-1.0.xml
+2025-02-04T14:16:35.615+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/roles/db.changelog-roles-1.0.xml
+2025-02-04T14:16:35.621+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/categories/db.changelog-categories-1.0.xml
+2025-02-04T14:16:35.626+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/user_role/db.changelog.user_role-1.0.xml
+2025-02-04T14:16:35.638+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:16:35.649+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-02-04T14:16:35.649+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : UPDATE SUMMARY
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Run:                          0
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Previously run:              20
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Filtered out:                 0
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : -------------------------------
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Total change sets:           20
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Update summary generated
+2025-02-04T14:16:35.651+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.command                        : Command execution complete
+2025-02-04T14:16:35.663+01:00  INFO 822714 --- [dev] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T14:16:35.664+01:00  INFO 822714 --- [dev] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T14:16:35.673+01:00  INFO 822714 --- [dev] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T14:16:35.674+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2025-02-04T14:16:35.693+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@2d2422de
+2025-02-04T14:16:35.693+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2025-02-04T14:16:35.696+01:00  INFO 822714 --- [dev] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-7)']
+	Database driver: undefined/unknown
+	Database version: 17.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T14:16:35.735+01:00  INFO 822714 --- [dev] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T14:16:35.740+01:00  INFO 822714 --- [dev] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:16:35.777+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Initializing JpaMetamodelMappingContext…
+2025-02-04T14:16:35.778+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Finished initializing JpaMetamodelMappingContext
+2025-02-04T14:16:35.783+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository…
+2025-02-04T14:16:35.785+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Looking up named query 'Role.findByRole'
+2025-02-04T14:16:35.785+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query Role.findByRole
+2025-02-04T14:16:35.787+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository.
+2025-02-04T14:16:35.792+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.role.internal.service.RoleServiceImpl.findOneByRoleType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:16:35.798+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository…
+2025-02-04T14:16:35.800+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findAllWithMinimalInfo.count
+2025-02-04T14:16:35.801+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findOneByIdWithMinimalInfo.count
+2025-02-04T14:16:35.803+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository.
+2025-02-04T14:16:35.805+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.finalAll' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:16:35.806+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.findOneById' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:16:35.806+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.patchUsername' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.825+01:00  WARN 822714 --- [dev] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-04T14:16:35.832+01:00 DEBUG 822714 --- [dev] [restartedMain] swordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-02-04T14:16:35.838+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-02-04T14:16:35.846+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 3 mappings in 'requestMappingHandlerMapping'
+2025-02-04T14:16:35.852+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/{s1:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}/{s3:[^\\.]*}] in 'viewControllerHandlerMapping'
+2025-02-04T14:16:35.864+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-02-04T14:16:35.896+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, OAuth2AuthorizationRequestRedirectFilter, OAuth2LoginAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-04T14:16:35.915+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-02-04T14:16:35.923+01:00 DEBUG 822714 --- [dev] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.getCompletedEntityType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsPublishedBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsByEventAndTargetIdentifier' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.936+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.937+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublicationsBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.937+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.create' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:16:35.956+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T14:16:35.958+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markCompleted' with attribute: PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT
+2025-02-04T14:16:35.967+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-04T14:16:35.969+01:00  INFO 822714 --- [dev] [restartedMain] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2025-02-04T14:16:35.970+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Started Application in 0.681 seconds (process running for 945.71)
+2025-02-04T14:16:35.971+01:00  INFO 822714 --- [dev] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-04T14:17:00.429+01:00  INFO 822714 --- [dev] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2025-02-04T14:17:00.430+01:00  INFO 822714 --- [dev] [Thread-90] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T14:17:00.431+01:00  INFO 822714 --- [dev] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T14:17:00.433+01:00 TRACE 822714 --- [dev] [Thread-90] o.s.t.i.TransactionInterceptor           : Getting transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:17:00.434+01:00 DEBUG 822714 --- [dev] [Thread-90] org.hibernate.SQL                        : 
+    /* select
+        p 
+    from
+        DefaultJpaEventPublication p 
+    where
+        p.completionDate is null 
+    order by
+        p.publicationDate asc  */ select
+            djep1_0.id,
+            djep1_0.completion_date,
+            djep1_0.event_type,
+            djep1_0.listener_id,
+            djep1_0.publication_date,
+            djep1_0.serialized_event 
+        from
+            event_publication djep1_0 
+        where
+            djep1_0.completion_date is null 
+        order by
+            djep1_0.publication_date
+2025-02-04T14:17:00.436+01:00 TRACE 822714 --- [dev] [Thread-90] o.s.t.i.TransactionInterceptor           : Completing transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:17:00.436+01:00  INFO 822714 --- [dev] [Thread-90] .s.m.e.c.DefaultEventPublicationRegistry : Shutting down with the following publications left unfinished:
+2025-02-04T14:17:00.438+01:00  INFO 822714 --- [dev] [Thread-90] .s.m.e.c.DefaultEventPublicationRegistry : └─ dev.ebyrdeu.backend.common.event.UserCreatedEvent - dev.ebyrdeu.backend.role.internal.event.RoleAssignmentEventHandler.onUserCreated(dev.ebyrdeu.backend.common.event.UserCreatedEvent)
+2025-02-04T14:17:00.439+01:00  INFO 822714 --- [dev] [Thread-90] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:17:00.439+01:00  INFO 822714 --- [dev] [Thread-90] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2025-02-04T14:17:00.440+01:00  INFO 822714 --- [dev] [Thread-90] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2025-02-04T14:17:00.559+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Starting Application using Java 23.0.2 with PID 822714 (/home/ebyrdeu/code/testing/target/classes started by ebyrdeu in /home/ebyrdeu/code/testing)
+2025-02-04T14:17:00.559+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : The following 1 profile is active: "dev"
+2025-02-04T14:17:00.561+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /home/ebyrdeu/code/testing/docker-compose.yaml
+2025-02-04T14:17:00.659+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-02-04T14:17:00.728+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T14:17:00.729+01:00 DEBUG 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Scanning for JPA repositories in packages dev.ebyrdeu.backend, org.springframework.modulith.events.jpa.updating.
+2025-02-04T14:17:00.730+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/role/internal/infrastructure/repository/Rolerepository.class]
+2025-02-04T14:17:00.730+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/infrastructure/repository/UserRepository.class]
+2025-02-04T14:17:00.733+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 2 JPA repository interfaces.
+2025-02-04T14:17:00.795+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-04T14:17:00.795+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T14:17:00.795+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T14:17:00.799+01:00  INFO 822714 --- [dev] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T14:17:00.799+01:00  INFO 822714 --- [dev] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 139 ms
+2025-02-04T14:17:00.836+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.database                       : Set default schema name to public
+2025-02-04T14:17:00.846+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/event_publication/db.changelog.event_publication-1.0.xml
+2025-02-04T14:17:00.866+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/users/db.changelog-users-1.0.xml
+2025-02-04T14:17:00.871+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/images/db.changelog-images-1.0.xml
+2025-02-04T14:17:00.876+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/roles/db.changelog-roles-1.0.xml
+2025-02-04T14:17:00.881+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/categories/db.changelog-categories-1.0.xml
+2025-02-04T14:17:00.886+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/user_role/db.changelog.user_role-1.0.xml
+2025-02-04T14:17:00.897+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:17:00.908+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-02-04T14:17:00.909+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:17:00.910+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : UPDATE SUMMARY
+2025-02-04T14:17:00.910+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Run:                          0
+2025-02-04T14:17:00.910+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Previously run:              20
+2025-02-04T14:17:00.910+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Filtered out:                 0
+2025-02-04T14:17:00.910+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : -------------------------------
+2025-02-04T14:17:00.910+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Total change sets:           20
+2025-02-04T14:17:00.910+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Update summary generated
+2025-02-04T14:17:00.911+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.command                        : Command execution complete
+2025-02-04T14:17:00.922+01:00  INFO 822714 --- [dev] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T14:17:00.924+01:00  INFO 822714 --- [dev] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T14:17:00.930+01:00  INFO 822714 --- [dev] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T14:17:00.930+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2025-02-04T14:17:00.946+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection org.postgresql.jdbc.PgConnection@53c2e65f
+2025-02-04T14:17:00.946+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2025-02-04T14:17:00.947+01:00  INFO 822714 --- [dev] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-8)']
+	Database driver: undefined/unknown
+	Database version: 17.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T14:17:00.988+01:00  INFO 822714 --- [dev] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T14:17:00.994+01:00  INFO 822714 --- [dev] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:17:01.028+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Initializing JpaMetamodelMappingContext…
+2025-02-04T14:17:01.028+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Finished initializing JpaMetamodelMappingContext
+2025-02-04T14:17:01.033+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository…
+2025-02-04T14:17:01.034+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Looking up named query 'Role.findByRole'
+2025-02-04T14:17:01.034+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query Role.findByRole
+2025-02-04T14:17:01.037+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository.
+2025-02-04T14:17:01.041+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.role.internal.service.RoleServiceImpl.findOneByRoleType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:17:01.048+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository…
+2025-02-04T14:17:01.049+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findAllWithMinimalInfo.count
+2025-02-04T14:17:01.050+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findOneByIdWithMinimalInfo.count
+2025-02-04T14:17:01.053+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository.
+2025-02-04T14:17:01.055+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.finalAll' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:17:01.055+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.findOneById' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:17:01.055+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.patchUsername' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.073+01:00  WARN 822714 --- [dev] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-04T14:17:01.079+01:00 DEBUG 822714 --- [dev] [restartedMain] swordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-02-04T14:17:01.085+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-02-04T14:17:01.093+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 mappings in 'requestMappingHandlerMapping'
+2025-02-04T14:17:01.097+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/{s1:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}/{s3:[^\\.]*}] in 'viewControllerHandlerMapping'
+2025-02-04T14:17:01.109+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-02-04T14:17:01.134+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, OAuth2AuthorizationRequestRedirectFilter, OAuth2LoginAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-04T14:17:01.150+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-02-04T14:17:01.158+01:00 DEBUG 822714 --- [dev] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-02-04T14:17:01.170+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.getCompletedEntityType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.170+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.170+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.170+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:17:01.170+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsPublishedBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:17:01.170+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsByEventAndTargetIdentifier' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:17:01.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublicationsBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.171+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.create' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:17:01.196+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T14:17:01.197+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markCompleted' with attribute: PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT
+2025-02-04T14:17:01.206+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-04T14:17:01.208+01:00  INFO 822714 --- [dev] [restartedMain] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2025-02-04T14:17:01.208+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Started Application in 0.66 seconds (process running for 970.949)
+2025-02-04T14:17:01.209+01:00  INFO 822714 --- [dev] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-02-04T14:19:48.993+01:00  INFO 822714 --- [dev] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-02-04T14:19:48.994+01:00  INFO 822714 --- [dev] [Thread-102] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-02-04T14:19:48.995+01:00  INFO 822714 --- [dev] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-02-04T14:19:48.996+01:00 TRACE 822714 --- [dev] [Thread-102] o.s.t.i.TransactionInterceptor           : Getting transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:19:48.997+01:00 DEBUG 822714 --- [dev] [Thread-102] org.hibernate.SQL                        : 
+    /* select
+        p 
+    from
+        DefaultJpaEventPublication p 
+    where
+        p.completionDate is null 
+    order by
+        p.publicationDate asc  */ select
+            djep1_0.id,
+            djep1_0.completion_date,
+            djep1_0.event_type,
+            djep1_0.listener_id,
+            djep1_0.publication_date,
+            djep1_0.serialized_event 
+        from
+            event_publication djep1_0 
+        where
+            djep1_0.completion_date is null 
+        order by
+            djep1_0.publication_date
+2025-02-04T14:19:48.998+01:00 TRACE 822714 --- [dev] [Thread-102] o.s.t.i.TransactionInterceptor           : Completing transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
+2025-02-04T14:19:48.999+01:00  INFO 822714 --- [dev] [Thread-102] .s.m.e.c.DefaultEventPublicationRegistry : Shutting down with the following publications left unfinished:
+2025-02-04T14:19:49.000+01:00  INFO 822714 --- [dev] [Thread-102] .s.m.e.c.DefaultEventPublicationRegistry : └─ dev.ebyrdeu.backend.common.event.UserCreatedEvent - dev.ebyrdeu.backend.role.internal.event.RoleAssignmentEventHandler.onUserCreated(dev.ebyrdeu.backend.common.event.UserCreatedEvent)
+2025-02-04T14:19:49.000+01:00  INFO 822714 --- [dev] [Thread-102] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:19:49.001+01:00  INFO 822714 --- [dev] [Thread-102] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2025-02-04T14:19:49.001+01:00  INFO 822714 --- [dev] [Thread-102] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2025-02-04T14:19:49.104+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Starting Application using Java 23.0.2 with PID 822714 (/home/ebyrdeu/code/testing/target/classes started by ebyrdeu in /home/ebyrdeu/code/testing)
+2025-02-04T14:19:49.104+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : The following 1 profile is active: "dev"
+2025-02-04T14:19:49.107+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /home/ebyrdeu/code/testing/docker-compose.yaml
+2025-02-04T14:19:49.209+01:00  INFO 822714 --- [dev] [restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-02-04T14:19:49.290+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-04T14:19:49.290+01:00 DEBUG 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Scanning for JPA repositories in packages dev.ebyrdeu.backend, org.springframework.modulith.events.jpa.updating.
+2025-02-04T14:19:49.292+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/role/internal/infrastructure/repository/Rolerepository.class]
+2025-02-04T14:19:49.292+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/infrastructure/repository/UserRepository.class]
+2025-02-04T14:19:49.295+01:00  INFO 822714 --- [dev] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 2 JPA repository interfaces.
+2025-02-04T14:19:49.373+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-04T14:19:49.374+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-04T14:19:49.374+01:00  INFO 822714 --- [dev] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-04T14:19:49.379+01:00  INFO 822714 --- [dev] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-04T14:19:49.379+01:00  INFO 822714 --- [dev] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 169 ms
+2025-02-04T14:19:49.423+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.database                       : Set default schema name to public
+2025-02-04T14:19:49.435+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/event_publication/db.changelog.event_publication-1.0.xml
+2025-02-04T14:19:49.461+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/users/db.changelog-users-1.0.xml
+2025-02-04T14:19:49.466+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/images/db.changelog-images-1.0.xml
+2025-02-04T14:19:49.471+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/roles/db.changelog-roles-1.0.xml
+2025-02-04T14:19:49.477+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/categories/db.changelog-categories-1.0.xml
+2025-02-04T14:19:49.483+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading resource: db/changelog/table/user_role/db.changelog.user_role-1.0.xml
+2025-02-04T14:19:49.500+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:19:49.512+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-02-04T14:19:49.512+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.changelog                      : Reading from public.databasechangelog
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : UPDATE SUMMARY
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Run:                          0
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Previously run:              20
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Filtered out:                 0
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : -------------------------------
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Total change sets:           20
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.util                           : Update summary generated
+2025-02-04T14:19:49.514+01:00  INFO 822714 --- [dev] [restartedMain] liquibase.command                        : Command execution complete
+2025-02-04T14:19:49.526+01:00  INFO 822714 --- [dev] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-04T14:19:49.527+01:00  INFO 822714 --- [dev] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-04T14:19:49.532+01:00  INFO 822714 --- [dev] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-04T14:19:49.532+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2025-02-04T14:19:49.545+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection org.postgresql.jdbc.PgConnection@497268aa
+2025-02-04T14:19:49.545+01:00  INFO 822714 --- [dev] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2025-02-04T14:19:49.547+01:00  INFO 822714 --- [dev] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-9)']
+	Database driver: undefined/unknown
+	Database version: 17.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-02-04T14:19:49.577+01:00  INFO 822714 --- [dev] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-04T14:19:49.583+01:00  INFO 822714 --- [dev] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-04T14:19:49.619+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Initializing JpaMetamodelMappingContext…
+2025-02-04T14:19:49.619+01:00 DEBUG 822714 --- [dev] [restartedMain] .c.JpaMetamodelMappingContextFactoryBean : Finished initializing JpaMetamodelMappingContext
+2025-02-04T14:19:49.625+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository…
+2025-02-04T14:19:49.626+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Looking up named query 'Role.findByRole'
+2025-02-04T14:19:49.626+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query Role.findByRole
+2025-02-04T14:19:49.629+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.role.internal.infrastructure.repository.Rolerepository.
+2025-02-04T14:19:49.633+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.role.internal.service.RoleServiceImpl.findOneByRoleType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:19:49.639+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository…
+2025-02-04T14:19:49.640+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findAllWithMinimalInfo.count
+2025-02-04T14:19:49.641+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findOneByIdWithMinimalInfo.count
+2025-02-04T14:19:49.644+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository.
+2025-02-04T14:19:49.645+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.finalAll' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:19:49.646+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.findOneById' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:19:49.646+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.service.UserServiceImpl.patchUsername' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.667+01:00  WARN 822714 --- [dev] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-04T14:19:49.673+01:00 DEBUG 822714 --- [dev] [restartedMain] swordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-02-04T14:19:49.680+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-02-04T14:19:49.690+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 5 mappings in 'requestMappingHandlerMapping'
+2025-02-04T14:19:49.695+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/{s1:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}/{s3:[^\\.]*}] in 'viewControllerHandlerMapping'
+2025-02-04T14:19:49.707+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-02-04T14:19:49.730+01:00 DEBUG 822714 --- [dev] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, OAuth2AuthorizationRequestRedirectFilter, OAuth2LoginAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-02-04T14:19:49.752+01:00 DEBUG 822714 --- [dev] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-02-04T14:19:49.761+01:00 DEBUG 822714 --- [dev] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-02-04T14:19:49.774+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.getCompletedEntityType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.774+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.774+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.774+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:19:49.774+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsPublishedBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:19:49.775+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsByEventAndTargetIdentifier' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-02-04T14:19:49.775+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.775+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.775+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.775+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublicationsBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.775+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.create' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-02-04T14:19:49.797+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-04T14:19:49.799+01:00 TRACE 822714 --- [dev] [restartedMain] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markCompleted' with attribute: PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT
+2025-02-04T14:19:49.808+01:00  INFO 822714 --- [dev] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-04T14:19:49.810+01:00  INFO 822714 --- [dev] [restartedMain] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2025-02-04T14:19:49.811+01:00  INFO 822714 --- [dev] [restartedMain] dev.ebyrdeu.backend.Application          : Started Application in 0.72 seconds (process running for 1139.551)
+2025-02-04T14:19:49.811+01:00  INFO 822714 --- [dev] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
