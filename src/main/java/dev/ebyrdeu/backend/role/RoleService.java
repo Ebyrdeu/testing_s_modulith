@@ -1,4 +1,9 @@
 package dev.ebyrdeu.backend.role;
 
-public class RoleService {
+import dev.ebyrdeu.backend.role.internal.infrastructure.entity.Role;
+
+
+public interface RoleService {
+	Role findOneByRoleType(RoleType roleType);
+
 }
