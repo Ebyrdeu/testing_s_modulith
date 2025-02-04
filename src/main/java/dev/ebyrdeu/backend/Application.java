@@ -1,4 +1,4 @@
-package com.example.testing;
+package dev.ebyrdeu.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

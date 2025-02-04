@@ -1,4 +1,4 @@
-package com.example.testing;
+package dev.ebyrdeu.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.core.ApplicationModules;
