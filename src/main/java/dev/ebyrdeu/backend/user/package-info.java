@@ -8,7 +8,10 @@
 	displayName = "User",
 	allowedDependencies = {
 		"common :: entity",
-		"common :: dto"
+		"common :: dto",
+		"common :: service",
+		"common :: util"
+
 	}
 )
 package dev.ebyrdeu.backend.user;
