@@ -1,4 +1,4 @@
-package dev.ebyrdeu.backend.user.internal.infrastructure.entity;
+package dev.ebyrdeu.backend.user.internal.model;
 
 import dev.ebyrdeu.backend.common.entity.DefaultEntity;
 import jakarta.persistence.Column;

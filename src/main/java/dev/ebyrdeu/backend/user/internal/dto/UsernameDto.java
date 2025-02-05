@@ -1,4 +1,4 @@
-package dev.ebyrdeu.backend.user.internal.web.dto;
+package dev.ebyrdeu.backend.user.internal.dto;
 
 
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Maxim Khnykin
  * @version 1.0
  */
-public record UsernameReqDto(
+public record UsernameDto(
 	@NotNull
 	@Size(max = 30)
 	String username

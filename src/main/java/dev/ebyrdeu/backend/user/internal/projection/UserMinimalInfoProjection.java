@@ -1,4 +1,4 @@
-package dev.ebyrdeu.backend.user.internal.infrastructure.projection;
+package dev.ebyrdeu.backend.user.internal.projection;
 
 /**
  * Shows {@code username} {@code first name} {@code last name}

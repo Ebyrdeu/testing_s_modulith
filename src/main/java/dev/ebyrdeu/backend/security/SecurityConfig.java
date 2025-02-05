@@ -6,6 +6,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
@@ -22,7 +25,8 @@ class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(
 		HttpSecurity http,
-		CsrfTokenRequestHandler csrfTokenRequestHandler
+		CsrfTokenRequestHandler csrfTokenRequestHandler,
+		OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService
 	) throws Exception {
 		// Csrf Config
 		http.csrf(csrf -> csrf
@@ -39,6 +43,7 @@ class SecurityConfig {
 			.authorizationEndpoint(auth -> auth
 				.baseUri("/login/oauth2/authorization")
 			)
+			.userInfoEndpoint(userInfo -> userInfo.oidcUserService(oidcUserService))
 			.defaultSuccessUrl("/", true)
 		);
 
@@ -49,9 +54,8 @@ class SecurityConfig {
 		// Auth Req Config
 		http.authorizeHttpRequests(auth -> auth
 			.requestMatchers("/", "/login", "/index.html", "/static/**", "/assets/**").permitAll()
-			.requestMatchers("/api/**").hasRole("ADMIN")
 			.requestMatchers("/admin/**").hasRole("ADMIN")
-			.anyRequest().authenticated()
+			.anyRequest().permitAll()
 		);
 
 		return http.build();

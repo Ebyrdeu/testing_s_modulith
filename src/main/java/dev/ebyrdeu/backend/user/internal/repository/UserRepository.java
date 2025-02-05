@@ -1,7 +1,7 @@
-package dev.ebyrdeu.backend.user.internal.infrastructure.repository;
+package dev.ebyrdeu.backend.user.internal.repository;
 
-import dev.ebyrdeu.backend.user.internal.infrastructure.entity.User;
-import dev.ebyrdeu.backend.user.internal.infrastructure.projection.UserMinimalInfoProjection;
+import dev.ebyrdeu.backend.user.internal.model.User;
+import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,4 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Query(value = "select u.username as username, u.firstName as firstName, u.lastName as lastName from User u where u.id = :id")
 	Optional<UserMinimalInfoProjection> findOneByIdWithMinimalInfo(Long id);
+
 }

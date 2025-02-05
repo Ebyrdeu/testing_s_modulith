@@ -1,14 +1,14 @@
-package dev.ebyrdeu.backend.user.internal.service;
+package dev.ebyrdeu.backend.user.internal.management;
 
-import dev.ebyrdeu.backend.common.dto.ResDto;
-import dev.ebyrdeu.backend.user.UserService;
+import dev.ebyrdeu.backend.common.dto.ResponseDto;
+import dev.ebyrdeu.backend.user.UserExternalApi;
+import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.excpetion.UserInternalServerErrorException;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
-import dev.ebyrdeu.backend.user.internal.excpetion.UserServiceException;
-import dev.ebyrdeu.backend.user.internal.infrastructure.entity.User;
-import dev.ebyrdeu.backend.user.internal.infrastructure.mapper.UsernameReqMapper;
-import dev.ebyrdeu.backend.user.internal.infrastructure.projection.UserMinimalInfoProjection;
-import dev.ebyrdeu.backend.user.internal.infrastructure.repository.UserRepository;
-import dev.ebyrdeu.backend.user.internal.web.dto.UsernameReqDto;
+import dev.ebyrdeu.backend.user.internal.mapper.UsernameMapper;
+import dev.ebyrdeu.backend.user.internal.model.User;
+import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
+import dev.ebyrdeu.backend.user.internal.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,31 +18,31 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-class UserServiceImpl implements UserService {
-	private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+class UserManagement implements UserExternalApi {
+	private static final Logger log = LoggerFactory.getLogger(UserManagement.class);
 	private final UserRepository userRepository;
 
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserManagement(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResDto<List<UserMinimalInfoProjection>> finalAll() {
+	public ResponseDto<List<UserMinimalInfoProjection>> finalAll() {
 		log.info("[UserRestService/findAll]:: Execution started.");
 		try {
 			List<UserMinimalInfoProjection> data = this.userRepository.findAllWithMinimalInfo();
 			log.info("[UserRestService/findAll]:: Found {} users.", data.size());
 
-			return new ResDto<>(
+			return new ResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"Users retrieved successfully",
 				data
 			);
-		} catch (RuntimeException ex) {
+		} catch (UserInternalServerErrorException ex) {
 			log.error("[UserRestService/findAll]:: Exception occurred while retrieving users. Exception: {}", ex.getMessage());
-			throw new UserServiceException("Failed to retrieve users due to an unexpected error");
+			throw new UserInternalServerErrorException("Failed to retrieve users due to an unexpected error");
 		} finally {
 			log.info("[UserRestService/findAll]:: Execution ended.");
 		}
@@ -51,7 +51,7 @@ class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResDto<UserMinimalInfoProjection> findOneById(Long id) {
+	public ResponseDto<UserMinimalInfoProjection> findOneById(Long id) {
 		log.info("[UserRestService/findOneById]:: Execution started.");
 
 		try {
@@ -63,7 +63,7 @@ class UserServiceImpl implements UserService {
 
 			log.info("[UserRestService/findOneById]:: User found. User ID: {}", id);
 
-			return new ResDto<>(
+			return new ResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"User retrieved successfully",
@@ -76,12 +76,12 @@ class UserServiceImpl implements UserService {
 				ex.getMessage()
 			);
 			throw ex;
-		} catch (RuntimeException ex) {
+		} catch (UserInternalServerErrorException ex) {
 			log.error(
 				"[UserRestService/findOneById]:: Exception occurred while retrieving user from database , Exception message {}",
 				ex.getMessage()
 			);
-			throw new UserServiceException("Failed to retrieve user due to an unexpected error");
+			throw new UserInternalServerErrorException("Failed to retrieve user due to an unexpected error");
 		} finally {
 			log.info("[UserRestService/findOneById]:: Execution ended.");
 		}
@@ -91,7 +91,7 @@ class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public ResDto<UsernameReqDto> patchUsername(Long id, UsernameReqDto requestedDto) {
+	public ResponseDto<UsernameDto> patchUsername(Long id, UsernameDto requestedDto) {
 		log.info("[UserRestService/patchUsername]:: Execution started.");
 		try {
 			User retrievedUser = this.userRepository
@@ -109,11 +109,11 @@ class UserServiceImpl implements UserService {
 			User updatedUser = this.userRepository.save(retrievedUser);
 
 			log.info("[UserRestService/patchUsername]:: User patched successfully. User ID: {}", id);
-			return new ResDto<>(
+			return new ResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"User patched successfully",
-				UsernameReqMapper.map(updatedUser)
+				UsernameMapper.map(updatedUser)
 			);
 		} catch (UserNotFoundException ex) {
 			log.error(
@@ -122,9 +122,9 @@ class UserServiceImpl implements UserService {
 				ex.getMessage()
 			);
 			throw ex;
-		} catch (RuntimeException ex) {
+		} catch (UserInternalServerErrorException ex) {
 			log.error("[UserRestService/patchUsername]:: Exception occurred while patching user to database , Exception message {}", ex.getMessage());
-			throw new UserServiceException("Failed to patch user due to an unexpected error");
+			throw new UserInternalServerErrorException("Failed to patch user due to an unexpected error");
 		} finally {
 			log.info("[UserRestService/patchUsername]:: Execution ended.");
 		}

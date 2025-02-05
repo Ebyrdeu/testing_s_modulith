@@ -1,10 +1,10 @@
 package dev.ebyrdeu.backend.user.internal.web;
 
-import dev.ebyrdeu.backend.common.dto.ResDto;
+import dev.ebyrdeu.backend.common.dto.ResponseDto;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
-import dev.ebyrdeu.backend.user.UserService;
-import dev.ebyrdeu.backend.user.internal.infrastructure.projection.UserMinimalInfoProjection;
-import dev.ebyrdeu.backend.user.internal.web.dto.UsernameReqDto;
+import dev.ebyrdeu.backend.user.UserExternalApi;
+import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,20 +24,20 @@ import java.util.List;
 class UserController {
 
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
-	private final UserService userService;
+	private final UserExternalApi userExternalApi;
 	private final JsonConverterAdapter jsonConverter;
 
-	public UserController(UserService userService, JsonConverterAdapter jsonConverter) {
-		this.userService = userService;
+	public UserController(UserExternalApi userExternalApi, JsonConverterAdapter jsonConverter) {
+		this.userExternalApi = userExternalApi;
 		this.jsonConverter = jsonConverter;
 	}
 
 	@GetMapping
-	public ResponseEntity<ResDto<List<UserMinimalInfoProjection>>> findAll() {
+	public ResponseEntity<ResponseDto<List<UserMinimalInfoProjection>>> findAll() {
 
 		log.info("[UserController/findAll]:: Fetching all users.");
 
-		ResDto<List<UserMinimalInfoProjection>> response = this.userService.finalAll();
+		ResponseDto<List<UserMinimalInfoProjection>> response = this.userExternalApi.finalAll();
 
 		log.info("[UserController/findAll]:: Response: {}", this.jsonConverter.valueOf(response.data()));
 
@@ -45,10 +45,10 @@ class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ResDto<UserMinimalInfoProjection>> findOne(@PathVariable Long id) {
+	public ResponseEntity<ResponseDto<UserMinimalInfoProjection>> findOne(@PathVariable Long id) {
 		log.info("[UserController/findOne]:: Fetching user with ID: {}", id);
 
-		ResDto<UserMinimalInfoProjection> response = this.userService.findOneById(id);
+		ResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneById(id);
 
 		log.info(
 			"[UserController/findOne]:: ID: {} | Response: {}",
@@ -60,13 +60,13 @@ class UserController {
 	}
 
 	@PatchMapping("/{id}")
-	public ResponseEntity<ResDto<UsernameReqDto>> patch(
+	public ResponseEntity<ResponseDto<UsernameDto>> patch(
 		@PathVariable
 		Long id,
 
 		@RequestBody
 		@Valid
-		UsernameReqDto dto
+		UsernameDto dto
 	) {
 		log.info(
 			"[UserController/patch]:: ID: {} | Request body: {}",
@@ -74,7 +74,7 @@ class UserController {
 			this.jsonConverter.valueOf(dto)
 		);
 
-		ResDto<UsernameReqDto> response = this.userService.patchUsername(id, dto);
+		ResponseDto<UsernameDto> response = this.userExternalApi.patchUsername(id, dto);
 
 		log.info(
 			"[UserController/patch]:: ID: {} | Response: {}",

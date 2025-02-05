@@ -9,8 +9,8 @@
 	allowedDependencies = {
 		"common :: entity",
 		"common :: dto",
-		"common :: service",
-		"common :: util"
+		"common :: util",
+		"common :: event"
 
 	}
 )
