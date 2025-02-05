@@ -1,6 +1,5 @@
 package dev.ebyrdeu.backend.security.internal;
 
-import dev.ebyrdeu.backend.common.event.OidcUserAuthenticatedEvent;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,14 +31,6 @@ class OidcUserManagement extends OidcUserService {
 	public OidcUser loadUser(OidcUserRequest req) throws OAuth2AuthenticationException {
 		OidcUser oidcUser = super.loadUser(req);
 
-		eventPublisher.publishEvent(
-			new OidcUserAuthenticatedEvent(
-				oidcUser.getEmail(),
-				oidcUser.getGivenName(),
-				oidcUser.getFamilyName(),
-				oidcUser.getSubject()
-			)
-		);
 
 		List<String> retrievedUser = List.of("");
 

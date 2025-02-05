@@ -10,8 +10,6 @@
 		"common :: entity",
 		"common :: dto",
 		"common :: util",
-		"common :: event"
-
 	}
 )
 package dev.ebyrdeu.backend.user;
