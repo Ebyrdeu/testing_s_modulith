@@ -29,10 +29,10 @@ class UserManagement implements UserExternalApi {
 	@Override
 	@Transactional(readOnly = true)
 	public ResponseDto<List<UserMinimalInfoProjection>> finalAll() {
-		log.info("[UserRestService/findAll]:: Execution started.");
+		log.info("[UserManagement/findAll]:: Execution started.");
 		try {
 			List<UserMinimalInfoProjection> data = this.userRepository.findAllWithMinimalInfo();
-			log.info("[UserRestService/findAll]:: Found {} users.", data.size());
+			log.info("[UserManagement/findAll]:: Found {} users.", data.size());
 
 			return new ResponseDto<>(
 				HttpStatus.OK,
@@ -41,10 +41,10 @@ class UserManagement implements UserExternalApi {
 				data
 			);
 		} catch (UserInternalServerErrorException ex) {
-			log.error("[UserRestService/findAll]:: Exception occurred while retrieving users. Exception: {}", ex.getMessage());
+			log.error("[UserManagement/findAll]:: Exception occurred while retrieving users. Exception: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve users due to an unexpected error");
 		} finally {
-			log.info("[UserRestService/findAll]:: Execution ended.");
+			log.info("[UserManagement/findAll]:: Execution ended.");
 		}
 
 	}
@@ -52,7 +52,7 @@ class UserManagement implements UserExternalApi {
 	@Override
 	@Transactional(readOnly = true)
 	public ResponseDto<UserMinimalInfoProjection> findOneById(Long id) {
-		log.info("[UserRestService/findOneById]:: Execution started.");
+		log.info("[UserManagement/findOneById]:: Execution started.");
 
 		try {
 			UserMinimalInfoProjection data = this.userRepository
@@ -61,7 +61,7 @@ class UserManagement implements UserExternalApi {
 					() -> new UserNotFoundException("User with ID " + id + " not found")
 				);
 
-			log.info("[UserRestService/findOneById]:: User found. User ID: {}", id);
+			log.info("[UserManagement/findOneById]:: User found. User ID: {}", id);
 
 			return new ResponseDto<>(
 				HttpStatus.OK,
@@ -71,19 +71,19 @@ class UserManagement implements UserExternalApi {
 			);
 		} catch (UserNotFoundException ex) {
 			log.error(
-				"[UserRestService/findOneById]:: Exception occurred while retrieving user. User ID : {}. Exception: {}",
+				"[UserManagement/findOneById]:: Exception occurred while retrieving user. User ID : {}. Exception: {}",
 				id,
 				ex.getMessage()
 			);
 			throw ex;
 		} catch (UserInternalServerErrorException ex) {
 			log.error(
-				"[UserRestService/findOneById]:: Exception occurred while retrieving user from database , Exception message {}",
+				"[UserManagement/findOneById]:: Exception occurred while retrieving user from database , Exception message {}",
 				ex.getMessage()
 			);
 			throw new UserInternalServerErrorException("Failed to retrieve user due to an unexpected error");
 		} finally {
-			log.info("[UserRestService/findOneById]:: Execution ended.");
+			log.info("[UserManagement/findOneById]:: Execution ended.");
 		}
 
 
@@ -91,8 +91,8 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional
-	public ResponseDto<UsernameDto> patchUsername(Long id, UsernameDto requestedDto) {
-		log.info("[UserRestService/patchUsername]:: Execution started.");
+	public ResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req) {
+		log.info("[UserManagement/patchUsername]:: Execution started.");
 		try {
 			User retrievedUser = this.userRepository
 				.findById(id)
@@ -100,15 +100,15 @@ class UserManagement implements UserExternalApi {
 					() -> new UserNotFoundException("User with ID " + id + " not found")
 				);
 
-			log.info("[UserRestService/patchUsername]:: User found. User ID: {}", id);
+			log.info("[UserManagement/patchUsername]:: User found. User ID: {}", id);
 
-			if (requestedDto.username() != null) {
-				retrievedUser.setUsername(requestedDto.username());
+			if (req.username() != null) {
+				retrievedUser.setUsername(req.username());
 			}
 
 			User updatedUser = this.userRepository.save(retrievedUser);
 
-			log.info("[UserRestService/patchUsername]:: User patched successfully. User ID: {}", id);
+			log.info("[UserManagement/patchUsername]:: User patched successfully. User ID: {}", id);
 			return new ResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
@@ -117,17 +117,34 @@ class UserManagement implements UserExternalApi {
 			);
 		} catch (UserNotFoundException ex) {
 			log.error(
-				"[UserRestService/patchUsername]:: Exception occurred while retrieving user. User ID : {}. Exception: {}",
+				"[UserManagement/patchUsername]:: Exception occurred while retrieving user. User ID : {}. Exception: {}",
 				id,
 				ex.getMessage()
 			);
 			throw ex;
 		} catch (UserInternalServerErrorException ex) {
-			log.error("[UserRestService/patchUsername]:: Exception occurred while patching user to database , Exception message {}", ex.getMessage());
+			log.error("[UserManagement/patchUsername]:: Exception occurred while patching user to database , Exception message {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to patch user due to an unexpected error");
 		} finally {
-			log.info("[UserRestService/patchUsername]:: Execution ended.");
+			log.info("[UserManagement/patchUsername]:: Execution ended.");
 		}
 
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<String> findUserRolesByEmail(String email) {
+		log.info("[UserManagement/findUserRolesByEmail]:: Execution started.");
+		try {
+			List<String> data = this.userRepository.findRolesByEmail(email);
+			log.info("[UserManagement/findUserRolesByEmail]:: Found {} user roles :: {}", data.size(), data);
+
+			return data;
+		} catch (UserInternalServerErrorException ex) {
+			log.error("[UserManagement/findUserRolesByEmail]:: Exception occurred while retrieving user roles. Exception: {}", ex.getMessage());
+			throw new UserInternalServerErrorException("Failed to retrieve user roles due to an unexpected error");
+		} finally {
+			log.info("[UserManagement/findUserRolesByEmail]:: Execution ended.");
+		}
 	}
 }

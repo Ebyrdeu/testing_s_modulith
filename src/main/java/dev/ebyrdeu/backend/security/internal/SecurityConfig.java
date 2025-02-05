@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
 
@@ -59,6 +60,8 @@ class SecurityConfig {
 			.requestMatchers("/admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 		);
+
+		http.addFilterAfter(new RoleRefresherFilter(), AuthenticationFilter.class);
 
 		return http.build();
 

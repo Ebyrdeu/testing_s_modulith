@@ -33,7 +33,7 @@ class UserController {
 	}
 
 	@GetMapping
-	public ResponseEntity<ResponseDto<List<UserMinimalInfoProjection>>> findAll() {
+	public ResponseEntity<ResponseDto<List<UserMinimalInfoProjection>>> findAllWithMinimalInfo() {
 
 		log.info("[UserController/findAll]:: Fetching all users.");
 
@@ -45,7 +45,7 @@ class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ResponseDto<UserMinimalInfoProjection>> findOne(@PathVariable Long id) {
+	public ResponseEntity<ResponseDto<UserMinimalInfoProjection>> findOneUserWithMinimalInfo(@PathVariable Long id) {
 		log.info("[UserController/findOne]:: Fetching user with ID: {}", id);
 
 		ResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneById(id);
@@ -60,7 +60,7 @@ class UserController {
 	}
 
 	@PatchMapping("/{id}")
-	public ResponseEntity<ResponseDto<UsernameDto>> patch(
+	public ResponseEntity<ResponseDto<UsernameDto>> updateUsername(
 		@PathVariable
 		Long id,
 
