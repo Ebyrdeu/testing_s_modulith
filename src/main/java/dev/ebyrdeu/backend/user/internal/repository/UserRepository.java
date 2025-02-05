@@ -4,6 +4,7 @@ import dev.ebyrdeu.backend.user.internal.model.User;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,5 +22,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Query(value = "select u.username as username, u.firstName as firstName, u.lastName as lastName from User u where u.id = :id")
 	Optional<UserMinimalInfoProjection> findOneByIdWithMinimalInfo(Long id);
+
+	@Query(
+		value = """
+				SELECT r.role FROM roles r\s
+				JOIN user_role ur ON r.id = ur.role_id\s
+				JOIN users u ON u.id = ur.user_id\s
+				WHERE u.email = :email
+			\t""",
+		nativeQuery = true
+	)
+	List<String> findRolesByEmail(@Param("email") String email);
 
 }

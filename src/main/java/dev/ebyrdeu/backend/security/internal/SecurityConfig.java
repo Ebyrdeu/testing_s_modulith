@@ -1,4 +1,4 @@
-package dev.ebyrdeu.backend.security;
+package dev.ebyrdeu.backend.security.internal;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,14 +48,16 @@ class SecurityConfig {
 		);
 
 		// Other Logins Config
+		// disabled as for now we don't support our own login system
 		http.httpBasic(AbstractHttpConfigurer::disable)
 			.formLogin(AbstractHttpConfigurer::disable);
 
 		// Auth Req Config
 		http.authorizeHttpRequests(auth -> auth
 			.requestMatchers("/", "/login", "/index.html", "/static/**", "/assets/**").permitAll()
+			.requestMatchers("/api/**").hasRole("ADMIN")
 			.requestMatchers("/admin/**").hasRole("ADMIN")
-			.anyRequest().permitAll()
+			.anyRequest().authenticated()
 		);
 
 		return http.build();
