@@ -3,6 +3,7 @@ package dev.ebyrdeu.backend.user;
 import dev.ebyrdeu.backend.common.dto.ResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
 import java.util.List;
 
@@ -36,4 +37,6 @@ public interface UserExternalApi {
 	 * or an empty list if no roles are found for the given email
 	 */
 	List<String> findUserRolesByEmail(String email);
+
+	void createOrGetOidcUser(OidcUser oidcUser);
 }

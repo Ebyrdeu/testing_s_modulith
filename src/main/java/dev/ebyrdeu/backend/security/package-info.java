@@ -7,7 +7,6 @@
 @org.springframework.modulith.ApplicationModule(
 	displayName = "Security",
 	allowedDependencies = {
-		"common :: dto",
 		"user"
 	}
 )

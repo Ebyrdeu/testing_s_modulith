@@ -1,8 +1,6 @@
 package dev.ebyrdeu.backend.security.internal;
 
-import dev.ebyrdeu.backend.common.dto.OidcUserEventDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -19,11 +17,9 @@ import java.util.stream.Collectors;
 @Service
 class OidcUserManagement extends OidcUserService {
 
-	private final ApplicationEventPublisher eventPublisher;
 	private final UserExternalApi userExternalApi;
 
-	public OidcUserManagement(ApplicationEventPublisher eventPublisher, UserExternalApi userExternalApi) {
-		this.eventPublisher = eventPublisher;
+	public OidcUserManagement(UserExternalApi userExternalApi) {
 		this.userExternalApi = userExternalApi;
 	}
 
@@ -32,14 +28,7 @@ class OidcUserManagement extends OidcUserService {
 	public OidcUser loadUser(OidcUserRequest req) throws OAuth2AuthenticationException {
 		OidcUser oidcUser = super.loadUser(req);
 
-		eventPublisher.publishEvent(
-			new OidcUserEventDto(
-				oidcUser.getEmail(),
-				oidcUser.getGivenName(),
-				oidcUser.getFamilyName(),
-				oidcUser.getSubject()
-			)
-		);
+		this.userExternalApi.createOrGetOidcUser(oidcUser);
 
 		List<String> retrievedUserRoles = this.userExternalApi.findUserRolesByEmail(oidcUser.getEmail());
 

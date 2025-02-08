@@ -12,6 +12,7 @@ import dev.ebyrdeu.backend.user.internal.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -147,4 +148,28 @@ class UserManagement implements UserExternalApi {
 			log.info("[UserManagement/findUserRolesByEmail]:: Execution ended.");
 		}
 	}
+
+	@Override
+	@Transactional
+	public void createOrGetOidcUser(OidcUser oidcUser) {
+		if (this.userRepository.findOneByEmail(oidcUser.getEmail()).isPresent()) {
+			return;
+		}
+
+		User user = new User();
+		user.setEmail(oidcUser.getEmail());
+		user.setFirstName(oidcUser.getGivenName());
+		user.setLastName(oidcUser.getFamilyName());
+		user.setUsername(oidcUser.getSubject());
+
+		User createdUser = this.userRepository.save(user);
+
+		// USER - 1
+		// VENDOR - 2
+		// ADMIN - 3
+		// Unless you want to test staff - stick with 1
+		this.userRepository.addSingleRole(createdUser.getId(), 1L);
+
+	}
+
 }
