@@ -8,12 +8,20 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This Service ensures that the user's roles are synchronized with the database and included in the
+ * OIDC user object returned by the `loadUser` method.
+ *
+ * @author Maxim Khnykin
+ * @version 1.0
+ * @see UserExternalApi
+ * @see OidcUserService
+ */
 @Service
 class OidcUserManagement extends OidcUserService {
 
@@ -24,7 +32,6 @@ class OidcUserManagement extends OidcUserService {
 	}
 
 	@Override
-	@Transactional
 	public OidcUser loadUser(OidcUserRequest req) throws OAuth2AuthenticationException {
 		OidcUser oidcUser = super.loadUser(req);
 
@@ -34,9 +41,8 @@ class OidcUserManagement extends OidcUserService {
 
 		Collection<GrantedAuthority> roleAuthorities = retrievedUserRoles
 			.stream()
-			.map(role -> (GrantedAuthority) () -> "ROLE_" + role)
+			.map(role -> (GrantedAuthority) () -> role)
 			.collect(Collectors.toSet());
-
 
 		return new DefaultOidcUser(
 			roleAuthorities,

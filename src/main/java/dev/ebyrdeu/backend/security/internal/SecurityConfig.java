@@ -6,17 +6,17 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
 
 /**
  * @author Maxim Khnykin
  * @version 1.0
+ * @see CsrfTokenRequestHandler
+ * @see OidcUserManagement
+ * @see RoleRefresherFilter
  */
 @Configuration
 @EnableWebSecurity
@@ -27,8 +27,10 @@ class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(
 		HttpSecurity http,
 		CsrfTokenRequestHandler csrfTokenRequestHandler,
-		OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService
+		OidcUserManagement oidcUserManagement,
+		RoleRefresherFilter roleRefresherFilter
 	) throws Exception {
+
 		// Csrf Config
 		http.csrf(csrf -> csrf
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
@@ -44,7 +46,7 @@ class SecurityConfig {
 			.authorizationEndpoint(auth -> auth
 				.baseUri("/login/oauth2/authorization")
 			)
-			.userInfoEndpoint(userInfo -> userInfo.oidcUserService(oidcUserService))
+			.userInfoEndpoint(userInfo -> userInfo.oidcUserService(oidcUserManagement))
 			.defaultSuccessUrl("/", true)
 		);
 
@@ -61,7 +63,13 @@ class SecurityConfig {
 			.anyRequest().authenticated()
 		);
 
-		http.addFilterAfter(new RoleRefresherFilter(), AuthenticationFilter.class);
+
+		// Custom Filters
+		http
+			.addFilterBefore(
+				roleRefresherFilter,
+				OAuth2LoginAuthenticationFilter.class
+			);
 
 		return http.build();
 

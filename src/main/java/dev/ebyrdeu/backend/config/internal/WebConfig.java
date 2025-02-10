@@ -1,6 +1,8 @@
 package dev.ebyrdeu.backend.config.internal;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -14,13 +16,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * This is necessary because, in an SPA, the React router manages navigation, and the server
  * should only serve the main {@code index.html} file for all routes.</p>
  *
- * <p>Note: If the application requires support for deeper paths (e.g., {@code /a/b/c/d}), additional
- * mappings can be added to the registry programmatically.</p>
- *
  * @author Maxim Khnykin
  * @version 1.0
  * @see WebMvcConfigurer
  * @see ViewControllerRegistry
+ * @see CorsRegistry
  */
 @Configuration
 class WebConfig implements WebMvcConfigurer {
@@ -41,5 +41,16 @@ class WebConfig implements WebMvcConfigurer {
 		registry
 			.addViewController("/{s1:[^\\.]*}/{s2:[^\\.]*}/{s3:[^\\\\.]*}")
 			.setViewName("forward:/index.html");
+	}
+
+
+	@Override
+	@Profile("dev")
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**")
+			.allowedOrigins("http://localhost:5173")
+			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+			.allowCredentials(true)
+			.maxAge(3600);
 	}
 }

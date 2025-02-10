@@ -1,345 +1,200 @@
-2025-02-08T10:35:18.915+01:00  INFO 54946 --- [dev] [main] dev.ebyrdeu.backend.Application          : Starting Application using Java 23.0.2 with PID 54946 (/home/ebyrdeu/code/testing/target/classes started by ebyrdeu in /home/ebyrdeu/code/testing)
-2025-02-08T10:35:18.917+01:00  INFO 54946 --- [dev] [main] dev.ebyrdeu.backend.Application          : The following 1 profile is active: "dev"
-2025-02-08T10:35:18.950+01:00  INFO 54946 --- [dev] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /home/ebyrdeu/code/testing/docker-compose.yaml
-2025-02-08T10:35:19.267+01:00  INFO 54946 --- [dev] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
-2025-02-08T10:35:19.980+01:00  INFO 54946 --- [dev] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-02-08T10:35:19.988+01:00 DEBUG 54946 --- [dev] [main] .s.d.r.c.RepositoryConfigurationDelegate : Scanning for JPA repositories in packages dev.ebyrdeu.backend, org.springframework.modulith.events.jpa.updating.
-2025-02-08T10:35:19.995+01:00 DEBUG 54946 --- [dev] [main] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/repository/UserRepository.class]
-2025-02-08T10:35:20.012+01:00  INFO 54946 --- [dev] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 1 JPA repository interface.
-2025-02-08T10:35:20.432+01:00  INFO 54946 --- [dev] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-02-08T10:35:20.439+01:00  INFO 54946 --- [dev] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-02-08T10:35:20.439+01:00  INFO 54946 --- [dev] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
-2025-02-08T10:35:20.463+01:00  INFO 54946 --- [dev] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-02-08T10:35:20.463+01:00  INFO 54946 --- [dev] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 986 ms
-2025-02-08T10:35:20.560+01:00 DEBUG 54946 --- [dev] [main] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
-2025-02-08T10:35:20.780+01:00  INFO 54946 --- [dev] [main] liquibase.database                       : Set default schema name to public
-2025-02-08T10:35:20.951+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading resource: db/changelog/table/event_publication/db.changelog.event_publication-1.0.sql
-2025-02-08T10:35:20.955+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading resource: db/changelog/table/users/db.changelog-users-1.0.xml
-2025-02-08T10:35:20.969+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading resource: db/changelog/table/images/db.changelog-images-1.0.xml
-2025-02-08T10:35:20.980+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading resource: db/changelog/table/roles/db.changelog-roles-1.0.xml
-2025-02-08T10:35:20.996+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading resource: db/changelog/table/categories/db.changelog-categories-1.0.xml
-2025-02-08T10:35:21.010+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading resource: db/changelog/table/user_role/db.changelog.user_role-1.0.xml
-2025-02-08T10:35:21.060+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading from public.databasechangelog
-2025-02-08T10:35:21.092+01:00  INFO 54946 --- [dev] [main] liquibase.ui                             : Database is up to date, no changesets to execute
-2025-02-08T10:35:21.093+01:00  INFO 54946 --- [dev] [main] liquibase.changelog                      : Reading from public.databasechangelog
-2025-02-08T10:35:21.098+01:00  INFO 54946 --- [dev] [main] liquibase.util                           : UPDATE SUMMARY
-2025-02-08T10:35:21.098+01:00  INFO 54946 --- [dev] [main] liquibase.util                           : Run:                          0
-2025-02-08T10:35:21.098+01:00  INFO 54946 --- [dev] [main] liquibase.util                           : Previously run:              20
-2025-02-08T10:35:21.098+01:00  INFO 54946 --- [dev] [main] liquibase.util                           : Filtered out:                 0
-2025-02-08T10:35:21.098+01:00  INFO 54946 --- [dev] [main] liquibase.util                           : -------------------------------
-2025-02-08T10:35:21.099+01:00  INFO 54946 --- [dev] [main] liquibase.util                           : Total change sets:           20
-2025-02-08T10:35:21.099+01:00  INFO 54946 --- [dev] [main] liquibase.util                           : Update summary generated
-2025-02-08T10:35:21.099+01:00  INFO 54946 --- [dev] [main] liquibase.command                        : Command execution complete
-2025-02-08T10:35:21.147+01:00  INFO 54946 --- [dev] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-08T10:35:21.187+01:00  INFO 54946 --- [dev] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
-2025-02-08T10:35:21.206+01:00  INFO 54946 --- [dev] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-02-08T10:35:21.350+01:00  INFO 54946 --- [dev] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-02-08T10:35:21.366+01:00  INFO 54946 --- [dev] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-02-08T10:35:21.384+01:00  INFO 54946 --- [dev] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3555d804
-2025-02-08T10:35:21.384+01:00  INFO 54946 --- [dev] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-02-08T10:35:21.419+01:00  INFO 54946 --- [dev] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 17.2
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-02-08T10:35:21.887+01:00  INFO 54946 --- [dev] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-02-08T10:35:21.908+01:00  INFO 54946 --- [dev] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-02-08T10:35:22.011+01:00 DEBUG 54946 --- [dev] [main] .c.JpaMetamodelMappingContextFactoryBean : Initializing JpaMetamodelMappingContext…
-2025-02-08T10:35:22.020+01:00 DEBUG 54946 --- [dev] [main] .c.JpaMetamodelMappingContextFactoryBean : Finished initializing JpaMetamodelMappingContext
-2025-02-08T10:35:22.051+01:00 DEBUG 54946 --- [dev] [main] o.h.stat.internal.StatisticsInitiator    : Statistics initialized [enabled=false]
-2025-02-08T10:35:22.078+01:00 DEBUG 54946 --- [dev] [main] o.s.d.r.c.s.RepositoryFactorySupport     : Initializing repository instance for dev.ebyrdeu.backend.user.internal.repository.UserRepository…
-2025-02-08T10:35:22.094+01:00 TRACE 54946 --- [dev] [main] o.s.d.r.c.s.RepositoryFactorySupport     : Register DefaultMethodInvokingMethodInterceptor for dev.ebyrdeu.backend.user.internal.repository.UserRepository…
-2025-02-08T10:35:22.112+01:00 DEBUG 54946 --- [dev] [main] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findAllWithMinimalInfo.count
-2025-02-08T10:35:22.121+01:00  INFO 54946 --- [dev] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-02-08T10:35:22.363+01:00 DEBUG 54946 --- [dev] [main] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findOneByIdWithMinimalInfo.count
-2025-02-08T10:35:22.389+01:00 DEBUG 54946 --- [dev] [main] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findRolesByEmail.count
-2025-02-08T10:35:22.390+01:00 DEBUG 54946 --- [dev] [main] o.s.d.jpa.repository.query.NamedQuery    : Looking up named query 'User.findOneByEmail'
-2025-02-08T10:35:22.390+01:00 DEBUG 54946 --- [dev] [main] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.findOneByEmail
-2025-02-08T10:35:22.400+01:00 DEBUG 54946 --- [dev] [main] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.addSingleRole.count
-2025-02-08T10:35:22.403+01:00 DEBUG 54946 --- [dev] [main] o.s.d.r.c.s.RepositoryFactorySupport     : Finished creation of repository instance for dev.ebyrdeu.backend.user.internal.repository.UserRepository.
-2025-02-08T10:35:22.415+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.management.UserManagement.createOrGetOidcUser' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.420+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.management.UserManagement.findUserRolesByEmail' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
-2025-02-08T10:35:22.420+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.management.UserManagement.finalAll' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
-2025-02-08T10:35:22.420+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.management.UserManagement.findOneById' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
-2025-02-08T10:35:22.420+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.user.internal.management.UserManagement.patchUsername' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.437+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.security.internal.OidcUserManagement.loadUser' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.439+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'dev.ebyrdeu.backend.security.internal.OidcUserManagement.loadUser' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.502+01:00  WARN 54946 --- [dev] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-08T10:35:22.520+01:00 DEBUG 54946 --- [dev] [main] swordEncoderAuthenticationManagerBuilder : No authenticationProviders and no parentAuthenticationManager defined. Returning null.
-2025-02-08T10:35:22.571+01:00  INFO 54946 --- [dev] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-02-08T10:35:22.611+01:00 DEBUG 54946 --- [dev] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 5 mappings in 'requestMappingHandlerMapping'
-2025-02-08T10:35:22.619+01:00 DEBUG 54946 --- [dev] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/{s1:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}, /{s1:[^\.]*}/{s2:[^\.]*}/{s3:[^\\.]*}] in 'viewControllerHandlerMapping'
-2025-02-08T10:35:22.648+01:00 DEBUG 54946 --- [dev] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2025-02-08T10:35:22.758+01:00  INFO 54946 --- [dev] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2025-02-08T10:35:22.834+01:00 DEBUG 54946 --- [dev] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, OAuth2AuthorizationRequestRedirectFilter, OAuth2LoginAuthenticationFilter, RoleRefresherFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-02-08T10:35:22.899+01:00 DEBUG 54946 --- [dev] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-02-08T10:35:22.931+01:00 DEBUG 54946 --- [dev] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-02-08T10:35:22.946+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.create' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.getCompletedEntityType' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.markCompleted' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsPublishedBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublicationsByEventAndTargetIdentifier' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deletePublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublications' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:22.948+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.jpa.JpaEventPublicationRepository.deleteCompletedPublicationsBefore' with attribute: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
-2025-02-08T10:35:23.091+01:00 TRACE 54946 --- [dev] [main] t.a.AnnotationTransactionAttributeSource : Adding transactional method 'org.springframework.modulith.events.core.DefaultEventPublicationRegistry.markCompleted' with attribute: PROPAGATION_REQUIRES_NEW,ISOLATION_DEFAULT
-2025-02-08T10:35:23.150+01:00  INFO 54946 --- [dev] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-02-08T10:35:23.161+01:00  INFO 54946 --- [dev] [main] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
-2025-02-08T10:35:23.163+01:00  INFO 54946 --- [dev] [main] dev.ebyrdeu.backend.Application          : Started Application in 4.5 seconds (process running for 4.821)
-2025-02-08T10:35:23.665+01:00  INFO 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-02-08T10:35:23.665+01:00  INFO 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-02-08T10:35:23.665+01:00 DEBUG 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
-2025-02-08T10:35:23.666+01:00 DEBUG 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
-2025-02-08T10:35:23.666+01:00 DEBUG 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
-2025-02-08T10:35:23.667+01:00 DEBUG 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@59f41bcf
-2025-02-08T10:35:23.667+01:00 DEBUG 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@3dfc8814
-2025-02-08T10:35:23.667+01:00 DEBUG 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-02-08T10:35:23.667+01:00  INFO 54946 --- [dev] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2025-02-08T10:35:51.655+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
-2025-02-08T10:35:51.667+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /
-2025-02-08T10:35:51.668+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
-2025-02-08T10:35:51.676+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
-2025-02-08T10:35:51.676+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.w.servlet.view.InternalResourceView  : View name [forward:], model {}
-2025-02-08T10:35:51.677+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.w.servlet.view.InternalResourceView  : Forwarding to [index.html]
-2025-02-08T10:35:51.680+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /index.html
-2025-02-08T10:35:51.681+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /index.html
-2025-02-08T10:35:51.682+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : "FORWARD" dispatch for GET "/index.html", parameters={}
-2025-02-08T10:35:51.682+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:51.688+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "FORWARD" dispatch, status 200
-2025-02-08T10:35:51.689+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:51.691+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:51.692+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /assets/index-dARaJXFx.css
-2025-02-08T10:35:51.692+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /assets/index-DviOFCyp.js
-2025-02-08T10:35:51.699+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /assets/index-dARaJXFx.css
-2025-02-08T10:35:51.699+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /assets/index-DviOFCyp.js
-2025-02-08T10:35:51.699+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/index-DviOFCyp.js", parameters={}
-2025-02-08T10:35:51.699+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/assets/index-dARaJXFx.css", parameters={}
-2025-02-08T10:35:51.700+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:51.700+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:51.701+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:51.701+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:51.702+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:51.702+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:51.734+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /assets/index.lazy-Cdc3u1gw.js
-2025-02-08T10:35:51.735+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /assets/index.lazy-Cdc3u1gw.js
-2025-02-08T10:35:51.736+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/index.lazy-Cdc3u1gw.js", parameters={}
-2025-02-08T10:35:51.736+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:51.738+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /vite.svg
-2025-02-08T10:35:51.738+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:51.738+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:51.739+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:51.746+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/vite.svg?continue to session
-2025-02-08T10:35:51.747+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
-2025-02-08T10:35:51.752+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login
-2025-02-08T10:35:51.753+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login
-2025-02-08T10:35:51.753+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
-2025-02-08T10:35:51.753+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="forward:/index.html"]
-2025-02-08T10:35:51.754+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8]
-2025-02-08T10:35:51.754+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.w.servlet.view.InternalResourceView  : View name [forward:], model {}
-2025-02-08T10:35:51.754+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.w.servlet.view.InternalResourceView  : Forwarding to [/index.html]
-2025-02-08T10:35:51.755+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /index.html
-2025-02-08T10:35:51.755+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /index.html
-2025-02-08T10:35:51.755+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : "FORWARD" dispatch for GET "/index.html", parameters={}
-2025-02-08T10:35:51.755+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:51.756+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Exiting from "FORWARD" dispatch, status 200
-2025-02-08T10:35:51.756+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:51.757+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:54.034+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login
-2025-02-08T10:35:54.035+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /login
-2025-02-08T10:35:54.035+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
-2025-02-08T10:35:54.035+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="forward:/index.html"]
-2025-02-08T10:35:54.036+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
-2025-02-08T10:35:54.036+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.w.servlet.view.InternalResourceView  : View name [forward:], model {}
-2025-02-08T10:35:54.036+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.w.servlet.view.InternalResourceView  : Forwarding to [/index.html]
-2025-02-08T10:35:54.037+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /index.html
-2025-02-08T10:35:54.038+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /index.html
-2025-02-08T10:35:54.038+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : "FORWARD" dispatch for GET "/index.html", parameters={}
-2025-02-08T10:35:54.038+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:54.039+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Exiting from "FORWARD" dispatch, status 200
-2025-02-08T10:35:54.040+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:54.040+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:54.045+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /assets/index-dARaJXFx.css
-2025-02-08T10:35:54.045+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /assets/index-DviOFCyp.js
-2025-02-08T10:35:54.045+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /assets/index-dARaJXFx.css
-2025-02-08T10:35:54.045+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /assets/index-DviOFCyp.js
-2025-02-08T10:35:54.045+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/assets/index-dARaJXFx.css", parameters={}
-2025-02-08T10:35:54.045+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/assets/index-DviOFCyp.js", parameters={}
-2025-02-08T10:35:54.046+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:54.046+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:54.047+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:54.047+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:54.047+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:54.048+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:54.083+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /assets/login.lazy-CSSTz4IX.js
-2025-02-08T10:35:54.084+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /assets/login.lazy-CSSTz4IX.js
-2025-02-08T10:35:54.084+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/assets/login.lazy-CSSTz4IX.js", parameters={}
-2025-02-08T10:35:54.084+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:54.085+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:54.085+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:54.551+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /vite.svg
-2025-02-08T10:35:54.552+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:54.552+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-10] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/vite.svg?continue to session
-2025-02-08T10:35:54.552+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-10] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login
-2025-02-08T10:35:54.554+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login
-2025-02-08T10:35:54.555+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login
-2025-02-08T10:35:54.555+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
-2025-02-08T10:35:54.555+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="forward:/index.html"]
-2025-02-08T10:35:54.555+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8]
-2025-02-08T10:35:54.555+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.w.servlet.view.InternalResourceView  : View name [forward:], model {}
-2025-02-08T10:35:54.555+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.w.servlet.view.InternalResourceView  : Forwarding to [/index.html]
-2025-02-08T10:35:54.556+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /index.html
-2025-02-08T10:35:54.556+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /index.html
-2025-02-08T10:35:54.556+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : "FORWARD" dispatch for GET "/index.html", parameters={}
-2025-02-08T10:35:54.557+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:54.557+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "FORWARD" dispatch, status 200
-2025-02-08T10:35:54.558+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-02-08T10:35:54.558+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:58.931+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login/oauth2/authorization/google
-2025-02-08T10:35:58.935+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com&scope=openid%20profile%20email&state=mD6TG2ye4srxrTdm8oGv1YrFhng2mms_CNpqOAPO_RE%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google&nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8
-2025-02-08T10:35:59.166+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login/oauth2/code/google?state=mD6TG2ye4srxrTdm8oGv1YrFhng2mms_CNpqOAPO_RE%3D&code=4%2F0ASVgi3JN_Em1khXVzHKMy-9usbFP7kt626glq3QgxO4d2gozII0Z8Yfna2Uqn8xwzqZA0A&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none
-2025-02-08T10:35:59.251+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : HTTP POST https://www.googleapis.com/oauth2/v4/token
-2025-02-08T10:35:59.253+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
-2025-02-08T10:35:59.253+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Writing [{grant_type=[authorization_code], code=[4/0ASVgi3JN_Em1khXVzHKMy-9usbFP7kt626glq3QgxO4d2gozII0Z8Yfna2Uqn8xwzqZA0A], redirect_uri=[http://localhost:8080/login/oauth2/code/google]}] as "application/x-www-form-urlencoded;charset=UTF-8"
-2025-02-08T10:35:59.522+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Response 200 OK
-2025-02-08T10:35:59.523+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Reading to [org.springframework.security.oauth2.core.endpoint.OAuth2AccessTokenResponse] as "application/json;charset=utf-8"
-2025-02-08T10:35:59.595+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : HTTP GET https://www.googleapis.com/oauth2/v3/certs
-2025-02-08T10:35:59.596+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/*+json, */*]
-2025-02-08T10:35:59.608+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Response 200 OK
-2025-02-08T10:35:59.608+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json;charset=UTF-8"
-2025-02-08T10:35:59.618+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
-2025-02-08T10:35:59.618+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.h.e.t.internal.TransactionImpl         : begin
-2025-02-08T10:35:59.619+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Getting transaction for [dev.ebyrdeu.backend.security.internal.OidcUserManagement.loadUser]
-2025-02-08T10:35:59.620+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Getting transaction for [dev.ebyrdeu.backend.user.internal.management.UserManagement.createOrGetOidcUser]
-2025-02-08T10:35:59.621+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : No need to create transaction for [org.springframework.data.jpa.repository.support.SimpleJpaRepository.findOneByEmail]: This method is not transactional.
-2025-02-08T10:35:59.656+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
-    /* <criteria> */ select
-        u1_0.id,
-        u1_0.created_at,
-        u1_0.email,
-        u1_0.first_name,
-        u1_0.last_name,
-        u1_0.updated_at,
-        u1_0.username 
-    from
-        users u1_0 
-    where
-        u1_0.email=?
-2025-02-08T10:35:59.672+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Getting transaction for [org.springframework.data.jpa.repository.support.SimpleJpaRepository.save]
-2025-02-08T10:35:59.684+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
-    /* insert for
-        dev.ebyrdeu.backend.user.internal.model.User */insert 
-    into
-        users (created_at, email, first_name, last_name, updated_at, username) 
-    values
-        (?, ?, ?, ?, ?, ?)
-2025-02-08T10:35:59.692+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Completing transaction for [org.springframework.data.jpa.repository.support.SimpleJpaRepository.save]
-2025-02-08T10:35:59.692+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : No need to create transaction for [org.springframework.data.jpa.repository.support.SimpleJpaRepository.addSingleRole]: This method is not transactional.
-2025-02-08T10:35:59.706+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
-    /* dynamic native SQL query */ insert 
-    into
-        user_role
-        (user_id, role_id) 
-    values
-        (?, ?)
-2025-02-08T10:35:59.709+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Completing transaction for [dev.ebyrdeu.backend.user.internal.management.UserManagement.createOrGetOidcUser]
-2025-02-08T10:35:59.709+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Getting transaction for [dev.ebyrdeu.backend.user.internal.management.UserManagement.findUserRolesByEmail]
-2025-02-08T10:35:59.709+01:00  INFO 54946 --- [dev] [http-nio-8080-exec-3] d.e.b.u.i.management.UserManagement      : [UserManagement/findUserRolesByEmail]:: Execution started.
-2025-02-08T10:35:59.709+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : No need to create transaction for [org.springframework.data.jpa.repository.support.SimpleJpaRepository.findRolesByEmail]: This method is not transactional.
-2025-02-08T10:35:59.712+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
-    /* dynamic native SQL query */  SELECT
-        r.role 
-    FROM
-        roles r   
-    JOIN
-        user_role ur 
-            ON r.id = ur.role_id   
-    JOIN
-        users u 
-            ON u.id = ur.user_id   
-    WHERE
-        u.email = ?  
-2025-02-08T10:35:59.715+01:00  INFO 54946 --- [dev] [http-nio-8080-exec-3] d.e.b.u.i.management.UserManagement      : [UserManagement/findUserRolesByEmail]:: Found 1 user roles :: [USER]
-2025-02-08T10:35:59.715+01:00  INFO 54946 --- [dev] [http-nio-8080-exec-3] d.e.b.u.i.management.UserManagement      : [UserManagement/findUserRolesByEmail]:: Execution ended.
-2025-02-08T10:35:59.715+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Completing transaction for [dev.ebyrdeu.backend.user.internal.management.UserManagement.findUserRolesByEmail]
-2025-02-08T10:35:59.716+01:00 TRACE 54946 --- [dev] [http-nio-8080-exec-3] o.s.t.i.TransactionInterceptor           : Completing transaction for [dev.ebyrdeu.backend.security.internal.OidcUserManagement.loadUser]
-2025-02-08T10:35:59.716+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.h.e.t.internal.TransactionImpl         : committing
-2025-02-08T10:35:59.718+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from E14B0480F5EA93C256322D79D6F884F6
-2025-02-08T10:35:59.719+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.s.w.csrf.CsrfAuthenticationStrategy  : Replaced CSRF Token
-2025-02-08T10:35:59.720+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=OAuth2AuthenticationToken [Principal=Name: [111664779024400699078], Granted Authorities: [[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]], User Attributes: [{at_hash=nCgmFRu46VCB1gvS12rH6Q, sub=111664779024400699078, email_verified=true, iss=https://accounts.google.com, given_name=Maxim, nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8, picture=https://lh3.googleusercontent.com/a/ACg8ocI7wXZSo_99JIb3rm6P7fIf9G3hzceZZwqTOC3IxRWRfP74zQ=s96-c, aud=[233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com], azp=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com, name=Maxim Khnykin, exp=2025-02-08T10:35:59Z, family_name=Khnykin, iat=2025-02-08T09:35:59Z, email=ebyrdeu.khnykin@gmail.com}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E14B0480F5EA93C256322D79D6F884F6], Granted Authorities=[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@17bc8801]
-2025-02-08T10:35:59.720+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] .s.o.c.w.OAuth2LoginAuthenticationFilter : Set SecurityContextHolder to OAuth2AuthenticationToken [Principal=Name: [111664779024400699078], Granted Authorities: [[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]], User Attributes: [{at_hash=nCgmFRu46VCB1gvS12rH6Q, sub=111664779024400699078, email_verified=true, iss=https://accounts.google.com, given_name=Maxim, nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8, picture=https://lh3.googleusercontent.com/a/ACg8ocI7wXZSo_99JIb3rm6P7fIf9G3hzceZZwqTOC3IxRWRfP74zQ=s96-c, aud=[233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com], azp=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com, name=Maxim Khnykin, exp=2025-02-08T10:35:59Z, family_name=Khnykin, iat=2025-02-08T09:35:59Z, email=ebyrdeu.khnykin@gmail.com}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E14B0480F5EA93C256322D79D6F884F6], Granted Authorities=[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]]
-2025-02-08T10:35:59.720+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-3] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /
-2025-02-08T10:35:59.723+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /
-2025-02-08T10:35:59.723+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=OAuth2AuthenticationToken [Principal=Name: [111664779024400699078], Granted Authorities: [[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]], User Attributes: [{at_hash=nCgmFRu46VCB1gvS12rH6Q, sub=111664779024400699078, email_verified=true, iss=https://accounts.google.com, given_name=Maxim, nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8, picture=https://lh3.googleusercontent.com/a/ACg8ocI7wXZSo_99JIb3rm6P7fIf9G3hzceZZwqTOC3IxRWRfP74zQ=s96-c, aud=[233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com], azp=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com, name=Maxim Khnykin, exp=2025-02-08T10:35:59Z, family_name=Khnykin, iat=2025-02-08T09:35:59Z, email=ebyrdeu.khnykin@gmail.com}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E14B0480F5EA93C256322D79D6F884F6], Granted Authorities=[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]]]
-2025-02-08T10:35:59.723+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /
-2025-02-08T10:35:59.723+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
-2025-02-08T10:35:59.724+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
-2025-02-08T10:35:59.724+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.w.servlet.view.InternalResourceView  : View name [forward:], model {}
-2025-02-08T10:35:59.724+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.w.servlet.view.InternalResourceView  : Forwarding to [index.html]
-2025-02-08T10:35:59.725+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /index.html
-2025-02-08T10:35:59.725+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /index.html
-2025-02-08T10:35:59.725+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : "FORWARD" dispatch for GET "/index.html", parameters={}
-2025-02-08T10:35:59.725+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:59.726+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Exiting from "FORWARD" dispatch, status 200
-2025-02-08T10:35:59.727+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:59.732+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /assets/index-DviOFCyp.js
-2025-02-08T10:35:59.732+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /assets/index-dARaJXFx.css
-2025-02-08T10:35:59.732+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=OAuth2AuthenticationToken [Principal=Name: [111664779024400699078], Granted Authorities: [[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]], User Attributes: [{at_hash=nCgmFRu46VCB1gvS12rH6Q, sub=111664779024400699078, email_verified=true, iss=https://accounts.google.com, given_name=Maxim, nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8, picture=https://lh3.googleusercontent.com/a/ACg8ocI7wXZSo_99JIb3rm6P7fIf9G3hzceZZwqTOC3IxRWRfP74zQ=s96-c, aud=[233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com], azp=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com, name=Maxim Khnykin, exp=2025-02-08T10:35:59Z, family_name=Khnykin, iat=2025-02-08T09:35:59Z, email=ebyrdeu.khnykin@gmail.com}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E14B0480F5EA93C256322D79D6F884F6], Granted Authorities=[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]]]
-2025-02-08T10:35:59.732+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=OAuth2AuthenticationToken [Principal=Name: [111664779024400699078], Granted Authorities: [[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]], User Attributes: [{at_hash=nCgmFRu46VCB1gvS12rH6Q, sub=111664779024400699078, email_verified=true, iss=https://accounts.google.com, given_name=Maxim, nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8, picture=https://lh3.googleusercontent.com/a/ACg8ocI7wXZSo_99JIb3rm6P7fIf9G3hzceZZwqTOC3IxRWRfP74zQ=s96-c, aud=[233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com], azp=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com, name=Maxim Khnykin, exp=2025-02-08T10:35:59Z, family_name=Khnykin, iat=2025-02-08T09:35:59Z, email=ebyrdeu.khnykin@gmail.com}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E14B0480F5EA93C256322D79D6F884F6], Granted Authorities=[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]]]
-2025-02-08T10:35:59.733+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /assets/index-dARaJXFx.css
-2025-02-08T10:35:59.733+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /assets/index-DviOFCyp.js
-2025-02-08T10:35:59.733+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/assets/index-dARaJXFx.css", parameters={}
-2025-02-08T10:35:59.733+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/index-DviOFCyp.js", parameters={}
-2025-02-08T10:35:59.733+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:59.733+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:59.734+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:59.735+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:59.752+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /assets/index.lazy-Cdc3u1gw.js
-2025-02-08T10:35:59.752+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=OAuth2AuthenticationToken [Principal=Name: [111664779024400699078], Granted Authorities: [[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]], User Attributes: [{at_hash=nCgmFRu46VCB1gvS12rH6Q, sub=111664779024400699078, email_verified=true, iss=https://accounts.google.com, given_name=Maxim, nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8, picture=https://lh3.googleusercontent.com/a/ACg8ocI7wXZSo_99JIb3rm6P7fIf9G3hzceZZwqTOC3IxRWRfP74zQ=s96-c, aud=[233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com], azp=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com, name=Maxim Khnykin, exp=2025-02-08T10:35:59Z, family_name=Khnykin, iat=2025-02-08T09:35:59Z, email=ebyrdeu.khnykin@gmail.com}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E14B0480F5EA93C256322D79D6F884F6], Granted Authorities=[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]]]
-2025-02-08T10:35:59.752+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /assets/index.lazy-Cdc3u1gw.js
-2025-02-08T10:35:59.752+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/assets/index.lazy-Cdc3u1gw.js", parameters={}
-2025-02-08T10:35:59.753+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:59.753+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /vite.svg
-2025-02-08T10:35:59.753+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=OAuth2AuthenticationToken [Principal=Name: [111664779024400699078], Granted Authorities: [[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]], User Attributes: [{at_hash=nCgmFRu46VCB1gvS12rH6Q, sub=111664779024400699078, email_verified=true, iss=https://accounts.google.com, given_name=Maxim, nonce=gVpaWPLsizi2ZQU7FDTx0gM23JtjNbGHBT1pMwxw7F8, picture=https://lh3.googleusercontent.com/a/ACg8ocI7wXZSo_99JIb3rm6P7fIf9G3hzceZZwqTOC3IxRWRfP74zQ=s96-c, aud=[233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com], azp=233393105560-abpllaj7gd0gcedvlnuqn0p9kaj3t20d.apps.googleusercontent.com, name=Maxim Khnykin, exp=2025-02-08T10:35:59Z, family_name=Khnykin, iat=2025-02-08T09:35:59Z, email=ebyrdeu.khnykin@gmail.com}], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=E14B0480F5EA93C256322D79D6F884F6], Granted Authorities=[dev.ebyrdeu.backend.security.internal.OidcUserManagement$$Lambda/0x00007c03ffed2c88@7ce9238]]]
-2025-02-08T10:35:59.754+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /vite.svg
-2025-02-08T10:35:59.754+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/vite.svg", parameters={}
-2025-02-08T10:35:59.754+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2025-02-08T10:35:59.754+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:35:59.756+01:00 DEBUG 54946 --- [dev] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2025-02-08T10:57:09.350+01:00  INFO 54946 --- [dev] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-02-08T10:57:09.353+01:00  INFO 54946 --- [dev] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-02-08T10:57:09.366+01:00 DEBUG 54946 --- [dev] [SpringApplicationShutdownHook] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
-2025-02-08T10:57:09.369+01:00 DEBUG 54946 --- [dev] [SpringApplicationShutdownHook] o.h.e.t.internal.TransactionImpl         : begin
-2025-02-08T10:57:09.369+01:00 TRACE 54946 --- [dev] [SpringApplicationShutdownHook] o.s.t.i.TransactionInterceptor           : Getting transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
-2025-02-08T10:57:09.378+01:00 DEBUG 54946 --- [dev] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
-    /* select
-        p 
-    from
-        DefaultJpaEventPublication p 
-    where
-        p.completionDate is null 
-    order by
-        p.publicationDate asc  */ select
-            djep1_0.id,
-            djep1_0.completion_date,
-            djep1_0.event_type,
-            djep1_0.listener_id,
-            djep1_0.publication_date,
-            djep1_0.serialized_event 
-        from
-            event_publication djep1_0 
-        where
-            djep1_0.completion_date is null 
-        order by
-            djep1_0.publication_date
-2025-02-08T10:57:09.381+01:00 TRACE 54946 --- [dev] [SpringApplicationShutdownHook] o.s.t.i.TransactionInterceptor           : Completing transaction for [org.springframework.modulith.events.jpa.JpaEventPublicationRepository.findIncompletePublications]
-2025-02-08T10:57:09.381+01:00 DEBUG 54946 --- [dev] [SpringApplicationShutdownHook] o.h.e.t.internal.TransactionImpl         : committing
-2025-02-08T10:57:09.382+01:00  INFO 54946 --- [dev] [SpringApplicationShutdownHook] .s.m.e.c.DefaultEventPublicationRegistry : No publications outstanding!
-2025-02-08T10:57:09.384+01:00  INFO 54946 --- [dev] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-02-08T10:57:09.386+01:00  INFO 54946 --- [dev] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-02-08T10:57:09.389+01:00  INFO 54946 --- [dev] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-10T15:36:00.245+01:00  INFO 429288 --- [dev] [main] dev.ebyrdeu.backend.Application          : Starting Application using Java 23.0.2 with PID 429288 (/home/ebyrdeu/code/testing/target/classes started by ebyrdeu in /home/ebyrdeu/code/testing)
+2025-02-10T15:36:00.246+01:00  INFO 429288 --- [dev] [main] dev.ebyrdeu.backend.Application          : The following 1 profile is active: "dev"
+2025-02-10T15:36:00.278+01:00  INFO 429288 --- [dev] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file /home/ebyrdeu/code/testing/docker-compose.yaml
+2025-02-10T15:36:00.544+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Volume "testing_dev_db_data"  Creating
+2025-02-10T15:36:00.545+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Volume "testing_dev_db_data"  Created
+2025-02-10T15:36:00.546+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container testing-dev-postgres-1  Creating
+2025-02-10T15:36:00.563+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container testing-dev-postgres-1  Created
+2025-02-10T15:36:00.564+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container testing-dev-postgres-1  Starting
+2025-02-10T15:36:00.669+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container testing-dev-postgres-1  Started
+2025-02-10T15:36:00.669+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container testing-dev-postgres-1  Waiting
+2025-02-10T15:36:01.170+01:00  INFO 429288 --- [dev] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container testing-dev-postgres-1  Healthy
+2025-02-10T15:36:02.923+01:00  INFO 429288 --- [dev] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-10T15:36:02.931+01:00 DEBUG 429288 --- [dev] [main] .s.d.r.c.RepositoryConfigurationDelegate : Scanning for JPA repositories in packages dev.ebyrdeu.backend, org.springframework.modulith.events.jpa.updating.
+2025-02-10T15:36:02.937+01:00 DEBUG 429288 --- [dev] [main] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/repository/UserRepository.class]
+2025-02-10T15:36:02.953+01:00  INFO 429288 --- [dev] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 1 JPA repository interface.
+2025-02-10T15:36:03.406+01:00  INFO 429288 --- [dev] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-10T15:36:03.417+01:00  INFO 429288 --- [dev] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-10T15:36:03.417+01:00  INFO 429288 --- [dev] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-02-10T15:36:03.447+01:00  INFO 429288 --- [dev] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-10T15:36:03.448+01:00  INFO 429288 --- [dev] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 995 ms
+2025-02-10T15:36:03.844+01:00  INFO 429288 --- [dev] [main] liquibase.database                       : Set default schema name to public
+2025-02-10T15:36:04.108+01:00  INFO 429288 --- [dev] [main] liquibase.command                        : Logging exception.
+2025-02-10T15:36:04.108+01:00  INFO 429288 --- [dev] [main] liquibase.ui                             : ERROR: Exception Details
+2025-02-10T15:36:04.108+01:00  INFO 429288 --- [dev] [main] liquibase.ui                             : ERROR: Exception Primary Class:  SetupException
+2025-02-10T15:36:04.108+01:00  INFO 429288 --- [dev] [main] liquibase.ui                             : ERROR: Exception Primary Reason:  Could not find directory, directory was empty, or no changelogs matched the provided search criteria for includeAll 'db/changelog/table/event_publication'
+2025-02-10T15:36:04.109+01:00  INFO 429288 --- [dev] [main] liquibase.ui                             : ERROR: Exception Primary Source:  4.29.2
+2025-02-10T15:36:04.109+01:00  INFO 429288 --- [dev] [main] liquibase.command                        : Command execution complete
+2025-02-10T15:36:04.110+01:00 ERROR 429288 --- [dev] [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'roleRefresherFilter' defined in file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/security/internal/RoleRefresherFilter.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userManagement' defined in file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/management/UserManagement.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in dev.ebyrdeu.backend.user.internal.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2025-02-10T15:36:04.123+01:00  INFO 429288 --- [dev] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-02-10T15:36:04.125+01:00  WARN 429288 --- [dev] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-02-10T15:36:04.141+01:00  INFO 429288 --- [dev] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-02-10T15:36:04.150+01:00 ERROR 429288 --- [dev] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.2.jar:3.4.2]
+	at dev.ebyrdeu.backend.Application.main(Application.java:13) ~[classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:147) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:516) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:222) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'roleRefresherFilter' defined in file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/security/internal/RoleRefresherFilter.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userManagement' defined in file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/management/UserManagement.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in dev.ebyrdeu.backend.user.internal.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4426) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:148) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:148) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userManagement' defined in file [/home/ebyrdeu/code/testing/target/classes/dev/ebyrdeu/backend/user/internal/management/UserManagement.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in dev.ebyrdeu.backend.user.internal.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1631) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 54 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in dev.ebyrdeu.backend.user.internal.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1711) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1460) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 68 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:691) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:513) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 81 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: Could not find directory, directory was empty, or no changelogs matched the provided search criteria for includeAll 'db/changelog/table/event_publication'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 93 common frames omitted
+Caused by: liquibase.exception.UnexpectedLiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: Could not find directory, directory was empty, or no changelogs matched the provided search criteria for includeAll 'db/changelog/table/event_publication'
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:267) ~[liquibase-core-4.29.2.jar:na]
+	at org.springframework.boot.autoconfigure.liquibase.DataSourceClosingSpringLiquibase.afterPropertiesSet(DataSourceClosingSpringLiquibase.java:46) ~[spring-boot-autoconfigure-3.4.2.jar:3.4.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 102 common frames omitted
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: Could not find directory, directory was empty, or no changelogs matched the provided search criteria for includeAll 'db/changelog/table/event_publication'
+	at liquibase.command.CommandScope.execute(CommandScope.java:258) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:191) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:190) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:169) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1329) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:305) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:257) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:191) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:190) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:169) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:257) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:250) ~[liquibase-core-4.29.2.jar:na]
+	... 105 common frames omitted
+Caused by: liquibase.exception.ChangeLogParseException: liquibase.exception.SetupException: Could not find directory, directory was empty, or no changelogs matched the provided search criteria for includeAll 'db/changelog/table/event_publication'
+	at liquibase.parser.core.xml.AbstractChangeLogParser.parse(AbstractChangeLogParser.java:25) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.lambda$getDatabaseChangeLog$0(DatabaseChangelogCommandStep.java:129) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.Scope.child(Scope.java:176) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.getDatabaseChangeLog(DatabaseChangelogCommandStep.java:128) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:87) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:220) ~[liquibase-core-4.29.2.jar:na]
+	... 121 common frames omitted
+Caused by: liquibase.exception.SetupException: Could not find directory, directory was empty, or no changelogs matched the provided search criteria for includeAll 'db/changelog/table/event_publication'
+	at liquibase.changelog.DatabaseChangeLog.findResources(DatabaseChangeLog.java:884) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.includeAll(DatabaseChangeLog.java:797) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.handleChildNodeHelper(DatabaseChangeLog.java:545) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:466) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.changelog.DatabaseChangeLog.load(DatabaseChangeLog.java:433) ~[liquibase-core-4.29.2.jar:na]
+	at liquibase.parser.core.xml.AbstractChangeLogParser.parse(AbstractChangeLogParser.java:23) ~[liquibase-core-4.29.2.jar:na]
+	... 127 common frames omitted
+
