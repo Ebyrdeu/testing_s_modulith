@@ -4,7 +4,6 @@
  *
  * @see org.springframework.modulith.ApplicationModule
  */
-
 @org.springframework.modulith.ApplicationModule(
 	displayName = "Security",
 	allowedDependencies = {
