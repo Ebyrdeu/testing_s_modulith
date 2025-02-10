@@ -8,6 +8,8 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import java.util.List;
 
 /**
+ * API that can be used by different modules if needed
+ *
  * @author Maxim Khnykin
  * @version 1.0
  */
@@ -25,6 +27,7 @@ public interface UserExternalApi {
 	 * @param req the {@link UsernameDto} containing the new username
 	 * @return a {@link ResponseDto} containing the updated {@link UsernameDto} if the operation is successful,
 	 * or an appropriate error response if the user is not found or the update fails
+	 * @see UsernameDto
 	 */
 	ResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req);
 
@@ -38,5 +41,13 @@ public interface UserExternalApi {
 	 */
 	List<String> findUserRolesByEmail(String email);
 
+	/**
+	 * Creates a new user in the repository if a user with the given email does not already exist.
+	 * If the user already exists, the method simply returns without making any changes.
+	 * The user is created with details extracted from the provided OidcUser object, and a default role is assigned to the user.
+	 *
+	 * @param oidcUser The OidcUser object containing the user's details
+	 * @see OidcUser
+	 */
 	void createOrGetOidcUser(OidcUser oidcUser);
 }

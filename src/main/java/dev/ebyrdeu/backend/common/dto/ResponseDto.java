@@ -16,6 +16,7 @@ import java.io.Serializable;
  * @param <T> The type of the data payload included in the response.
  * @author Maxim Khnykin
  * @version 1.0
+ * @see HttpStatus
  */
 public record ResponseDto<T>(
 	HttpStatus status,

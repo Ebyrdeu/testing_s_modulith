@@ -18,6 +18,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @author Maxim Knhykin
+ * @version 1.0
+ * @see UserExternalApi
+ * @see UserRepository
+ * @see UserMinimalInfoProjection
+ * @see UserNotFoundException
+ * @see UserInternalServerErrorException
+ */
 @Service
 class UserManagement implements UserExternalApi {
 	private static final Logger log = LoggerFactory.getLogger(UserManagement.class);

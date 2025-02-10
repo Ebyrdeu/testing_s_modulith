@@ -5,7 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
+/**
+ * @author Maxim Khnykin
+ * @version 1.0
+ */
 @RestControllerAdvice
 class UserManagementExceptionHandler {
 

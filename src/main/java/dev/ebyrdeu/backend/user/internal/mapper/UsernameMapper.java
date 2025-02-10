@@ -8,6 +8,7 @@ import dev.ebyrdeu.backend.user.internal.model.User;
  *
  * @author Maxim Khnykin
  * @version 1.0
+ * @see UsernameDto
  */
 public class UsernameMapper {
 	private UsernameMapper() {

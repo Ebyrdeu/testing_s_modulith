@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
+ * Request type DTO which allow user to patch username
+ *
  * @author Maxim Khnykin
  * @version 1.0
  */

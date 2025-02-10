@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 /**
  * @author Maxim Khnykin
  * @version 1.0
+ * @see DefaultEntity
  */
 @Entity
 @Table(name = "users")
