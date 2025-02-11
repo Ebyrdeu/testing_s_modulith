@@ -50,7 +50,7 @@ class UserManagement implements UserExternalApi {
 				"Users retrieved successfully",
 				data
 			);
-		} catch (UserInternalServerErrorException ex) {
+		} catch (RuntimeException ex) {
 			log.error("[UserManagement/findAll]:: Exception occurred while retrieving users. Exception: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve users due to an unexpected error");
 		} finally {
@@ -86,7 +86,7 @@ class UserManagement implements UserExternalApi {
 				ex.getMessage()
 			);
 			throw ex;
-		} catch (UserInternalServerErrorException ex) {
+		} catch (RuntimeException ex) {
 			log.error(
 				"[UserManagement/findOneById]:: Exception occurred while retrieving user from database , Exception message {}",
 				ex.getMessage()
@@ -132,7 +132,7 @@ class UserManagement implements UserExternalApi {
 				ex.getMessage()
 			);
 			throw ex;
-		} catch (UserInternalServerErrorException ex) {
+		} catch (RuntimeException ex) {
 			log.error("[UserManagement/patchUsername]:: Exception occurred while patching user to database , Exception message {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to patch user due to an unexpected error");
 		} finally {
@@ -150,7 +150,7 @@ class UserManagement implements UserExternalApi {
 			log.info("[UserManagement/findUserRolesByEmail]:: Found {} user roles :: {}", data.size(), data);
 
 			return data;
-		} catch (UserInternalServerErrorException ex) {
+		} catch (RuntimeException ex) {
 			log.error("[UserManagement/findUserRolesByEmail]:: Exception occurred while retrieving user roles. Exception: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve user roles due to an unexpected error");
 		} finally {
@@ -164,6 +164,7 @@ class UserManagement implements UserExternalApi {
 		if (this.userRepository.findOneByEmail(oidcUser.getEmail()).isPresent()) {
 			return;
 		}
+	
 
 		User user = new User();
 		user.setEmail(oidcUser.getEmail());
