@@ -164,7 +164,7 @@ class UserManagement implements UserExternalApi {
 		if (this.userRepository.findOneByEmail(oidcUser.getEmail()).isPresent()) {
 			return;
 		}
-	
+
 
 		User user = new User();
 		user.setEmail(oidcUser.getEmail());
