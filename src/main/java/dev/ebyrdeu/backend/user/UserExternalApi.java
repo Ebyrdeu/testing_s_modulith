@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface UserExternalApi {
 
-	ResponseDto<List<UserMinimalInfoProjection>> finalAll();
+	ResponseDto<List<UserMinimalInfoProjection>> findAll();
 
 	ResponseDto<UserMinimalInfoProjection> findOneById(Long id);
 

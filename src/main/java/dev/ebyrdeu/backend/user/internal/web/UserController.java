@@ -37,7 +37,7 @@ class UserController {
 
 		log.info("[UserController/findAll]:: Fetching all users.");
 
-		ResponseDto<List<UserMinimalInfoProjection>> response = this.userExternalApi.finalAll();
+		ResponseDto<List<UserMinimalInfoProjection>> response = this.userExternalApi.findAll();
 
 		log.info("[UserController/findAll]:: Response: {}", this.jsonConverter.valueOf(response.data()));
 

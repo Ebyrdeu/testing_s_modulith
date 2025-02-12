@@ -38,7 +38,7 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseDto<List<UserMinimalInfoProjection>> finalAll() {
+	public ResponseDto<List<UserMinimalInfoProjection>> findAll() {
 		log.info("[UserManagement/findAll]:: Execution started.");
 		try {
 			List<UserMinimalInfoProjection> data = this.userRepository.findAllWithMinimalInfo();

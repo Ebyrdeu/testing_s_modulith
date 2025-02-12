@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -45,10 +46,8 @@ class UserRepositoryITest extends DefaultPostgresContainer {
 		Optional<User> res = this.userRepository.findOneByEmail("email@email.com");
 
 		// Then
-		assertAll(
-			() -> assertNotNull(res),
-			() -> assertEquals("email@email.com", res.get().getEmail())
-		);
+		assertThat(res).isPresent();
+		assertEquals("email@email.com", res.get().getEmail());
 	}
 
 	@Test
@@ -99,8 +98,8 @@ class UserRepositoryITest extends DefaultPostgresContainer {
 
 		// When
 		Optional<UserMinimalInfoProjection> res = this.userRepository.findOneByIdWithMinimalInfo(user.getId());
+		assertThat(res).isPresent();
 
-		// Then
 		assertAll(
 			() -> assertNotNull(res),
 			() -> assertEquals("user", res.get().getUsername()),
