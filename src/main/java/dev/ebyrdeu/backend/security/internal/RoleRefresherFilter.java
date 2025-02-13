@@ -57,6 +57,7 @@ class RoleRefresherFilter extends OncePerRequestFilter {
 		List<String> oidcUserRoles = oidcUser.getAuthorities()
 			.stream()
 			.map(GrantedAuthority::getAuthority)
+			.map((role) -> role.substring(5))
 			.toList();
 
 
@@ -73,7 +74,7 @@ class RoleRefresherFilter extends OncePerRequestFilter {
 
 		Collection<GrantedAuthority> updatedRoles = dbUserRoles
 			.stream()
-			.map(role -> (GrantedAuthority) () -> role)
+			.map(role -> (GrantedAuthority) () -> "ROLE_" + role)
 			.collect(Collectors.toSet());
 
 		DefaultOidcUser updatedOidcUser = new DefaultOidcUser(

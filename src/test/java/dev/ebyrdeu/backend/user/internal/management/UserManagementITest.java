@@ -248,7 +248,7 @@ class UserManagementITest extends DefaultPostgresContainer {
 
 			assertAll(
 				() -> assertEquals(1, res.size()),
-				() -> assertEquals("ROLE_ADMIN", res.getFirst())
+				() -> assertEquals("ADMIN", res.getFirst())
 			);
 
 		}

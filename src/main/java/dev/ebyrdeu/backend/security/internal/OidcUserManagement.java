@@ -41,7 +41,7 @@ class OidcUserManagement extends OidcUserService {
 
 		Collection<GrantedAuthority> roleAuthorities = retrievedUserRoles
 			.stream()
-			.map(role -> (GrantedAuthority) () -> role)
+			.map(role -> (GrantedAuthority) () -> "ROLE_" + role)
 			.collect(Collectors.toSet());
 
 		return new DefaultOidcUser(

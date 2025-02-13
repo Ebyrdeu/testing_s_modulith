@@ -17,8 +17,8 @@
 			</column>
 
 			<column name="role"
-			        type="varchar(15)"
-			        defaultValue="ROLE_USER"/>
+			        type="varchar(10)"
+			        defaultValue="USER"/>
 
 			<column name="created_at"
 			        type="timestamp"
@@ -37,7 +37,7 @@
 		<sql>
 			alter table roles
 				add constraint role_enum
-					check ( role in ('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN'))
+					check ( role in ('USER', 'VENDOR', 'ADMIN'))
 		</sql>
 	</changeSet>
 
@@ -47,7 +47,7 @@
 			<tableExists tableName="roles"/>
 		</preConditions>
 		<insert tableName="roles">
-			<column name="role" value="ROLE_USER"/>
+			<column name="role" value="USER"/>
 		</insert>
 	</changeSet>
 
@@ -56,7 +56,7 @@
 			<tableExists tableName="roles"/>
 		</preConditions>
 		<insert tableName="roles">
-			<column name="role" value="ROLE_VENDOR"/>
+			<column name="role" value="VENDOR"/>
 		</insert>
 	</changeSet>
 
@@ -65,7 +65,7 @@
 			<tableExists tableName="roles"/>
 		</preConditions>
 		<insert tableName="roles">
-			<column name="role" value="ROLE_ADMIN"/>
+			<column name="role" value="ADMIN"/>
 		</insert>
 	</changeSet>
 </databaseChangeLog>
