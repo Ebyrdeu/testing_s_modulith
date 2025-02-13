@@ -1,6 +1,8 @@
 package dev.ebyrdeu.backend.common.util;
 
 
+import org.springframework.lang.NonNull;
+
 /**
  * An adapter interface for JSON conversion operations using Jackson's {@link com.fasterxml.jackson.databind.ObjectMapper}.
  *
@@ -9,5 +11,7 @@ package dev.ebyrdeu.backend.common.util;
  * @see com.fasterxml.jackson.databind.ObjectMapper
  */
 public interface JsonConverterAdapter {
-	String valueOf(Object obj);
+	<T> String valueOf(@NonNull T obj);
+
+	<T> String valueOf(@NonNull T obj, boolean prettyFormat);
 }
