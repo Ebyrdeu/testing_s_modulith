@@ -57,7 +57,9 @@ class SecurityConfig {
 
 		// Auth Req Config
 		http.authorizeHttpRequests(auth -> auth
-			.requestMatchers("/", "/login", "/index.html", "/static/**", "/assets/**").permitAll()
+			.requestMatchers("/", "/login", "/index.html", "/static/**", "/assets/**", "users/**").permitAll()
+			.requestMatchers(request -> request.getRequestURI().startsWith("/api/") &&
+				!"document".equalsIgnoreCase(request.getHeader("Sec-Fetch-Dest"))).permitAll()
 			.requestMatchers("/api/**").hasRole("ADMIN")
 			.requestMatchers("/admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
