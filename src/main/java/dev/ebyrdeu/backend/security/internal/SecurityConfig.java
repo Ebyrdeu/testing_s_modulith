@@ -42,13 +42,14 @@ class SecurityConfig {
 
 		// Oauth Config
 		http.oauth2Login(oauth2 -> oauth2
-			.loginPage("/login")
+			.loginPage("/auth")
 			.authorizationEndpoint(auth -> auth
 				.baseUri("/login/oauth2/authorization")
 			)
 			.userInfoEndpoint(userInfo -> userInfo.oidcUserService(oidcUserManagement))
-			.defaultSuccessUrl("/", true)
+			.defaultSuccessUrl("/", false)
 		);
+
 
 		// Other Logins Config
 		// disabled as for now we don't support our own login system
@@ -57,11 +58,16 @@ class SecurityConfig {
 
 		// Auth Req Config
 		http.authorizeHttpRequests(auth -> auth
-			.requestMatchers("/", "/login", "/index.html", "/static/**", "/assets/**", "users/**").permitAll()
-			.requestMatchers(request -> request.getRequestURI().startsWith("/api/") &&
-				!"document".equalsIgnoreCase(request.getHeader("Sec-Fetch-Dest"))).permitAll()
+			.requestMatchers(
+				"/",
+				"/auth",
+				"/index.html",
+				"/vite.svg",
+				"/static/**",
+				"/assets/**",
+				"users/**"
+			).permitAll()
 			.requestMatchers("/api/**").hasRole("ADMIN")
-			.requestMatchers("/admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 		);
 
