@@ -9,7 +9,6 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +17,7 @@ import java.util.List;
  * @author Maxim Khnykin
  * @version 1.0
  */
-@Controller
-@ResponseBody
+@RestController
 @RequestMapping("/api/v1/users")
 class UserController {
 

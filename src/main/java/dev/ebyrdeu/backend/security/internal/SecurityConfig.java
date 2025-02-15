@@ -67,6 +67,18 @@ class SecurityConfig {
 				"/assets/**",
 				"users/**"
 			).permitAll()
+			.requestMatchers(request -> {
+				boolean requestedUri = request.getRequestURI().startsWith("/api/");
+				String header = request.getHeader("X-Requested-With");
+
+				// TODO: research more about this topic
+				// NOTE: maybe add this to filter instead
+				// allowing users to use our api with fetch on frontend
+				// but forbid for them to  api directly
+				// or create own fetch request
+				// unless they know our header for requests
+				return requestedUri && "fetch".equalsIgnoreCase(header);
+			}).permitAll()
 			.requestMatchers("/api/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 		);
