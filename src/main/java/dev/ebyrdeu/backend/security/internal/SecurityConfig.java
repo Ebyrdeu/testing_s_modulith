@@ -1,5 +1,6 @@
 package dev.ebyrdeu.backend.security.internal;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -72,6 +73,7 @@ class SecurityConfig {
 				String header = request.getHeader("X-Requested-With");
 
 				// TODO: research more about this topic
+				// NOTE: ideally i don't wont use custom headers
 				// NOTE: maybe add this to filter instead
 				// allowing users to use our api with fetch on frontend
 				// but forbid for them to  api directly
@@ -83,6 +85,15 @@ class SecurityConfig {
 			.anyRequest().authenticated()
 		);
 
+
+		// NOTE: kinda works but feels hacky
+		// TODO: maybe find a better way
+		http.logout((logout) -> logout
+			.logoutUrl("/logout")
+			.logoutSuccessHandler((request, response, authentication) -> response
+				.setStatus(HttpServletResponse.SC_OK)
+			)
+		);
 
 		// Custom Filters
 		http
