@@ -38,7 +38,7 @@ class UserController {
 	 */
 	@GetMapping("/is-authenticated")
 	public ResponseEntity<ResponseDto<Boolean>> isAuthenticated(Authentication authentication) {
-		// NOTE: null check is required otherwise it will be 302 on first request
+		// NOTE: null check is required otherwise it will be 302 on first request (@NonNull doesnt work)
 		boolean isAuth = authentication != null && authentication.isAuthenticated();
 
 		return ResponseEntity.status(200).body(
