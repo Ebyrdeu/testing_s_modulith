@@ -14,6 +14,11 @@ public class DefaultPostgresContainer {
 	@ServiceConnection
 	private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:17");
 
+	static {
+		container.withReuse(true);
+		container.start();
+	}
+
 	@DynamicPropertySource
 	private static void configureProperties(DynamicPropertyRegistry registry) {
 		registry.add("spring.datasource.url", container::getJdbcUrl);
