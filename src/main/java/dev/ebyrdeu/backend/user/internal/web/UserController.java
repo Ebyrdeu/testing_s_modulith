@@ -33,7 +33,8 @@ class UserController {
 	}
 
 	// TODO: Move to Service
-	//  TODO: Create ITests
+	// TODO: Create ITests
+	// NOTE: Maybe check on Oauth2 will be better than regular auth in that case 
 	@GetMapping("/is-authenticated")
 	public ResponseEntity<ResponseDto<Boolean>> isAuthenticated(Authentication authentication) {
 		// NOTE: null check is required otherwise it will be 302 on first request (@NonNull doesnt work)
