@@ -32,10 +32,8 @@ class UserController {
 		this.jsonConverter = jsonConverter;
 	}
 
-	/**
-	 * TODO: Move to Service
-	 * TODO: Create Tests
-	 */
+	// TODO: Move to Service
+	//  TODO: Create ITests
 	@GetMapping("/is-authenticated")
 	public ResponseEntity<ResponseDto<Boolean>> isAuthenticated(Authentication authentication) {
 		// NOTE: null check is required otherwise it will be 302 on first request (@NonNull doesnt work)
