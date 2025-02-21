@@ -1,14 +1,12 @@
-root = true
-
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 4
+indent_size = 2
 indent_style = tab
 insert_final_newline = false
-max_line_length = 80
-tab_width = 4
-ij_continuation_indent_size = 8
+max_line_length = 120
+tab_width = 2
+ij_continuation_indent_size = 2
 ij_formatter_off_tag = @formatter:off
 ij_formatter_on_tag = @formatter:on
 ij_formatter_tags_enabled = true
@@ -16,9 +14,8 @@ ij_smart_tabs = true
 ij_visual_guides =
 ij_wrap_on_typing = false
 
+
 [*.java]
-max_line_length = 120
-ij_continuation_indent_size = 4
 ij_java_align_consecutive_assignments = false
 ij_java_align_consecutive_variable_declarations = false
 ij_java_align_group_field_declarations = false
@@ -58,6 +55,7 @@ ij_java_blank_lines_after_package = 1
 ij_java_blank_lines_around_class = 1
 ij_java_blank_lines_around_field = 0
 ij_java_blank_lines_around_field_in_interface = 0
+ij_java_blank_lines_around_field_with_annotations = 0
 ij_java_blank_lines_around_initializer = 1
 ij_java_blank_lines_around_method = 1
 ij_java_blank_lines_around_method_in_interface = 1
@@ -325,6 +323,7 @@ ij_java_wrap_first_method_in_call_chain = false
 ij_java_wrap_long_lines = false
 ij_java_wrap_semicolon_after_call_chain = false
 
+
 [.editorconfig]
 ij_editorconfig_align_group_field_declarations = false
 ij_editorconfig_space_after_colon = false
@@ -333,8 +332,13 @@ ij_editorconfig_space_before_colon = false
 ij_editorconfig_space_before_comma = false
 ij_editorconfig_spaces_around_assignment_operators = true
 
-[{*.ant,*.fxml,*.jhm,*.jnlp,*.jrxml,*.pom,*.rng,*.tld,*.wadl,*.wsdl,*.xml,*.xsd,*.xsl,*.xslt,*.xul}]
-ij_continuation_indent_size = 4
+[{*.ad,*.adoc,*.asciidoc,.asciidoctorconfig}]
+ij_asciidoc_blank_lines_after_header = 1
+ij_asciidoc_blank_lines_keep_after_header = 1
+ij_asciidoc_formatting_enabled = true
+ij_asciidoc_one_sentence_per_line = true
+
+[{*.ant,*.jhm,*.jnlp,*.jrxml,*.pom,*.rng,*.tld,*.wadl,*.wsdl,*.xml,*.xsd,*.xsl,*.xslt,*.xul}]
 ij_xml_align_attributes = true
 ij_xml_align_text = false
 ij_xml_attribute_wrap = normal
@@ -353,6 +357,7 @@ ij_xml_space_around_equals_in_attribute = false
 ij_xml_space_inside_empty_tag = false
 ij_xml_text_wrap = normal
 
+
 [{*.bash,*.sh,*.zsh}]
 ij_shell_binary_ops_start_line = false
 ij_shell_keep_column_alignment_padding = false
@@ -362,6 +367,7 @@ ij_shell_switch_cases_indented = false
 ij_shell_use_unix_line_separator = true
 
 [{*.http,*.rest}]
+indent_size = 4
 ij_continuation_indent_size = 4
 ij_http-request_call_parameters_wrap = normal
 ij_http-request_method_parameters_wrap = split_into_lines
@@ -369,8 +375,6 @@ ij_http-request_space_before_comma = true
 ij_http-request_spaces_around_assignment_operators = true
 
 [{*.markdown,*.md}]
-indent_style = space
-ij_smart_tabs = false
 ij_markdown_force_one_space_after_blockquote_symbol = true
 ij_markdown_force_one_space_after_header_symbol = true
 ij_markdown_force_one_space_after_list_bullet = true
@@ -388,11 +392,13 @@ ij_markdown_min_lines_between_paragraphs = 1
 ij_markdown_wrap_text_if_long = true
 ij_markdown_wrap_text_inside_blockquotes = true
 
+
 [{*.properties,spring.handlers,spring.schemas}]
 ij_properties_align_group_field_declarations = false
 ij_properties_keep_blank_lines = false
 ij_properties_key_value_delimiter = equals
 ij_properties_spaces_around_key_value_delimiter = false
+
 
 [{*.yaml,*.yml}]
 ij_yaml_align_values_properties = do_not_align

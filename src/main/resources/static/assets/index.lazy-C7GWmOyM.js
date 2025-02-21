@@ -8,7 +8,7 @@ var s = (t, e, i) => ($(t, e, "read from private field"), i ? i.call(t) : e.get(
 	d = (t, e, i) => ($(t, e, "access private method"), i);
 import {
 	a as Ce,
-	d as v,
+	d as O,
 	e as K,
 	f as fe,
 	g as Te,
@@ -18,18 +18,18 @@ import {
 	k as me,
 	l as we,
 	m as je,
-	n as ve,
+	n as Oe,
 	o as Ue,
 	p as ue,
 	r as E,
-	S as Oe,
+	S as Se,
 	s as G,
 	t as Ee,
-} from "./index-usCZj1uk.js";
+} from "./index-CI8Q9bJN.js";
 
 
-var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
-	ae, Re, ge, ke = (ge = class extends Oe {
+var x, a, N, y, C, q, j, S, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
+	ae, ve, ge, ke = (ge = class extends Se {
 		constructor(e, i) {
 			super();
 			f(this, n);
@@ -40,7 +40,7 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 			f(this, C);
 			f(this, q);
 			f(this, j);
-			f(this, O);
+			f(this, S);
 			f(this, z);
 			f(this, H);
 			f(this, W);
@@ -48,7 +48,7 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 			f(this, D);
 			f(this, U);
 			f(this, I, new Set);
-			this.options = i, h(this, x, e), h(this, O, null), h(this, j, ue()), this.options.experimental_prefetchInRender || s(this, j).reject(new Error("experimental_prefetchInRender feature flag is not enabled")), this.bindMethods(), this.setOptions(i);
+			this.options = i, h(this, x, e), h(this, S, null), h(this, j, ue()), this.options.experimental_prefetchInRender || s(this, j).reject(new Error("experimental_prefetchInRender feature flag is not enabled")), this.bindMethods(), this.setOptions(i);
 		}
 
 		bindMethods() {
@@ -77,16 +77,16 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 
 		setOptions(e, i) {
 			const r = this.options, u = s(this, a);
-			if (this.options = s(this, x).defaultQueryOptions(e), this.options.enabled !== void 0 && typeof this.options.enabled != "boolean" && typeof this.options.enabled != "function" && typeof v(this.options.enabled, s(this, a)) != "boolean") throw new Error("Expected enabled to be a boolean or a callback that returns a boolean");
+			if (this.options = s(this, x).defaultQueryOptions(e), this.options.enabled !== void 0 && typeof this.options.enabled != "boolean" && typeof this.options.enabled != "function" && typeof O(this.options.enabled, s(this, a)) != "boolean") throw new Error("Expected enabled to be a boolean or a callback that returns a boolean");
 			d(this, n, ae).call(this), s(this, a).setOptions(this.options), r._defaulted && !G(this.options, r) && s(this, x).getQueryCache().notify({
 				type: "observerOptionsUpdated",
 				query: s(this, a),
 				observer: this,
 			});
 			const l = this.hasListeners();
-			l && be(s(this, a), u, this.options, r) && d(this, n, L).call(this), this.updateResult(i), l && (s(this, a) !== u || v(this.options.enabled, s(this, a)) !== v(r.enabled, s(this, a)) || K(this.options.staleTime, s(this, a)) !== K(r.staleTime, s(this, a))) && d(this, n, Z).call(this);
+			l && be(s(this, a), u, this.options, r) && d(this, n, L).call(this), this.updateResult(i), l && (s(this, a) !== u || O(this.options.enabled, s(this, a)) !== O(r.enabled, s(this, a)) || K(this.options.staleTime, s(this, a)) !== K(r.staleTime, s(this, a))) && d(this, n, Z).call(this);
 			const o = d(this, n, ee).call(this);
-			l && (s(this, a) !== u || v(this.options.enabled, s(this, a)) !== v(r.enabled, s(this, a)) || o !== s(this, U)) && d(this, n, te).call(this, o);
+			l && (s(this, a) !== u || O(this.options.enabled, s(this, a)) !== O(r.enabled, s(this, a)) || o !== s(this, U)) && d(this, n, te).call(this, o);
 		}
 
 		getOptimisticResult(e) {
@@ -138,7 +138,7 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 		createResult(e, i) {
 			var le;
 			const r = s(this, a), u = this.options, l = s(this, y), o = s(this, C),
-				T = s(this, q), R = e !== r ? e.state : s(this, N), {state: Q} = e;
+				T = s(this, q), v = e !== r ? e.state : s(this, N), {state: Q} = e;
 			let c = {...Q}, J = !1, p;
 			if (i._optimisticResults) {
 				const b = this.hasListeners(), M = !b && pe(e, i),
@@ -147,22 +147,22 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 			}
 			let {error: F, errorUpdatedAt: P, status: w} = c;
 			if (i.select && c.data !== void 0) if (l && c.data === (o == null ? void 0 : o.data) && i.select === s(this, z)) p = s(this, H); else try {
-				h(this, z, i.select), p = i.select(c.data), p = me(l == null ? void 0 : l.data, p, i), h(this, H, p), h(this, O, null);
+				h(this, z, i.select), p = i.select(c.data), p = me(l == null ? void 0 : l.data, p, i), h(this, H, p), h(this, S, null);
 			} catch (b) {
-				h(this, O, b);
+				h(this, S, b);
 			} else p = c.data;
 			if (i.placeholderData !== void 0 && p === void 0 && w === "pending") {
 				let b;
 				if (l != null && l.isPlaceholderData && i.placeholderData === (T == null ? void 0 : T.placeholderData)) b = l.data; else if (b = typeof i.placeholderData == "function" ? i.placeholderData((le = s(this, W)) == null ? void 0 : le.state.data, s(this, W)) : i.placeholderData, i.select && b !== void 0) try {
-					b = i.select(b), h(this, O, null);
+					b = i.select(b), h(this, S, null);
 				} catch (M) {
-					h(this, O, M);
+					h(this, S, M);
 				}
 				b !== void 0 && (w = "success", p = me(l == null ? void 0 : l.data, b, i), J = !0);
 			}
-			s(this, O) && (F = s(this, O), p = s(this, H), P = Date.now(), w = "error");
+			s(this, S) && (F = s(this, S), p = s(this, H), P = Date.now(), w = "error");
 			const _ = c.fetchStatus === "fetching", V = w === "pending",
-				Y = w === "error", ce = V && _, he = p !== void 0, S = {
+				Y = w === "error", ce = V && _, he = p !== void 0, R = {
 					status: w,
 					fetchStatus: c.fetchStatus,
 					isPending: V,
@@ -178,7 +178,7 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 					failureReason: c.fetchFailureReason,
 					errorUpdateCount: c.errorUpdateCount,
 					isFetched: c.dataUpdateCount > 0 || c.errorUpdateCount > 0,
-					isFetchedAfterMount: c.dataUpdateCount > R.dataUpdateCount || c.errorUpdateCount > R.errorUpdateCount,
+					isFetchedAfterMount: c.dataUpdateCount > v.dataUpdateCount || c.errorUpdateCount > v.errorUpdateCount,
 					isFetching: _,
 					isRefetching: _ && !V,
 					isLoadingError: Y && !he,
@@ -191,9 +191,9 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 				};
 			if (this.options.experimental_prefetchInRender) {
 				const b = A => {
-					S.status === "error" ? A.reject(S.error) : S.data !== void 0 && A.resolve(S.data);
+					R.status === "error" ? A.reject(R.error) : R.data !== void 0 && A.resolve(R.data);
 				}, M = () => {
-					const A = h(this, j, S.promise = ue());
+					const A = h(this, j, R.promise = ue());
 					b(A);
 				}, B = s(this, j);
 				switch (B.status) {
@@ -201,14 +201,14 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 						e.queryHash === r.queryHash && b(B);
 						break;
 					case"fulfilled":
-						(S.status === "error" || S.data !== B.value) && M();
+						(R.status === "error" || R.data !== B.value) && M();
 						break;
 					case"rejected":
-						(S.status !== "error" || S.error !== B.reason) && M();
+						(R.status !== "error" || R.error !== B.reason) && M();
 						break;
 				}
 			}
-			return S;
+			return R;
 		}
 
 		updateResult(e) {
@@ -221,21 +221,21 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 					T = typeof o == "function" ? o() : o;
 				if (T === "all" || !T && !s(this, I).size) return !0;
 				const m = new Set(T ?? s(this, I));
-				return this.options.throwOnError && m.add("error"), Object.keys(s(this, y)).some(R => {
-					const Q = R;
+				return this.options.throwOnError && m.add("error"), Object.keys(s(this, y)).some(v => {
+					const Q = v;
 					return s(this, y)[Q] !== i[Q] && m.has(Q);
 				});
 			};
-			(e == null ? void 0 : e.listeners) !== !1 && l() && (u.listeners = !0), d(this, n, Re).call(this, {...u, ...e});
+			(e == null ? void 0 : e.listeners) !== !1 && l() && (u.listeners = !0), d(this, n, ve).call(this, {...u, ...e});
 		}
 
 		onQueryUpdate() {
 			this.updateResult(), this.hasListeners() && d(this, n, se).call(this);
 		}
-	}, x = new WeakMap, a = new WeakMap, N = new WeakMap, y = new WeakMap, C = new WeakMap, q = new WeakMap, j = new WeakMap, O = new WeakMap, z = new WeakMap, H = new WeakMap, W = new WeakMap, k = new WeakMap, D = new WeakMap, U = new WeakMap, I = new WeakMap, n = new WeakSet, L = function (e) {
+	}, x = new WeakMap, a = new WeakMap, N = new WeakMap, y = new WeakMap, C = new WeakMap, q = new WeakMap, j = new WeakMap, S = new WeakMap, z = new WeakMap, H = new WeakMap, W = new WeakMap, k = new WeakMap, D = new WeakMap, U = new WeakMap, I = new WeakMap, n = new WeakSet, L = function (e) {
 		d(this, n, ae).call(this);
 		let i = s(this, a).fetch(this.options, e);
-		return e != null && e.throwOnError || (i = i.catch(ve)), i;
+		return e != null && e.throwOnError || (i = i.catch(Oe)), i;
 	}, Z = function () {
 		d(this, n, ie).call(this);
 		const e = K(this.options.staleTime, s(this, a));
@@ -247,7 +247,7 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 	}, ee = function () {
 		return (typeof this.options.refetchInterval == "function" ? this.options.refetchInterval(s(this, a)) : this.options.refetchInterval) ?? !1;
 	}, te = function (e) {
-		d(this, n, re).call(this), h(this, U, e), !(X || v(this.options.enabled, s(this, a)) === !1 || !fe(s(this, U)) || s(this, U) === 0) && h(this, D, setInterval(() => {
+		d(this, n, re).call(this), h(this, U, e), !(X || O(this.options.enabled, s(this, a)) === !1 || !fe(s(this, U)) || s(this, U) === 0) && h(this, D, setInterval(() => {
 			(this.options.refetchIntervalInBackground || Te.isFocused()) && d(this, n, L).call(this);
 		}, s(this, U)));
 	}, se = function () {
@@ -261,7 +261,7 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 		if (e === s(this, a)) return;
 		const i = s(this, a);
 		h(this, a, e), h(this, N, e.state), this.hasListeners() && (i == null || i.removeObserver(this), e.addObserver(this));
-	}, Re = function (e) {
+	}, ve = function (e) {
 		we.batch(() => {
 			e.listeners && this.listeners.forEach(i => {
 				i(s(this, y));
@@ -273,7 +273,7 @@ var x, a, N, y, C, q, j, O, z, H, W, k, D, U, I, n, L, Z, ee, te, se, ie, re,
 	}, ge);
 
 function De(t, e) {
-	return v(e.enabled, t) !== !1 && t.state.data === void 0 && !(t.state.status === "error" && e.retryOnMount === !1);
+	return O(e.enabled, t) !== !1 && t.state.data === void 0 && !(t.state.status === "error" && e.retryOnMount === !1);
 }
 
 function pe(t, e) {
@@ -281,7 +281,7 @@ function pe(t, e) {
 }
 
 function oe(t, e, i) {
-	if (v(e.enabled, t) !== !1) {
+	if (O(e.enabled, t) !== !1) {
 		const r = typeof i == "function" ? i(t) : i;
 		return r === "always" || r !== !1 && ne(t, e);
 	}
@@ -289,19 +289,19 @@ function oe(t, e, i) {
 }
 
 function be(t, e, i, r) {
-	return (t !== e || v(r.enabled, t) === !1) && (!i.suspense || t.state.status !== "error") && ne(t, i);
+	return (t !== e || O(r.enabled, t) === !1) && (!i.suspense || t.state.status !== "error") && ne(t, i);
 }
 
 function ne(t, e) {
-	return v(e.enabled, t) !== !1 && t.isStaleByTime(K(e.staleTime, t));
+	return O(e.enabled, t) !== !1 && t.isStaleByTime(K(e.staleTime, t));
 }
 
 function Me(t, e) {
 	return !G(t.getCurrentResult(), e);
 }
 
-var Se = E.createContext(!1), Be = () => E.useContext(Se);
-Se.Provider;
+var Re = E.createContext(!1), Be = () => E.useContext(Re);
+Re.Provider;
 
 function qe() {
 	let t = !1;
@@ -350,27 +350,27 @@ function ze(t, e, i) {
 	const r = je(), u = Be(), l = We(), o = r.defaultQueryOptions(t);
 	(J = (c = r.getDefaultOptions().queries) == null ? void 0 : c._experimental_beforeQuery) == null || J.call(c, o), o._optimisticResults = u ? "isRestoring" : "optimistic", _e(o), Je(o, l), Fe(l);
 	const T = !r.getQueryCache().get(o.queryHash), [m] = E.useState(() => new e(r, o)),
-		R = m.getOptimisticResult(o), Q = !u && t.subscribed !== !1;
+		v = m.getOptimisticResult(o), Q = !u && t.subscribed !== !1;
 	if (E.useSyncExternalStore(E.useCallback(w => {
 		const _ = Q ? m.subscribe(we.batchCalls(w)) : ye;
 		return m.updateResult(), _;
 	}, [m, Q]), () => m.getCurrentResult(), () => m.getCurrentResult()), E.useEffect(() => {
 		m.setOptions(o, {listeners: !1});
-	}, [o, m]), Ne(o, R)) throw xe(o, m, l);
+	}, [o, m]), Ne(o, v)) throw xe(o, m, l);
 	if (Pe({
-		result: R,
+		result: v,
 		errorResetBoundary: l,
 		throwOnError: o.throwOnError,
 		query: r.getQueryCache().get(o.queryHash),
 		suspense: o.suspense,
-	})) throw R.error;
-	if ((F = (p = r.getDefaultOptions().queries) == null ? void 0 : p._experimental_afterQuery) == null || F.call(p, o, R), o.experimental_prefetchInRender && !X && Le(R, u)) {
+	})) throw v.error;
+	if ((F = (p = r.getDefaultOptions().queries) == null ? void 0 : p._experimental_afterQuery) == null || F.call(p, o, v), o.experimental_prefetchInRender && !X && Le(v, u)) {
 		const w = T ? xe(o, m, l) : (P = r.getQueryCache().get(o.queryHash)) == null ? void 0 : P.promise;
 		w == null || w.catch(ye).finally(() => {
 			m.updateResult();
 		});
 	}
-	return o.notifyOnChangeProps ? R : m.trackResult(R);
+	return o.notifyOnChangeProps ? v : m.trackResult(v);
 }
 
 function Ae(t, e) {
