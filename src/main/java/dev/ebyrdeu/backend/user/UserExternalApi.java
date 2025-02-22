@@ -1,8 +1,10 @@
 package dev.ebyrdeu.backend.user;
 
 import dev.ebyrdeu.backend.common.dto.ResponseDto;
+import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.List;
  * @version 1.0
  */
 public interface UserExternalApi {
+
+	ResponseDto<AuthResponseDto> getAuth(Authentication authentication);
 
 	ResponseDto<List<UserMinimalInfoProjection>> findAll();
 
@@ -50,4 +54,5 @@ public interface UserExternalApi {
 	 * @see OidcUser
 	 */
 	void createOrGetOidcUser(OidcUser oidcUser);
+
 }

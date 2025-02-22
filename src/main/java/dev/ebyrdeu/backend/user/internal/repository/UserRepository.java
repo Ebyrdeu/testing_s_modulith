@@ -18,13 +18,29 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	Optional<User> findOneByEmail(String email);
+	@Query(
+		value = "select * from users u where u.email = :email",
+		nativeQuery = true
+	)
+	Optional<User> findOneByEmail(@Param("email") String email);
 
-	@Query(value = "select u.username as username, u.firstName as firstName, u.lastName as lastName from User u")
+	@Query(
+		value = "select u.username as username, u.first_name as firstName, u.last_name as lastName from users u",
+		nativeQuery = true
+	)
 	List<UserMinimalInfoProjection> findAllWithMinimalInfo();
 
-	@Query(value = "select u.username as username, u.firstName as firstName, u.lastName as lastName from User u where u.id = :id")
-	Optional<UserMinimalInfoProjection> findOneByIdWithMinimalInfo(Long id);
+	@Query(
+		value = "select u.username as username, u.first_name as firstName, u.last_name as lastName from users u where u.id = :id",
+		nativeQuery = true
+	)
+	Optional<UserMinimalInfoProjection> findOneByIdWithMinimalInfo(@Param("id") Long id);
+
+	@Query(
+		value = "select username as username, u.first_name as firstName, u.last_name as lastName from users u where u.email = :email",
+		nativeQuery = true
+	)
+	Optional<UserMinimalInfoProjection> findOneByEmailWithMinimalInfo(@Param("email") String email);
 
 	/**
 	 * Retrieves a list of roles associated with a user by their email address.

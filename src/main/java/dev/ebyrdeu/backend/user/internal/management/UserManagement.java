@@ -2,6 +2,8 @@ package dev.ebyrdeu.backend.user.internal.management;
 
 import dev.ebyrdeu.backend.common.dto.ResponseDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
+import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
+import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserInternalServerErrorException;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
@@ -12,6 +14,9 @@ import dev.ebyrdeu.backend.user.internal.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +39,66 @@ class UserManagement implements UserExternalApi {
 
 	public UserManagement(UserRepository userRepository) {
 		this.userRepository = userRepository;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public ResponseDto<AuthResponseDto> getAuth(Authentication authentication) {
+		log.info("[UserManagement/getAuth]:: Execution started.");
+		try {
+			log.info("[UserManagement/getAuth]:: Checking Status");
+			if (authentication == null || !authentication.isAuthenticated()) {
+				return new ResponseDto<>(
+					HttpStatus.OK,
+					HttpStatus.OK.value(),
+					"Authentication data retrieved successfully",
+					new AuthResponseDto(null, false)
+				);
+			}
+
+			OidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
+			String email = oidcUser.getEmail();
+			List<String> roles = oidcUser.getAuthorities()
+				.stream()
+				.map(GrantedAuthority::getAuthority)
+				.map(role -> role.substring(5))
+				.toList();
+
+			UserMinimalInfoProjection res = this.userRepository
+				.findOneByEmailWithMinimalInfo(email)
+				.orElseThrow(
+					() -> new UserNotFoundException("User with Email " + email + " not found")
+				);
+
+			log.info("[UserManagement/getAuth]:: User found. User Email: {}", email);
+
+			AuthUserDto data = new AuthUserDto(
+				res.getFirstName(),
+				res.getLastName(),
+				res.getUsername(),
+				oidcUser.getPicture(),
+				roles
+			);
+
+			return new ResponseDto<>(
+				HttpStatus.OK,
+				HttpStatus.OK.value(),
+				"Authentication data retrieved successfully",
+				new AuthResponseDto(data, true)
+			);
+
+		} catch (UserNotFoundException ex) {
+			log.error(
+				"[UserManagement/getAuth]:: Exception occurred while retrieving user. Exception: {}",
+				ex.getMessage()
+			);
+			throw ex;
+		} catch (RuntimeException ex) {
+			log.error("[UserManagement/getAuth]:: Exception occurred while  auth data. Exception: {}", ex.getMessage());
+			throw new UserInternalServerErrorException("Failed to retrieve auth data due to an unexpected error");
+		} finally {
+			log.info("[UserManagement/getAuth]:: Execution ended.");
+		}
 	}
 
 	@Override

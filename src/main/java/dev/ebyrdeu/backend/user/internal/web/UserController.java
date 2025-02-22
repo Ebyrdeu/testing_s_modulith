@@ -3,14 +3,15 @@ package dev.ebyrdeu.backend.user.internal.web;
 import dev.ebyrdeu.backend.common.dto.ResponseDto;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
 import dev.ebyrdeu.backend.user.UserExternalApi;
+import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,19 +35,16 @@ class UserController {
 
 	// TODO: Move to Service
 	// TODO: Create ITests
-	// NOTE: Maybe check on Oauth2 will be better than regular auth in that case 
-	@GetMapping("/is-authenticated")
-	public ResponseEntity<ResponseDto<Boolean>> isAuthenticated(Authentication authentication) {
-		// NOTE: null check is required otherwise it will be 302 on first request (@NonNull doesnt work)
-		boolean isAuth = authentication != null && authentication.isAuthenticated();
+	@GetMapping("/auth")
+	public ResponseEntity<ResponseDto<AuthResponseDto>> getAuth(Authentication authentication) {
 
-		return ResponseEntity.status(200).body(
-			new ResponseDto<>(
-				HttpStatus.OK,
-				200,
-				"testing",
-				isAuth
-			));
+		log.info("[UserController/auth]:: Getting auth status.");
+
+		ResponseDto<AuthResponseDto> response = this.userExternalApi.getAuth(authentication);
+
+		log.info("[UserController/auth]:: Response: {}", this.jsonConverter.valueOf(response.data()));
+
+		return ResponseEntity.status(response.status()).body(response);
 	}
 
 	@GetMapping
@@ -100,6 +98,10 @@ class UserController {
 		);
 
 		return ResponseEntity.status(response.status()).body(response);
+	}
+
+	record Testing(OAuth2User oAuth2User, boolean isAuth) {
+
 	}
 
 
