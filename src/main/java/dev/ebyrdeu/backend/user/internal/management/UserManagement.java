@@ -1,6 +1,6 @@
 package dev.ebyrdeu.backend.user.internal.management;
 
-import dev.ebyrdeu.backend.common.dto.ResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
@@ -43,12 +43,12 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseDto<AuthResponseDto> getAuth(Authentication authentication) {
+	public BaseResponseDto<AuthResponseDto> getAuth(Authentication authentication) {
 		log.info("[UserManagement/getAuth]:: Execution started.");
 		try {
 			log.info("[UserManagement/getAuth]:: Checking Status");
 			if (authentication == null || !authentication.isAuthenticated()) {
-				return new ResponseDto<>(
+				return new BaseResponseDto<>(
 					HttpStatus.OK,
 					HttpStatus.OK.value(),
 					"Authentication data retrieved successfully",
@@ -80,7 +80,7 @@ class UserManagement implements UserExternalApi {
 				roles
 			);
 
-			return new ResponseDto<>(
+			return new BaseResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"Authentication data retrieved successfully",
@@ -104,18 +104,18 @@ class UserManagement implements UserExternalApi {
 	/**
 	 * Retrieves all users with minimal information.
 	 *
-	 * @return a {@link ResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
+	 * @return a {@link BaseResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
 	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseDto<List<UserMinimalInfoProjection>> findAll() {
+	public BaseResponseDto<List<UserMinimalInfoProjection>> findAll() {
 		log.info("[UserManagement/findAll]:: Execution started.");
 		try {
 			List<UserMinimalInfoProjection> data = this.userRepository.findAllWithMinimalInfo();
 			log.info("[UserManagement/findAll]:: Found {} users.", data.size());
 
-			return new ResponseDto<>(
+			return new BaseResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"Users retrieved successfully",
@@ -132,7 +132,7 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseDto<UserMinimalInfoProjection> findOneById(Long id) {
+	public BaseResponseDto<UserMinimalInfoProjection> findOneById(Long id) {
 		log.info("[UserManagement/findOneById]:: Execution started.");
 
 		try {
@@ -144,7 +144,7 @@ class UserManagement implements UserExternalApi {
 
 			log.info("[UserManagement/findOneById]:: User found. User ID: {}", id);
 
-			return new ResponseDto<>(
+			return new BaseResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"User retrieved successfully",
@@ -172,7 +172,7 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional
-	public ResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req) {
+	public BaseResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req) {
 		log.info("[UserManagement/patchUsername]:: Execution started.");
 		try {
 			User retrievedUser = this.userRepository
@@ -190,7 +190,7 @@ class UserManagement implements UserExternalApi {
 			User updatedUser = this.userRepository.save(retrievedUser);
 
 			log.info("[UserManagement/patchUsername]:: User patched successfully. User ID: {}", id);
-			return new ResponseDto<>(
+			return new BaseResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"User patched successfully",

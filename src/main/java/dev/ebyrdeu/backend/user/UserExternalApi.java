@@ -1,6 +1,6 @@
 package dev.ebyrdeu.backend.user;
 
-import dev.ebyrdeu.backend.common.dto.ResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
@@ -29,30 +29,30 @@ public interface UserExternalApi {
 	 * </p>
 	 *
 	 * @param authentication the authentication object representing the current user session.
-	 * @return a {@link  ResponseDto} containing an {@link  AuthResponseDto} with user authentication data and
+	 * @return a {@link  BaseResponseDto} containing an {@link  AuthResponseDto} with user authentication data and
 	 * a flag indicating whether the user is authenticated.
 	 * @throws UserNotFoundException            if the user with the given email is not found.
 	 * @throws UserInternalServerErrorException if an unexpected error occurs during processing.
 	 */
-	ResponseDto<AuthResponseDto> getAuth(Authentication authentication);
+	BaseResponseDto<AuthResponseDto> getAuth(Authentication authentication);
 
 	/**
 	 * Retrieves all users with minimal information.
 	 *
-	 * @return a {@link ResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
+	 * @return a {@link BaseResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
 	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
 	 */
-	ResponseDto<List<UserMinimalInfoProjection>> findAll();
+	BaseResponseDto<List<UserMinimalInfoProjection>> findAll();
 
 	/**
 	 * Retrieves a single user by their unique identifier.
 	 *
 	 * @param id the unique identifier of the user.
-	 * @return a {@link ResponseDto} containing a {@link UserMinimalInfoProjection} for the specified user.
+	 * @return a {@link BaseResponseDto} containing a {@link UserMinimalInfoProjection} for the specified user.
 	 * @throws UserNotFoundException            if the user with the given ID is not found.
 	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
 	 */
-	ResponseDto<UserMinimalInfoProjection> findOneById(Long id);
+	BaseResponseDto<UserMinimalInfoProjection> findOneById(Long id);
 
 	/**
 	 * Updates the username of a user identified by their unique ID.
@@ -63,11 +63,11 @@ public interface UserExternalApi {
 	 *
 	 * @param id  the unique identifier of the user to update.
 	 * @param req the {@link UsernameDto} containing the new username.
-	 * @return a {@link ResponseDto} containing a {@link UsernameDto} of the updated user.
+	 * @return a {@link BaseResponseDto} containing a {@link UsernameDto} of the updated user.
 	 * @throws UserNotFoundException            if the user with the given ID is not found.
 	 * @throws UserInternalServerErrorException if an unexpected error occurs during the update.
 	 */
-	ResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req);
+	BaseResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req);
 
 	/**
 	 * Retrieves the roles associated with a user based on their email address.

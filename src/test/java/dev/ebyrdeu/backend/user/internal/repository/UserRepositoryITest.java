@@ -1,6 +1,6 @@
 package dev.ebyrdeu.backend.user.internal.repository;
 
-import dev.ebyrdeu.backend.DefaultPostgresContainer;
+import dev.ebyrdeu.backend.TestTestContainer;
 import dev.ebyrdeu.backend.user.internal.model.User;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import jakarta.persistence.EntityManager;
@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-@Transactional
-@ActiveProfiles("test")
-class UserRepositoryITest extends DefaultPostgresContainer {
+@TestTestContainer
+class UserRepositoryITest {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

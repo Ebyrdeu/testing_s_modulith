@@ -1,12 +1,12 @@
 package dev.ebyrdeu.backend;
 
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
-@Testcontainers
-public class DefaultPostgresContainer {
+@TestConfiguration
+class DefaultPostgresContainer {
 
 	@Container
 	@ServiceConnection

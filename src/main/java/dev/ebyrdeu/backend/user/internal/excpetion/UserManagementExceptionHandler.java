@@ -1,6 +1,6 @@
 package dev.ebyrdeu.backend.user.internal.excpetion;
 
-import dev.ebyrdeu.backend.common.dto.ResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,8 +15,8 @@ class UserManagementExceptionHandler {
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(UserInternalServerErrorException.class)
-	public ResponseDto<?> handleUserServiceException(UserInternalServerErrorException exception) {
-		return new ResponseDto<>(
+	public BaseResponseDto<?> handleUserServiceException(UserInternalServerErrorException exception) {
+		return new BaseResponseDto<>(
 			HttpStatus.INTERNAL_SERVER_ERROR,
 			HttpStatus.INTERNAL_SERVER_ERROR.value(),
 			exception.getMessage(),
@@ -26,8 +26,8 @@ class UserManagementExceptionHandler {
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseDto<?> handleUserNotFoundException(UserNotFoundException exception) {
-		return new ResponseDto<>(
+	public BaseResponseDto<?> handleUserNotFoundException(UserNotFoundException exception) {
+		return new BaseResponseDto<>(
 			HttpStatus.NOT_FOUND,
 			HttpStatus.NOT_FOUND.value(),
 			exception.getMessage(),

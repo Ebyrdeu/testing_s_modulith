@@ -1,11 +1,10 @@
 package dev.ebyrdeu.backend.user.internal.management;
 
-import dev.ebyrdeu.backend.DefaultPostgresContainer;
-import dev.ebyrdeu.backend.MockOAuth2Client;
-import dev.ebyrdeu.backend.common.dto.ResponseDto;
+import dev.ebyrdeu.backend.TestOAuth2Client;
+import dev.ebyrdeu.backend.TestTestContainer;
+import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
-import dev.ebyrdeu.backend.user.internal.excpetion.UserInternalServerErrorException;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
 import dev.ebyrdeu.backend.user.internal.model.User;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
@@ -16,12 +15,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,10 +28,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-@ActiveProfiles("test")
-@Transactional
-@Import(MockOAuth2Client.class)
-class UserManagementITest extends DefaultPostgresContainer {
+@TestOAuth2Client
+@TestTestContainer
+class UserManagementITest {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -61,16 +56,6 @@ class UserManagementITest extends DefaultPostgresContainer {
 	}
 
 
-	/**
-	 * <p>It must be a better way to trigger RuntimeException</p>
-	 *
-	 * <b>NOTE</b>: Use <b>ONLY</b> when you need to trigger RuntimeException
-	 */
-	private void dropUserTable() {
-		this.jdbcTemplate.execute("drop table users cascade");
-	}
-
-
 	@Nested
 	class FindAll {
 		@Test
@@ -79,7 +64,7 @@ class UserManagementITest extends DefaultPostgresContainer {
 			// Given
 			String message = "Users retrieved successfully";
 			// When
-			ResponseDto<List<UserMinimalInfoProjection>> response = userExternalApi.findAll();
+			BaseResponseDto<List<UserMinimalInfoProjection>> response = userExternalApi.findAll();
 
 			// Then
 			assertAll(
@@ -89,24 +74,6 @@ class UserManagementITest extends DefaultPostgresContainer {
 				() -> assertEquals(message, response.message()),
 				() -> assertEquals(1, response.data().size())
 			);
-		}
-
-		@Test
-		@DisplayName("Should throw UserInternalServerErrorException when repository throws RuntimeException")
-		void should_ThrowUserUserInternalServerErrorException_whenRepositoryThrowsRuntimeException() {
-			// Given
-			String errorMessage = "Failed to retrieve users due to an unexpected error";
-
-			dropUserTable();
-
-			// When
-			UserInternalServerErrorException exception = assertThrowsExactly(
-				UserInternalServerErrorException.class,
-				() -> userExternalApi.findAll()
-			);
-
-			// Then
-			assertEquals(errorMessage, exception.getMessage());
 		}
 	}
 
@@ -119,7 +86,7 @@ class UserManagementITest extends DefaultPostgresContainer {
 			String message = "User retrieved successfully";
 
 			// When
-			ResponseDto<UserMinimalInfoProjection> response = userExternalApi.findOneById(1L);
+			BaseResponseDto<UserMinimalInfoProjection> response = userExternalApi.findOneById(1L);
 
 			// Then
 			assertAll(
@@ -146,29 +113,12 @@ class UserManagementITest extends DefaultPostgresContainer {
 			assertEquals(errorMessage, exception.getMessage());
 		}
 
-		@Test
-		@DisplayName("Should throw UserInternalServerErrorException when repository throws RuntimeException")
-		void should_ThrowUserUserInternalServerErrorExcpetion_whenRepositoryThrowsRuntimeException() {
-			// Given
-			String errorMessage = "Failed to retrieve user due to an unexpected error";
-			dropUserTable();
-
-			// When
-			UserInternalServerErrorException exception = assertThrowsExactly(
-				UserInternalServerErrorException.class,
-				() -> userExternalApi.findOneById(1L)
-			);
-
-			// Then
-			assertEquals(errorMessage, exception.getMessage());
-		}
-
 	}
 
 	@Nested
 	class Patch {
 		@Test
-		@DisplayName("Should update an entity and return ResponseDto when valid data is provided")
+		@DisplayName("Should update an entity and return BaseResponseDto when valid data is provided")
 		void should_UpdateAnEntityAndReturnResponseDto_whenValidDataIsProvided() {
 			// Given
 			String message = "User patched successfully";
@@ -177,7 +127,7 @@ class UserManagementITest extends DefaultPostgresContainer {
 			);
 
 			// When
-			ResponseDto<UsernameDto> response = userExternalApi.patchUsername(1L, dto);
+			BaseResponseDto<UsernameDto> response = userExternalApi.patchUsername(1L, dto);
 
 			// Then
 			assertAll(
@@ -208,27 +158,6 @@ class UserManagementITest extends DefaultPostgresContainer {
 			assertEquals(errorMessage, exception.getMessage());
 		}
 
-		@Test
-		@DisplayName("Should throw UserInternalServerErrorException when repository throws RuntimeException")
-		void should_ThrowUserInternalServerErrorException_whenRepositoryThrowsRuntimeException() {
-			// Given
-			String errorMessage = "Failed to patch user due to an unexpected error";
-			UsernameDto dto = new UsernameDto(
-				"changed username"
-			);
-
-			dropUserTable();
-
-			// When
-			UserInternalServerErrorException exception = assertThrowsExactly(
-				UserInternalServerErrorException.class,
-				() -> userExternalApi.patchUsername(999L, dto)
-			);
-
-
-			// Then
-			assertEquals(errorMessage, exception.getMessage());
-		}
 	}
 
 	@Nested

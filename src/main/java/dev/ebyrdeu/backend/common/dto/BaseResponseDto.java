@@ -18,7 +18,7 @@ import java.io.Serializable;
  * @version 1.0
  * @see HttpStatus
  */
-public record ResponseDto<T>(
+public record BaseResponseDto<T>(
 	HttpStatus status,
 	int code,
 	String message,

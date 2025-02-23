@@ -1,7 +1,7 @@
 package dev.ebyrdeu.backend.user.internal.web;
 
-import dev.ebyrdeu.backend.DefaultPostgresContainer;
-import dev.ebyrdeu.backend.MockOAuth2Client;
+import dev.ebyrdeu.backend.TestOAuth2Client;
+import dev.ebyrdeu.backend.TestTestContainer;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,14 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oidcLogin;
@@ -28,11 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
-@Transactional
+@TestOAuth2Client
+@TestTestContainer
 @AutoConfigureMockMvc
-@Import(MockOAuth2Client.class)
-class UserControllerITest extends DefaultPostgresContainer {
+class UserControllerITest {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

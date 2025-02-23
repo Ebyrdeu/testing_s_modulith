@@ -1,6 +1,6 @@
 package dev.ebyrdeu.backend.user.internal.web;
 
-import dev.ebyrdeu.backend.common.dto.ResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
@@ -34,11 +34,11 @@ class UserController {
 
 	// TODO: Create ITests
 	@GetMapping("/auth")
-	public ResponseEntity<ResponseDto<AuthResponseDto>> getAuth(Authentication authentication) {
+	public ResponseEntity<BaseResponseDto<AuthResponseDto>> getAuth(Authentication authentication) {
 
 		log.info("[UserController/auth]:: Getting auth status.");
 
-		ResponseDto<AuthResponseDto> response = this.userExternalApi.getAuth(authentication);
+		BaseResponseDto<AuthResponseDto> response = this.userExternalApi.getAuth(authentication);
 
 		log.info("[UserController/auth]:: Response: {}", this.jsonConverter.valueOf(response.data()));
 
@@ -46,11 +46,11 @@ class UserController {
 	}
 
 	@GetMapping
-	public ResponseEntity<ResponseDto<List<UserMinimalInfoProjection>>> findAllWithMinimalInfo() {
+	public ResponseEntity<BaseResponseDto<List<UserMinimalInfoProjection>>> findAllWithMinimalInfo() {
 
 		log.info("[UserController/findAll]:: Fetching all users.");
 
-		ResponseDto<List<UserMinimalInfoProjection>> response = this.userExternalApi.findAll();
+		BaseResponseDto<List<UserMinimalInfoProjection>> response = this.userExternalApi.findAll();
 
 		log.info("[UserController/findAll]:: Response: {}", this.jsonConverter.valueOf(response.data()));
 
@@ -58,10 +58,10 @@ class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ResponseDto<UserMinimalInfoProjection>> findOneUserWithMinimalInfo(@PathVariable Long id) {
+	public ResponseEntity<BaseResponseDto<UserMinimalInfoProjection>> findOneUserWithMinimalInfo(@PathVariable Long id) {
 		log.info("[UserController/findOne]:: Fetching user with ID: {}", id);
 
-		ResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneById(id);
+		BaseResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneById(id);
 
 		log.info(
 			"[UserController/findOne]:: ID: {} | Response: {}",
@@ -73,7 +73,7 @@ class UserController {
 	}
 
 	@PatchMapping("/{id}")
-	public ResponseEntity<ResponseDto<UsernameDto>> updateUsername(
+	public ResponseEntity<BaseResponseDto<UsernameDto>> updateUsername(
 		@PathVariable
 		Long id,
 
@@ -87,7 +87,7 @@ class UserController {
 			this.jsonConverter.valueOf(dto)
 		);
 
-		ResponseDto<UsernameDto> response = this.userExternalApi.patchUsername(id, dto);
+		BaseResponseDto<UsernameDto> response = this.userExternalApi.patchUsername(id, dto);
 
 		log.info(
 			"[UserController/patch]:: ID: {} | Response: {}",

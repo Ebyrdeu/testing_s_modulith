@@ -9,7 +9,7 @@ import static org.mockito.Mockito.mock;
 
 
 @TestConfiguration
-public class MockOAuth2Client {
+class MockOAuth2Client {
 
 	@Bean
 	public ClientRegistrationRepository clientRegistrationRepository() {
