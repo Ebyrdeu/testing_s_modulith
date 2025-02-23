@@ -7,10 +7,16 @@ import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
- * Request type DTO which allow user to patch username
+ * DTO for updating the username of a user.
+ * <p>
+ * This record is used as a request payload when patching a user's username. The username field
+ * must not be null and its length should not exceed 30 characters.
+ * </p>
  *
+ * @param username the new username for the user.
  * @author Maxim Khnykin
  * @version 1.0
+ * @see Serializable
  */
 public record UsernameDto(
 	@NotNull

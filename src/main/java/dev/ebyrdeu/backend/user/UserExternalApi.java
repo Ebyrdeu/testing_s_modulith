@@ -2,7 +2,10 @@ package dev.ebyrdeu.backend.user;
 
 import dev.ebyrdeu.backend.common.dto.ResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
+import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.excpetion.UserInternalServerErrorException;
+import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
@@ -17,41 +20,73 @@ import java.util.List;
  */
 public interface UserExternalApi {
 
+	/**
+	 * Retrieves authentication data for the currently authenticated user.
+	 * <p>
+	 * If the provided {@code authentication} is {@code null} or not authenticated, a response with an empty
+	 * {@link AuthUserDto} is returned. Otherwise, the user's email and roles are extracted from the OIDC user,
+	 * and additional user information is fetched from the database.
+	 * </p>
+	 *
+	 * @param authentication the authentication object representing the current user session.
+	 * @return a {@link  ResponseDto} containing an {@link  AuthResponseDto} with user authentication data and
+	 * a flag indicating whether the user is authenticated.
+	 * @throws UserNotFoundException            if the user with the given email is not found.
+	 * @throws UserInternalServerErrorException if an unexpected error occurs during processing.
+	 */
 	ResponseDto<AuthResponseDto> getAuth(Authentication authentication);
 
+	/**
+	 * Retrieves all users with minimal information.
+	 *
+	 * @return a {@link ResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
+	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
+	 */
 	ResponseDto<List<UserMinimalInfoProjection>> findAll();
 
+	/**
+	 * Retrieves a single user by their unique identifier.
+	 *
+	 * @param id the unique identifier of the user.
+	 * @return a {@link ResponseDto} containing a {@link UserMinimalInfoProjection} for the specified user.
+	 * @throws UserNotFoundException            if the user with the given ID is not found.
+	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
+	 */
 	ResponseDto<UserMinimalInfoProjection> findOneById(Long id);
 
 	/**
-	 * Updates the username of a user with the specified ID.
-	 * The new username is provided in the {@link UsernameDto} request body.
+	 * Updates the username of a user identified by their unique ID.
+	 * <p>
+	 * The method retrieves the user from the database, and if the provided {@link  UsernameDto} contains a non-null username,
+	 * it updates the user's username. The updated user is then saved back to the database.
+	 * </p>
 	 *
-	 * @param id  the ID of the user whose username will be updated
-	 * @param req the {@link UsernameDto} containing the new username
-	 * @return a {@link ResponseDto} containing the updated {@link UsernameDto} if the operation is successful,
-	 * or an appropriate error response if the user is not found or the update fails
-	 * @see UsernameDto
+	 * @param id  the unique identifier of the user to update.
+	 * @param req the {@link UsernameDto} containing the new username.
+	 * @return a {@link ResponseDto} containing a {@link UsernameDto} of the updated user.
+	 * @throws UserNotFoundException            if the user with the given ID is not found.
+	 * @throws UserInternalServerErrorException if an unexpected error occurs during the update.
 	 */
 	ResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req);
 
 	/**
-	 * Retrieves a list of roles associated with a user by their email address.
-	 * This method returns a raw list of role names (as strings) without additional metadata.
+	 * Retrieves the roles associated with a user based on their email address.
 	 *
-	 * @param email the email address of the user
-	 * @return a list of role names (as strings) associated with the user,
-	 * or an empty list if no roles are found for the given email
+	 * @param email the email address of the user.
+	 * @return a list of role names associated with the user.
+	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
 	 */
 	List<String> findUserRolesByEmail(String email);
 
 	/**
-	 * Creates a new user in the repository if a user with the given email does not already exist.
-	 * If the user already exists, the method simply returns without making any changes.
-	 * The user is created with details extracted from the provided OidcUser object, and a default role is assigned to the user.
+	 * Retrieves an existing OIDC user or creates a new one if not found in the database.
+	 * <p>
+	 * This method checks if a user with the OIDC user's email already exists. If the user does not exist, a new user is created
+	 * using information from the provided {@code OidcUser}. The new user is saved, and a default role is assigned.
+	 * </p>
 	 *
-	 * @param oidcUser The OidcUser object containing the user's details
-	 * @see OidcUser
+	 * @param oidcUser the {@link  OidcUser} object containing user information from the OIDC provider.
+	 * @throws UserInternalServerErrorException if an unexpected error occurs during user retrieval or creation.
 	 */
 	void createOrGetOidcUser(OidcUser oidcUser);
 

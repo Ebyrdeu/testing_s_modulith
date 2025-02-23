@@ -101,6 +101,12 @@ class UserManagement implements UserExternalApi {
 		}
 	}
 
+	/**
+	 * Retrieves all users with minimal information.
+	 *
+	 * @return a {@link ResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
+	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public ResponseDto<List<UserMinimalInfoProjection>> findAll() {
@@ -223,28 +229,41 @@ class UserManagement implements UserExternalApi {
 		}
 	}
 
+	//TODO: Complete Like others
 	@Override
 	@Transactional
 	public void createOrGetOidcUser(OidcUser oidcUser) {
-		if (this.userRepository.findOneByEmail(oidcUser.getEmail()).isPresent()) {
-			return;
+		log.info("[UserManagement/createOrGetOidcUser]:: Execution started.");
+		try {
+
+			log.info("[UserManagement/createOrGetOidcUser]:: checking existing users");
+			if (this.userRepository.findOneByEmail(oidcUser.getEmail()).isPresent()) {
+				return;
+			}
+
+			User user = new User();
+			user.setEmail(oidcUser.getEmail());
+			user.setFirstName(oidcUser.getGivenName());
+			user.setLastName(oidcUser.getFamilyName());
+			user.setUsername(oidcUser.getSubject());
+
+
+			log.info("[UserManagement/createOrGetOidcUser]:: Saving new user :: {} to db ", user);
+			User createdUser = this.userRepository.save(user);
+
+
+			log.info("[UserManagement/createOrGetOidcUser]:: Adding default role for user :: {}", createdUser);
+			// USER - 1
+			// VENDOR - 2
+			// ADMIN - 3
+			// NOTE: Unless you want to test staff - stick with 1
+			this.userRepository.addSingleRole(createdUser.getId(), 1L);
+		} catch (RuntimeException ex) {
+			log.error("[UserManagement/createOrGetOidcUser]:: Exception occurred while retrieving or creating user. Exception: {}", ex.getMessage());
+			throw new UserInternalServerErrorException("Failed to retrieve user roles due to an unexpected error");
+		} finally {
+			log.info("[UserManagement/createOrGetOidcUser]:: Execution ended.");
 		}
-
-
-		User user = new User();
-		user.setEmail(oidcUser.getEmail());
-		user.setFirstName(oidcUser.getGivenName());
-		user.setLastName(oidcUser.getFamilyName());
-		user.setUsername(oidcUser.getSubject());
-
-		User createdUser = this.userRepository.save(user);
-
-		// USER - 1
-		// VENDOR - 2
-		// ADMIN - 3
-		// Unless you want to test staff - stick with 1
-		this.userRepository.addSingleRole(createdUser.getId(), 1L);
-
 	}
 
 }
