@@ -24,12 +24,12 @@ import java.io.IOException;
  * @see org.springframework.security.web.access.AccessDeniedHandlerImpl
  */
 @Component
-class AccessDeniedHandlerImpl implements AccessDeniedHandler {
-	private static final Logger log = LoggerFactory.getLogger(AccessDeniedHandlerImpl.class);
+class WebAccessDeniedHandler implements AccessDeniedHandler {
+	private static final Logger log = LoggerFactory.getLogger(WebAccessDeniedHandler.class);
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-		log.debug("[AccessDeniedHandlerImpl/handle]:: forwarding to 404 page");
+		log.debug("[WebAccessDeniedHandler/handle]:: forwarding to 404 page");
 		// TODO: if this is become a problem implement differently
 		// NOTE: because of how tanstack router works with react and spring
 		// NOTE: / route will redirect 404 page which is desired behavior
