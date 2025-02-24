@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
 
@@ -27,6 +28,7 @@ class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(
 		HttpSecurity http,
 		CsrfTokenRequestHandler csrfTokenRequestHandler,
+		AccessDeniedHandler accessDeniedHandler,
 		OidcUserManagement oidcUserManagement,
 		RoleRefresherFilter roleRefresherFilter
 	) throws Exception {
@@ -50,11 +52,11 @@ class SecurityConfig {
 			.defaultSuccessUrl("/", false)
 		);
 
+		// Logout config
+		http.logout((logout) -> logout.logoutUrl("/api/v1/logout"));
 
-		// Other Logins Config
-		// disabled as for now we don't support our own login system
-		http.httpBasic(AbstractHttpConfigurer::disable)
-			.formLogin(AbstractHttpConfigurer::disable);
+		// Exception Config
+		http.exceptionHandling(ex -> ex.accessDeniedHandler(accessDeniedHandler));
 
 		// Auth Req Config
 		http.authorizeHttpRequests(auth -> auth
@@ -85,15 +87,17 @@ class SecurityConfig {
 		);
 
 
-		// Logout config
-		http.logout((logout) -> logout.logoutUrl("/api/v1/logout"));
-
 		// Custom Filters
 		http
 			.addFilterBefore(
 				roleRefresherFilter,
 				OAuth2LoginAuthenticationFilter.class
 			);
+
+		// Other Logins Config
+		// disabled as for now we don't support our own login system
+		http.httpBasic(AbstractHttpConfigurer::disable)
+			.formLogin(AbstractHttpConfigurer::disable);
 
 		return http.build();
 
