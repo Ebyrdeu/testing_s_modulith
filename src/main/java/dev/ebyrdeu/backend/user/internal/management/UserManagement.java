@@ -44,10 +44,10 @@ class UserManagement implements UserExternalApi {
 	@Override
 	@Transactional(readOnly = true)
 	public BaseResponseDto<AuthResponseDto> getAuth(Authentication authentication) {
-		log.info("[UserManagement/getAuth]:: Execution started.");
+		log.debug("[UserManagement/getAuth]:: Execution started.");
 		try {
-			log.info("[UserManagement/getAuth]:: Checking Status");
 			if (authentication == null || !authentication.isAuthenticated()) {
+				log.trace("[UserManagement/getAuth]:: Anonymous request");
 				return new BaseResponseDto<>(
 					HttpStatus.OK,
 					HttpStatus.OK.value(),
@@ -229,7 +229,6 @@ class UserManagement implements UserExternalApi {
 		}
 	}
 
-	//TODO: Complete Like others
 	@Override
 	@Transactional
 	public void createOrGetOidcUser(OidcUser oidcUser) {
@@ -251,18 +250,36 @@ class UserManagement implements UserExternalApi {
 			log.info("[UserManagement/createOrGetOidcUser]:: Saving new user :: {} to db ", user);
 			User createdUser = this.userRepository.save(user);
 
-
 			log.info("[UserManagement/createOrGetOidcUser]:: Adding default role for user :: {}", createdUser);
-			// USER - 1
-			// VENDOR - 2
-			// ADMIN - 3
-			// NOTE: Unless you want to test staff - stick with 1
-			this.userRepository.addSingleRole(createdUser.getId(), 1L);
+			this.userRepository.addSingleRole(createdUser.getId(), Role.USER.getRoleId());
+
 		} catch (RuntimeException ex) {
 			log.error("[UserManagement/createOrGetOidcUser]:: Exception occurred while retrieving or creating user. Exception: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve user roles due to an unexpected error");
 		} finally {
 			log.info("[UserManagement/createOrGetOidcUser]:: Execution ended.");
+		}
+	}
+
+	/**
+	 * Value set in that way because we generate roles in exact this order and just check their id
+	 * <p>
+	 * Database schema: src/main/resources/db/changelog/table/user_role/db.changelog.user_role-1.0.xml
+	 */
+	private enum Role {
+		USER(1L),
+		VENDOR(2L),
+		ADMIN(3L);
+
+
+		private final Long roleId;
+
+		Role(Long roleId) {
+			this.roleId = roleId;
+		}
+
+		public Long getRoleId() {
+			return roleId;
 		}
 	}
 

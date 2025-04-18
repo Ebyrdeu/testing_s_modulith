@@ -1,7 +1,7 @@
 package dev.ebyrdeu.backend.user.internal.management;
 
 import dev.ebyrdeu.backend.TestOAuth2Client;
-import dev.ebyrdeu.backend.TestTestContainer;
+import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @TestOAuth2Client
-@TestTestContainer
+@TestWithPostgresContainer
 class UserManagementITest {
 
 	@Autowired

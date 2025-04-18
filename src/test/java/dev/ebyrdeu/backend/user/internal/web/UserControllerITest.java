@@ -1,7 +1,7 @@
 package dev.ebyrdeu.backend.user.internal.web;
 
 import dev.ebyrdeu.backend.TestOAuth2Client;
-import dev.ebyrdeu.backend.TestTestContainer;
+import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @TestOAuth2Client
-@TestTestContainer
+@TestWithPostgresContainer
 @AutoConfigureMockMvc
 class UserControllerITest {
 

@@ -1,6 +1,6 @@
 package dev.ebyrdeu.backend.user.internal.repository;
 
-import dev.ebyrdeu.backend.TestTestContainer;
+import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.user.internal.model.User;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import jakarta.persistence.EntityManager;
@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-@TestTestContainer
+@TestWithPostgresContainer
 class UserRepositoryITest {
 
 	@Autowired
