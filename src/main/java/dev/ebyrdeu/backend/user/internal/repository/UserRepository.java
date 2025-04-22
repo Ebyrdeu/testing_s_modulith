@@ -118,7 +118,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @param roleId the ID of the role to be associated with the user.
 	 */
 	@Modifying
-	@Query(value = "insert into user_role (user_id, role_id) values (:userId, :roleId)", nativeQuery = true)
+	@Query(
+		value = "insert into user_role (user_id, role_id) values (:userId, :roleId)",
+		nativeQuery = true
+	)
 	void addSingleRole(@Param("userId") Long userId, @Param("roleId") Long roleId);
 
 

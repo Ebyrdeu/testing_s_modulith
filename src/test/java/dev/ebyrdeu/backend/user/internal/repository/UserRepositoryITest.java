@@ -35,6 +35,7 @@ class UserRepositoryITest {
 	void should_ReturnUserSuccessfully_whenValidEmailIsProvided() {
 		// Given
 		User user = new User();
+		user.setUsername("John");
 		user.setEmail("email@email.com");
 		this.entityManager.persist(user);
 		this.entityManager.flush();
@@ -122,6 +123,7 @@ class UserRepositoryITest {
 	void should_returnUser_whenAValidEmailIsProvided() {
 		// Given
 		User user = new User();
+		user.setUsername("John");
 		user.setEmail("email@email.com");
 		this.entityManager.persist(user);
 		this.entityManager.flush();
@@ -149,6 +151,7 @@ class UserRepositoryITest {
 	void should_assignGivenRoleToUser_whenValidDataIsProvided() {
 		// Given
 		User user = new User();
+		user.setUsername("John");
 		this.entityManager.persist(user);
 		this.entityManager.flush();
 

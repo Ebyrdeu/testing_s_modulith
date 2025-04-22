@@ -26,11 +26,6 @@ import java.util.List;
 /**
  * @author Maxim Knhykin
  * @version 1.0
- * @see UserExternalApi
- * @see UserRepository
- * @see UserMinimalInfoProjection
- * @see UserNotFoundException
- * @see UserInternalServerErrorException
  */
 @Service
 class UserManagement implements UserExternalApi {
@@ -47,7 +42,7 @@ class UserManagement implements UserExternalApi {
 		log.debug("[UserManagement/getAuth]:: Execution started.");
 		try {
 			if (authentication == null || !authentication.isAuthenticated()) {
-				log.trace("[UserManagement/getAuth]:: Anonymous request");
+				log.trace("[UserManagement/getAuth]:: Anonymous request detected");
 				return new BaseResponseDto<>(
 					HttpStatus.OK,
 					HttpStatus.OK.value(),
@@ -70,7 +65,7 @@ class UserManagement implements UserExternalApi {
 					() -> new UserNotFoundException("User with Email " + email + " not found")
 				);
 
-			log.info("[UserManagement/getAuth]:: User found. User Email: {}", email);
+			log.debug("[UserManagement/getAuth]:: User found. Email: {}", email);
 
 			AuthUserDto data = new AuthUserDto(
 				res.getFirstName(),
@@ -88,16 +83,13 @@ class UserManagement implements UserExternalApi {
 			);
 
 		} catch (UserNotFoundException ex) {
-			log.error(
-				"[UserManagement/getAuth]:: Exception occurred while retrieving user. Exception: {}",
-				ex.getMessage()
-			);
+			log.error("[UserManagement/getAuth]:: User lookup failed. Message: {}", ex.getMessage());
 			throw ex;
 		} catch (RuntimeException ex) {
-			log.error("[UserManagement/getAuth]:: Exception occurred while  auth data. Exception: {}", ex.getMessage());
+			log.error("[UserManagement/getAuth]:: Unexpected error. Message: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve auth data due to an unexpected error");
 		} finally {
-			log.info("[UserManagement/getAuth]:: Execution ended.");
+			log.debug("[UserManagement/getAuth]:: Execution completed.");
 		}
 	}
 
@@ -110,10 +102,10 @@ class UserManagement implements UserExternalApi {
 	@Override
 	@Transactional(readOnly = true)
 	public BaseResponseDto<List<UserMinimalInfoProjection>> findAll() {
-		log.info("[UserManagement/findAll]:: Execution started.");
+		log.debug("[UserManagement/findAll]:: Execution started.");
 		try {
 			List<UserMinimalInfoProjection> data = this.userRepository.findAllWithMinimalInfo();
-			log.info("[UserManagement/findAll]:: Found {} users.", data.size());
+			log.debug("[UserManagement/findAll]:: Found {} user records", data.size());
 
 			return new BaseResponseDto<>(
 				HttpStatus.OK,
@@ -122,19 +114,17 @@ class UserManagement implements UserExternalApi {
 				data
 			);
 		} catch (RuntimeException ex) {
-			log.error("[UserManagement/findAll]:: Exception occurred while retrieving users. Exception: {}", ex.getMessage());
+			log.error("[UserManagement/findAll]:: Database error. Message: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve users due to an unexpected error");
 		} finally {
-			log.info("[UserManagement/findAll]:: Execution ended.");
+			log.debug("[UserManagement/findAll]:: Execution completed.");
 		}
-
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public BaseResponseDto<UserMinimalInfoProjection> findOneById(Long id) {
-		log.info("[UserManagement/findOneById]:: Execution started.");
-
+		log.debug("[UserManagement/findOneById]:: Execution started. ID: {}", id);
 		try {
 			UserMinimalInfoProjection data = this.userRepository
 				.findOneByIdWithMinimalInfo(id)
@@ -142,7 +132,7 @@ class UserManagement implements UserExternalApi {
 					() -> new UserNotFoundException("User with ID " + id + " not found")
 				);
 
-			log.info("[UserManagement/findOneById]:: User found. User ID: {}", id);
+			log.debug("[UserManagement/findOneById]:: Found user. ID: {}", id);
 
 			return new BaseResponseDto<>(
 				HttpStatus.OK,
@@ -151,29 +141,20 @@ class UserManagement implements UserExternalApi {
 				data
 			);
 		} catch (UserNotFoundException ex) {
-			log.error(
-				"[UserManagement/findOneById]:: Exception occurred while retrieving user. User ID : {}. Exception: {}",
-				id,
-				ex.getMessage()
-			);
+			log.error("[UserManagement/findOneById]:: Lookup failed. ID: {} | Message: {}", id, ex.getMessage());
 			throw ex;
 		} catch (RuntimeException ex) {
-			log.error(
-				"[UserManagement/findOneById]:: Exception occurred while retrieving user from database , Exception message {}",
-				ex.getMessage()
-			);
+			log.error("[UserManagement/findOneById]:: Database error. Message: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve user due to an unexpected error");
 		} finally {
-			log.info("[UserManagement/findOneById]:: Execution ended.");
+			log.debug("[UserManagement/findOneById]:: Execution completed.");
 		}
-
-
 	}
 
 	@Override
 	@Transactional
 	public BaseResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req) {
-		log.info("[UserManagement/patchUsername]:: Execution started.");
+		log.debug("[UserManagement/patchUsername]:: Execution started. ID: {}", id);
 		try {
 			User retrievedUser = this.userRepository
 				.findById(id)
@@ -181,15 +162,15 @@ class UserManagement implements UserExternalApi {
 					() -> new UserNotFoundException("User with ID " + id + " not found")
 				);
 
-			log.info("[UserManagement/patchUsername]:: User found. User ID: {}", id);
+			log.debug("[UserManagement/patchUsername]:: Retrieved user. ID: {}", id);
 
 			if (req.username() != null) {
 				retrievedUser.setUsername(req.username());
 			}
 
 			User updatedUser = this.userRepository.save(retrievedUser);
+			log.trace("[UserManagement/patchUsername]:: Updated username: {}", updatedUser.getUsername());
 
-			log.info("[UserManagement/patchUsername]:: User patched successfully. User ID: {}", id);
 			return new BaseResponseDto<>(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
@@ -197,45 +178,38 @@ class UserManagement implements UserExternalApi {
 				UsernameMapper.map(updatedUser)
 			);
 		} catch (UserNotFoundException ex) {
-			log.error(
-				"[UserManagement/patchUsername]:: Exception occurred while retrieving user. User ID : {}. Exception: {}",
-				id,
-				ex.getMessage()
-			);
+			log.error("[UserManagement/patchUsername]:: Update failed. ID: {} | Message: {}", id, ex.getMessage());
 			throw ex;
 		} catch (RuntimeException ex) {
-			log.error("[UserManagement/patchUsername]:: Exception occurred while patching user to database , Exception message {}", ex.getMessage());
+			log.error("[UserManagement/patchUsername]:: Database error. Message: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to patch user due to an unexpected error");
 		} finally {
-			log.info("[UserManagement/patchUsername]:: Execution ended.");
+			log.debug("[UserManagement/patchUsername]:: Execution completed.");
 		}
-
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<String> findUserRolesByEmail(String email) {
-		log.info("[UserManagement/findUserRolesByEmail]:: Execution started.");
+		log.debug("[UserManagement/findUserRolesByEmail]:: Execution started. Email: {}", email);
 		try {
 			List<String> data = this.userRepository.findRolesByEmail(email);
-			log.info("[UserManagement/findUserRolesByEmail]:: Found {} user roles :: {}", data.size(), data);
-
+			log.trace("[UserManagement/findUserRolesByEmail]:: Roles found: {}", data);
 			return data;
 		} catch (RuntimeException ex) {
-			log.error("[UserManagement/findUserRolesByEmail]:: Exception occurred while retrieving user roles. Exception: {}", ex.getMessage());
+			log.error("[UserManagement/findUserRolesByEmail]:: Role lookup failed. Message: {}", ex.getMessage());
 			throw new UserInternalServerErrorException("Failed to retrieve user roles due to an unexpected error");
 		} finally {
-			log.info("[UserManagement/findUserRolesByEmail]:: Execution ended.");
+			log.debug("[UserManagement/findUserRolesByEmail]:: Execution completed.");
 		}
 	}
 
 	@Override
 	@Transactional
 	public void createOrGetOidcUser(OidcUser oidcUser) {
-		log.info("[UserManagement/createOrGetOidcUser]:: Execution started.");
+		log.debug("[UserManagement/createOrGetOidcUser]:: Execution started.");
 		try {
-
-			log.info("[UserManagement/createOrGetOidcUser]:: checking existing users");
+			log.debug("[UserManagement/createOrGetOidcUser]:: Checking existing user for email: {}", oidcUser.getEmail());
 			if (this.userRepository.findOneByEmail(oidcUser.getEmail()).isPresent()) {
 				return;
 			}
@@ -246,18 +220,17 @@ class UserManagement implements UserExternalApi {
 			user.setLastName(oidcUser.getFamilyName());
 			user.setUsername(oidcUser.getSubject());
 
-
-			log.info("[UserManagement/createOrGetOidcUser]:: Saving new user :: {} to db ", user);
+			log.debug("[UserManagement/createOrGetOidcUser]:: Creating new user: {}", user.getEmail());
 			User createdUser = this.userRepository.save(user);
 
-			log.info("[UserManagement/createOrGetOidcUser]:: Adding default role for user :: {}", createdUser);
+			log.debug("[UserManagement/createOrGetOidcUser]:: Assigning default role to user: {}", createdUser.getId());
 			this.userRepository.addSingleRole(createdUser.getId(), Role.USER.getRoleId());
 
 		} catch (RuntimeException ex) {
-			log.error("[UserManagement/createOrGetOidcUser]:: Exception occurred while retrieving or creating user. Exception: {}", ex.getMessage());
-			throw new UserInternalServerErrorException("Failed to retrieve user roles due to an unexpected error");
+			log.error("[UserManagement/createOrGetOidcUser]:: User creation failed. Message: {}", ex.getMessage());
+			throw new UserInternalServerErrorException("Failed to create OIDC user due to an unexpected error");
 		} finally {
-			log.info("[UserManagement/createOrGetOidcUser]:: Execution ended.");
+			log.debug("[UserManagement/createOrGetOidcUser]:: Execution completed.");
 		}
 	}
 
@@ -271,7 +244,6 @@ class UserManagement implements UserExternalApi {
 		VENDOR(2L),
 		ADMIN(3L);
 
-
 		private final Long roleId;
 
 		Role(Long roleId) {
@@ -282,5 +254,4 @@ class UserManagement implements UserExternalApi {
 			return roleId;
 		}
 	}
-
 }

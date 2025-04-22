@@ -63,8 +63,7 @@ class RoleRefresherFilter extends OncePerRequestFilter {
 
 		// NOTE: May not be the most optimal approach to call this method each update request.
 		// This is add some stress to backend as each request user will trigger api call
-		// it still kinda better than just make user re-log each time I guess.
-		// but let's be real - even 100 users won't drop server (at least I hope so)
+		// it's still kinda better than just make user re-log each time I guess...
 		List<String> dbUserRoles = this.userExternalApi.findUserRolesByEmail(oidcUserEmail);
 
 		if (oidcUserRoles.equals(dbUserRoles)) {

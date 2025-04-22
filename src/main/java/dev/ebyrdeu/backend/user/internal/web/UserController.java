@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author Maxim Khnykin
- * @version 1.0
- */
 @RestController
 @RequestMapping("/api/v1/users")
 class UserController {
@@ -35,67 +31,52 @@ class UserController {
 	// TODO: Create ITests
 	@GetMapping("/auth")
 	public ResponseEntity<BaseResponseDto<AuthResponseDto>> getAuth(Authentication authentication) {
-
-		log.info("[UserController/auth]:: Getting auth status.");
+		log.debug("[UserController/auth]:: Getting auth status.");
 
 		BaseResponseDto<AuthResponseDto> response = this.userExternalApi.getAuth(authentication);
 
-		log.info("[UserController/auth]:: Response: {}", this.jsonConverter.valueOf(response.data()));
+		log.trace("[UserController/auth]:: Response data: {}", this.jsonConverter.valueOf(response.data()));
 
 		return ResponseEntity.status(response.status()).body(response);
 	}
 
 	@GetMapping
 	public ResponseEntity<BaseResponseDto<List<UserMinimalInfoProjection>>> findAllWithMinimalInfo() {
-
-		log.info("[UserController/findAll]:: Fetching all users.");
+		log.debug("[UserController/findAll]:: Fetching all users.");
 
 		BaseResponseDto<List<UserMinimalInfoProjection>> response = this.userExternalApi.findAll();
 
-		log.info("[UserController/findAll]:: Response: {}", this.jsonConverter.valueOf(response.data()));
+		log.trace("[UserController/findAll]:: Response data: {}", this.jsonConverter.valueOf(response.data()));
 
 		return ResponseEntity.status(response.status()).body(response);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<BaseResponseDto<UserMinimalInfoProjection>> findOneUserWithMinimalInfo(@PathVariable Long id) {
-		log.info("[UserController/findOne]:: Fetching user with ID: {}", id);
+		log.debug("[UserController/findOne]:: Fetching user with ID: {}", id);
 
 		BaseResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneById(id);
 
-		log.info(
-			"[UserController/findOne]:: ID: {} | Response: {}",
-			id,
-			this.jsonConverter.valueOf(response)
-		);
+		log.trace("[UserController/findOne]:: ID: {} | Response data: {}", id, this.jsonConverter.valueOf(response.data()));
 
 		return ResponseEntity.status(response.status()).body(response);
 	}
 
 	@PatchMapping("/{id}")
 	public ResponseEntity<BaseResponseDto<UsernameDto>> updateUsername(
-		@PathVariable
-		Long id,
-
-		@RequestBody
-		@Valid
-		UsernameDto dto
+		@PathVariable Long id,
+		@RequestBody @Valid UsernameDto dto
 	) {
-		log.info(
-			"[UserController/patch]:: ID: {} | Request body: {}",
-			id,
-			this.jsonConverter.valueOf(dto)
-		);
+		log.debug("[UserController/patch]:: ID: {}", id);
+
+		log.trace("[UserController/patch]:: ID: {} | Request body: {}", id, this.jsonConverter.valueOf(dto));
 
 		BaseResponseDto<UsernameDto> response = this.userExternalApi.patchUsername(id, dto);
 
-		log.info(
-			"[UserController/patch]:: ID: {} | Response: {}",
-			id,
-			this.jsonConverter.valueOf(response)
-		);
+		log.debug("[UserController/patch]:: ID: {} | Response status: {}", id, response.status());
+
+		log.trace("[UserController/patch]:: ID: {} | Response data: {}", id, this.jsonConverter.valueOf(response.data()));
 
 		return ResponseEntity.status(response.status()).body(response);
 	}
-
 }
