@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class User extends DefaultEntity {
 
-	@Column(name = "username", length = 50)
+	@Column(name = "username", length = 50, unique = true, nullable = false)
 	private String username;
 
 	@Column(name = "first_name", length = 50)
