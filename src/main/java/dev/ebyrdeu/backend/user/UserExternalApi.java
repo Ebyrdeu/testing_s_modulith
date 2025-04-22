@@ -47,12 +47,12 @@ public interface UserExternalApi {
 	/**
 	 * Retrieves a single user by their unique identifier.
 	 *
-	 * @param id the unique identifier of the user.
+	 * @param username the unique identifier of the user.
 	 * @return a {@link BaseResponseDto} containing a {@link UserMinimalInfoProjection} for the specified user.
 	 * @throws UserNotFoundException            if the user with the given ID is not found.
 	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
 	 */
-	BaseResponseDto<UserMinimalInfoProjection> findOneById(Long id);
+	BaseResponseDto<UserMinimalInfoProjection> findOneByUsername(String username);
 
 	/**
 	 * Updates the username of a user identified by their unique ID.

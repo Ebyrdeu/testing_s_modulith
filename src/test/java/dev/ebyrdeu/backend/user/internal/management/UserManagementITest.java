@@ -86,7 +86,7 @@ class UserManagementITest {
 			String message = "User retrieved successfully";
 
 			// When
-			BaseResponseDto<UserMinimalInfoProjection> response = userExternalApi.findOneById(1L);
+			BaseResponseDto<UserMinimalInfoProjection> response = userExternalApi.findOneByUsername("JohnJohn");
 
 			// Then
 			assertAll(
@@ -101,12 +101,12 @@ class UserManagementITest {
 		@DisplayName("Should throw UserNotFoundException when an invalid user Id is provided")
 		void should_ThrowUserNotFoundException_whenAnInvalidUserIdIsProvided() {
 			// Given
-			String errorMessage = "User with ID " + 999 + " not found";
+			String errorMessage = "User with ID JohnJohn100 not found";
 
 			// When
 			UserNotFoundException exception = assertThrowsExactly(
 				UserNotFoundException.class,
-				() -> userExternalApi.findOneById(999L)
+				() -> userExternalApi.findOneByUsername("JohnJohn100")
 			);
 
 			// Then

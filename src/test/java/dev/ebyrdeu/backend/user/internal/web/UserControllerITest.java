@@ -119,7 +119,7 @@ class UserControllerITest {
 
 			ResultActions response = mockMvc
 				.perform(
-					get("/api/v1/users/1")
+					get("/api/v1/users/JohnJohn")
 						.with(csrf())
 						.with(oidcLogin().idToken(token -> token.claim("email", "email@email.com")))
 						.accept(MediaType.APPLICATION_JSON)

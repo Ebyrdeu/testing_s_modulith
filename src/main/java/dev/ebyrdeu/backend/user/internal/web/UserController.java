@@ -51,13 +51,13 @@ class UserController {
 		return ResponseEntity.status(response.status()).body(response);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<BaseResponseDto<UserMinimalInfoProjection>> findOneUserWithMinimalInfo(@PathVariable Long id) {
-		log.debug("[UserController/findOne]:: Fetching user with ID: {}", id);
+	@GetMapping("/{username}")
+	public ResponseEntity<BaseResponseDto<UserMinimalInfoProjection>> findOneUserWithMinimalInfo(@PathVariable String username) {
+		log.debug("[UserController/findOne]:: Fetching user with Username: {}", username);
 
-		BaseResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneById(id);
+		BaseResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneByUsername(username);
 
-		log.trace("[UserController/findOne]:: ID: {} | Response data: {}", id, this.jsonConverter.valueOf(response.data()));
+		log.trace("[UserController/findOne]:: Username: {} | Response data: {}", username, this.jsonConverter.valueOf(response.data()));
 
 		return ResponseEntity.status(response.status()).body(response);
 	}

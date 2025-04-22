@@ -123,16 +123,16 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional(readOnly = true)
-	public BaseResponseDto<UserMinimalInfoProjection> findOneById(Long id) {
-		log.debug("[UserManagement/findOneById]:: Execution started. ID: {}", id);
+	public BaseResponseDto<UserMinimalInfoProjection> findOneByUsername(String username) {
+		log.debug("[UserManagement/findOneById]:: Execution started. ID: {}", username);
 		try {
 			UserMinimalInfoProjection data = this.userRepository
-				.findOneByIdWithMinimalInfo(id)
+				.findOneByUsernameWithMinimalInfo(username)
 				.orElseThrow(
-					() -> new UserNotFoundException("User with ID " + id + " not found")
+					() -> new UserNotFoundException("User with ID " + username + " not found")
 				);
 
-			log.debug("[UserManagement/findOneById]:: Found user. ID: {}", id);
+			log.debug("[UserManagement/findOneById]:: Found user. ID: {}", username);
 
 			return new BaseResponseDto<>(
 				HttpStatus.OK,
@@ -141,7 +141,7 @@ class UserManagement implements UserExternalApi {
 				data
 			);
 		} catch (UserNotFoundException ex) {
-			log.error("[UserManagement/findOneById]:: Lookup failed. ID: {} | Message: {}", id, ex.getMessage());
+			log.error("[UserManagement/findOneById]:: Lookup failed. ID: {} | Message: {}", username, ex.getMessage());
 			throw ex;
 		} catch (RuntimeException ex) {
 			log.error("[UserManagement/findOneById]:: Database error. Message: {}", ex.getMessage());

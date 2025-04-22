@@ -95,7 +95,7 @@ class UserRepositoryITest {
 		this.entityManager.flush();
 
 		// When
-		Optional<UserMinimalInfoProjection> res = this.userRepository.findOneByIdWithMinimalInfo(user.getId());
+		Optional<UserMinimalInfoProjection> res = this.userRepository.findOneByUsernameWithMinimalInfo(user.getUsername());
 		assertThat(res).isPresent();
 
 		assertAll(
@@ -110,7 +110,7 @@ class UserRepositoryITest {
 	@DisplayName("Should Return user of null when an invalid ID is provided")
 	void should_returnUserOfNull_whenAnInvalidIdIsProvided() {
 		// When
-		Optional<UserMinimalInfoProjection> res = this.userRepository.findOneByIdWithMinimalInfo(1L);
+		Optional<UserMinimalInfoProjection> res = this.userRepository.findOneByUsernameWithMinimalInfo("JohnJohn200");
 
 
 		// Then

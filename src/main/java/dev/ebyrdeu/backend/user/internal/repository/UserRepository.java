@@ -63,15 +63,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	/**
 	 * Retrieves minimal user information for a specific user identified by their ID.
 	 *
-	 * @param id the unique identifier of the user.
+	 * @param username the unique identifier of the user.
 	 * @return an {@link Optional} containing a {@link UserMinimalInfoProjection} with minimal information
 	 * for the specified user, or an empty {@link Optional} if the user is not found.
 	 */
 	@Query(
-		value = "select u.username as username, u.first_name as firstName, u.last_name as lastName from users u where u.id = :id",
+		value = "select u.username as username, u.first_name as firstName, u.last_name as lastName from users u where u.username = :username",
 		nativeQuery = true
 	)
-	Optional<UserMinimalInfoProjection> findOneByIdWithMinimalInfo(@Param("id") Long id);
+	Optional<UserMinimalInfoProjection> findOneByUsernameWithMinimalInfo(@Param("username") String username);
 
 	/**
 	 * Retrieves minimal user information for a specific user identified by their email address.
