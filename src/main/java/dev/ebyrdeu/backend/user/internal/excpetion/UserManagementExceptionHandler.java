@@ -15,7 +15,7 @@ class UserManagementExceptionHandler {
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(UserInternalServerErrorException.class)
-	public BaseResponseDto<?> handleUserServiceException(UserInternalServerErrorException exception) {
+	public BaseResponseDto<?> handleUserInternalServerErrorException(UserInternalServerErrorException exception) {
 		return new BaseResponseDto<>(
 			HttpStatus.INTERNAL_SERVER_ERROR,
 			HttpStatus.INTERNAL_SERVER_ERROR.value(),
