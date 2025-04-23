@@ -19,11 +19,11 @@ import org.springframework.stereotype.Component;
  * @see JsonProcessingException
  */
 @Component
-class JasonConverter implements JsonConverterAdapter {
-	private static final Logger log = LoggerFactory.getLogger(JasonConverter.class);
+class JsonConverter implements JsonConverterAdapter {
+	private static final Logger log = LoggerFactory.getLogger(JsonConverter.class);
 	private final ObjectMapper objectMapper;
 
-	public JasonConverter(ObjectMapper objectMapper) {
+	public JsonConverter(ObjectMapper objectMapper) {
 		this.objectMapper = objectMapper;
 	}
 
