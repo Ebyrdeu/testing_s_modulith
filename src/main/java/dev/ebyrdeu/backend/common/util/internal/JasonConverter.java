@@ -27,33 +27,16 @@ class JasonConverter implements JsonConverterAdapter {
 		this.objectMapper = objectMapper;
 	}
 
-	/**
-	 * Converts a Java object to its JSON string representation.
-	 *
-	 * @param <T> The object to convert to JSON.
-	 * @return The JSON string representation of the object.
-	 * @throws RuntimeException If JSON conversion fails.
-	 */
-	@NonNull
 	@Override
 	public <T> String valueOf(@NonNull T obj) {
 		try {
 			return this.objectMapper.writeValueAsString(obj);
 		} catch (JsonProcessingException e) {
-			log.error("[JsonConverter/valueOf] - Failed to convert object {} to JSON", obj);
+			log.error("[JsonConverter/valueOf/default] - Failed to convert object {} to JSON", obj);
 			throw new RuntimeException("Failed to convert object to JSON: " + e.getMessage(), e);
 		}
 	}
 
-	/**
-	 * Converts a Java object to its JSON string representation.
-	 * Optionally you can turn on pretty format
-	 *
-	 * @param <T>          The object to convert to JSON.
-	 * @param prettyFormat The boolean that make JSON output formated
-	 * @return The JSON string representation of the object.
-	 * @throws RuntimeException If JSON conversion fails.
-	 */
 	@Override
 	public <T> String valueOf(@NonNull T obj, boolean prettyFormat) {
 		try {
@@ -64,7 +47,7 @@ class JasonConverter implements JsonConverterAdapter {
 			}
 			return this.objectMapper.writeValueAsString(obj);
 		} catch (JsonProcessingException e) {
-			log.error("[JsonConverter/valueOf] - Failed to convert object {} to JSON", obj);
+			log.error("[JsonConverter/valueOf/pretty] - Failed to convert object {} to JSON", obj);
 			throw new RuntimeException("Failed to convert object to JSON: " + e.getMessage(), e);
 		}
 	}

@@ -12,21 +12,21 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Repository interface for managing {@link User} entities.
+ * Repository interface for managing {@link User} entities and fetching
+ * user data in various shapes (full entity, minimal projection or JSON payload).
  * <p>
- * This interface extends {@link JpaRepository} and provides additional query methods
- * for retrieving user data and related information using native SQL queries.
- * </p>
- * <p>
- * The following custom query methods are available:
+ * Extends {@link JpaRepository} to inherit standard CRUD-operations.
+ * Adds native queries for:
  * <ul>
- *   <li>{@link #findOneByEmail(String)}: Retrieve a user by their email address.</li>
- *   <li>{@link #findAllWithMinimalInfo()}: Retrieve all users with minimal information.</li>
- *   <li>{@link #findOneByIdWithMinimalInfo(Long)}: Retrieve minimal information for a user by their ID.</li>
- *   <li>{@link #findOneByEmailWithMinimalInfo(String)}: Retrieve minimal information for a user by their email address.</li>
- *   <li>{@link #findRolesByEmail(String)}: Retrieve the roles associated with a user by their email address.</li>
- *   <li>{@link #addSingleRole(Long, Long)}: Associate a role with a user by inserting a record into the user_role table.</li>
+ *   <li>Retrieving a full {@link User} by email.</li>
+ *   <li>Fetching minimal user details (username, firstName, lastName) via a projection.</li>
+ *   <li>Producing a JSON string payload containing user fields + associated images.</li>
+ *   <li>Retrieving user roles.</li>
+ *   <li>Linking a user to a role (inserting into {@code user_role}).</li>
  * </ul>
+ * <p>
+ * Note: The JSON-generating query (PostgreSQL) uses {@code json_build_object},
+ * {@code json_agg} and returns a single-column JSON string named {@code user_with_images}.
  * </p>
  *
  * @author Maxim Khnykin
@@ -34,11 +34,12 @@ import java.util.Optional;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
 	/**
-	 * Retrieves a {@link User} entity by its email address.
+	 * Find a {@link User} entity by its email address.
 	 *
-	 * @param email the email address of the user.
-	 * @return an {@link Optional} containing the found {@link User}, or an empty {@link Optional} if no user is found.
+	 * @param email the email address to search for (non-null, unique).
+	 * @return an {@link Optional} containing the matching {@link User}, or empty if none found.
 	 */
 	@Query(
 		value = "select * from users u where u.email = :email",
@@ -47,82 +48,150 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findOneByEmail(@Param("email") String email);
 
 	/**
-	 * Retrieves a list of users with minimal information.
+	 * Retrieve all users with minimal information.
 	 * <p>
-	 * The query selects only the username, first name, and last name for each user.
+	 * Returns only username, firstName and lastName wrapped in a
+	 * {@link UserMinimalInfoProjection}.
 	 * </p>
 	 *
-	 * @return a {@link List} of {@link UserMinimalInfoProjection} objects containing minimal user details.
+	 * @return a {@link List} of projections, never null (empty list if no users).
 	 */
 	@Query(
-		value = "select u.username as username, u.first_name as firstName, u.last_name as lastName from users u",
+		value = """
+			select
+			    u.username    as username,
+			    u.first_name  as firstName,
+			    u.last_name   as lastName
+			from users u
+			""",
 		nativeQuery = true
 	)
 	List<UserMinimalInfoProjection> findAllWithMinimalInfo();
 
 	/**
-	 * Retrieves minimal user information for a specific user identified by their ID.
+	 * Retrieve minimal info for a single user, together with their images, as a JSON string.
+	 * <p>
+	 * The JSON object has the structure:
+	 * <pre>
+	 * {
+	 *   "username":   "...",
+	 *   "firstName":  "...",
+	 *   "lastName":   "...",
+	 *   "email":      "...",
+	 *   "images": [
+	 *     {
+	 *       "title":       "...",
+	 *       "description": "...",
+	 *       "price":       0.00,
+	 *       "imageUrl":    "..."
+	 *     },
+	 *     ...
+	 *   ]
+	 * }
+	 * </pre>
+	 * An empty array is returned if the user has no images.
+	 * <p>
+	 * Uses PostgreSQL’s {@code json_build_object}, {@code json_agg} and {@code FILTER}
+	 * to assemble the payload.
+	 * </p>
 	 *
-	 * @param username the unique identifier of the user.
-	 * @return an {@link Optional} containing a {@link UserMinimalInfoProjection} with minimal information
-	 * for the specified user, or an empty {@link Optional} if the user is not found.
+	 * @param username the unique username of the user (non-null).
+	 * @return an {@link Optional} containing the JSON payload as {@link String},
+	 * or empty if no user with the given username exists.
 	 */
 	@Query(
-		value = "select u.username as username, u.first_name as firstName, u.last_name as lastName from users u where u.username = :username",
+		value = """
+			select json_build_object(
+			         'username', u.username,
+			         'firstName', u.first_name,
+			         'lastName', u.last_name,
+			         'email', u.email,
+			         'images', coalesce(
+			                      json_agg(
+			                        json_build_object(
+			                          'title',       i.title,
+			                          'description', i.description,
+			                          'price',       i.price,
+			                          'imageUrl',    i.watermarked_image_url
+			                        )
+			                      ) filter (where i.id is not null),
+			                      '[]'::json
+			                    )
+			       ) as user_with_images
+			from users u
+			left join images i
+			  on u.id = i.user_id
+			where u.username = :username
+			group by
+			  u.username,
+			  u.first_name,
+			  u.last_name,
+			  u.email
+			""",
 		nativeQuery = true
 	)
-	Optional<UserMinimalInfoProjection> findOneByUsernameWithMinimalInfo(@Param("username") String username);
+	Optional<String> findOneByUsernameWithImages(@Param("username") String username);
 
 	/**
-	 * Retrieves minimal user information for a specific user identified by their email address.
+	 * Retrieve minimal info for a single user by email.
+	 * <p>
+	 * Returns a {@link UserMinimalInfoProjection} containing username,
+	 * firstName and lastName for the matching user.
+	 * </p>
 	 *
-	 * @param email the email address of the user.
-	 * @return an {@link Optional} containing a {@link UserMinimalInfoProjection} with minimal information
-	 * for the specified user, or an empty {@link Optional} if the user is not found.
+	 * @param email the email address to search for (non-null).
+	 * @return an {@link Optional} containing the projection, or empty if no match.
 	 */
 	@Query(
-		value = "select username as username, u.first_name as firstName, u.last_name as lastName from users u where u.email = :email",
+		value = """
+			select
+			    u.username    as username,
+			    u.first_name  as firstName,
+			    u.last_name   as lastName
+			from users u
+			where u.email = :email
+			""",
 		nativeQuery = true
 	)
 	Optional<UserMinimalInfoProjection> findOneByEmailWithMinimalInfo(@Param("email") String email);
 
 	/**
-	 * Retrieves a list of roles associated with a user identified by their email address.
+	 * Retrieve all role names associated with a user identified by email.
 	 * <p>
-	 * This query performs a join between the {@code roles}, {@code user_role}, and {@code users} tables.
-	 * It returns the role names associated with the user.
+	 * Joins {@code users} → {@code user_role} → {@code roles}.
 	 * </p>
 	 *
-	 * @param email the email address of the user.
-	 * @return a {@link List} of role names (as {@link String}) associated with the user.
+	 * @param email the email address of the user (non-null).
+	 * @return a {@link List} of role names (e.g. "ROLE_ADMIN"), empty if none.
 	 */
 	@Query(
 		value = """
-				SELECT r.role FROM roles r\s
-				JOIN user_role ur ON r.id = ur.role_id\s
-				JOIN users u ON u.id = ur.user_id\s
-				WHERE u.email = :email
-			\t""",
+			select r.role
+			from roles r
+			join user_role ur on r.id = ur.role_id
+			join users u     on u.id = ur.user_id
+			where u.email = :email
+			""",
 		nativeQuery = true
 	)
 	List<String> findRolesByEmail(@Param("email") String email);
 
-
 	/**
-	 * Associates a single role with a user by inserting a record into the {@code user_role} table.
+	 * Assign a single role to a user by inserting into {@code user_role}.
 	 * <p>
-	 * This method uses a native SQL query to link a user with a role.
+	 * Executes within a transaction; caller must handle transaction boundaries.
 	 * </p>
 	 *
-	 * @param userId the ID of the user.
-	 * @param roleId the ID of the role to be associated with the user.
+	 * @param userId the ID of the user (non-null).
+	 * @param roleId the ID of the role to assign (non-null).
 	 */
 	@Modifying
 	@Query(
-		value = "insert into user_role (user_id, role_id) values (:userId, :roleId)",
+		value = """
+			insert into user_role (user_id, role_id)
+			values (:userId, :roleId)
+			""",
 		nativeQuery = true
 	)
 	void addSingleRole(@Param("userId") Long userId, @Param("roleId") Long roleId);
-
-
 }

@@ -3,6 +3,7 @@ package dev.ebyrdeu.backend.user.internal.management;
 import dev.ebyrdeu.backend.TestOAuth2Client;
 import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
@@ -86,7 +87,7 @@ class UserManagementITest {
 			String message = "User retrieved successfully";
 
 			// When
-			BaseResponseDto<UserMinimalInfoProjection> response = userExternalApi.findOneByUsername("JohnJohn");
+			BaseResponseJsonDto response = userExternalApi.findOneByUsername("JohnJohn");
 
 			// Then
 			assertAll(

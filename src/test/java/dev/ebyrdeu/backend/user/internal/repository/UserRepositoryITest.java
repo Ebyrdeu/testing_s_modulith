@@ -1,5 +1,7 @@
 package dev.ebyrdeu.backend.user.internal.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.jayway.jsonpath.JsonPath;
 import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.user.internal.model.User;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
@@ -85,7 +87,7 @@ class UserRepositoryITest {
 
 	@Test
 	@DisplayName("Should Return user with UserMinimalInfo successfully when a valid user ID is provided")
-	void should_ReturnUserWithUserMinimalInfoSuccessfully_whenAValidUserIdIsProvided() {
+	void should_ReturnUserWithUserMinimalInfoSuccessfully_whenAValidUserIdIsProvided() throws JsonProcessingException {
 		// Given
 		User user = new User();
 		user.setUsername("user");
@@ -95,14 +97,14 @@ class UserRepositoryITest {
 		this.entityManager.flush();
 
 		// When
-		Optional<UserMinimalInfoProjection> res = this.userRepository.findOneByUsernameWithMinimalInfo(user.getUsername());
+		Optional<String> res = this.userRepository.findOneByUsernameWithImages(user.getUsername());
 		assertThat(res).isPresent();
 
 		assertAll(
 			() -> assertNotNull(res),
-			() -> assertEquals("user", res.get().getUsername()),
-			() -> assertEquals("first_user", res.get().getFirstName()),
-			() -> assertEquals("last_user", res.get().getLastName())
+			() -> assertEquals("user", JsonPath.read(res.get(), "$.username")),
+			() -> assertEquals("first_user", JsonPath.read(res.get(), "$.firstName")),
+			() -> assertEquals("last_user", JsonPath.read(res.get(), "$.lastName"))
 		);
 	}
 
@@ -110,7 +112,7 @@ class UserRepositoryITest {
 	@DisplayName("Should Return user of null when an invalid ID is provided")
 	void should_returnUserOfNull_whenAnInvalidIdIsProvided() {
 		// When
-		Optional<UserMinimalInfoProjection> res = this.userRepository.findOneByUsernameWithMinimalInfo("JohnJohn200");
+		Optional<String> res = this.userRepository.findOneByUsernameWithImages("JohnJohn200");
 
 
 		// Then

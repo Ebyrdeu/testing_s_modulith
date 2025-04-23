@@ -107,12 +107,12 @@ class UserControllerITest {
 			int expectedCode = HttpStatus.OK.value();
 			String expectedMessage = "User retrieved successfully";
 			String expectedResponse = """
-				{
-				"status":"OK",
-				"code":200,
-				"message":"User retrieved successfully",
-				"data":{"username":"JohnJohn", "firstName":"John","lastName":"Johnson"}
-				}
+					{
+					"status":"OK",
+					"code":200,
+					"message":"User retrieved successfully",
+					"data":{"username" : "JohnJohn", "firstName" : "John", "lastName" : "Johnson", "email" : "email@email.com", "images" : []}	
+					}
 				""";
 
 			// When

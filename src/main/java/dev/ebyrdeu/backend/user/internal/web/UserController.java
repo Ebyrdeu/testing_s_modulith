@@ -1,6 +1,7 @@
 package dev.ebyrdeu.backend.user.internal.web;
 
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
@@ -52,10 +53,10 @@ class UserController {
 	}
 
 	@GetMapping("/{username}")
-	public ResponseEntity<BaseResponseDto<UserMinimalInfoProjection>> findOneUserWithMinimalInfo(@PathVariable String username) {
+	public ResponseEntity<BaseResponseJsonDto> findOneUserWithMinimalInfo(@PathVariable String username) {
 		log.debug("[UserController/findOne]:: Fetching user with Username: {}", username);
 
-		BaseResponseDto<UserMinimalInfoProjection> response = this.userExternalApi.findOneByUsername(username);
+		BaseResponseJsonDto response = this.userExternalApi.findOneByUsername(username);
 
 		log.trace("[UserController/findOne]:: Username: {} | Response data: {}", username, this.jsonConverter.valueOf(response.data()));
 

@@ -1,6 +1,7 @@
 package dev.ebyrdeu.backend.user.internal.management;
 
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
@@ -123,18 +124,18 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional(readOnly = true)
-	public BaseResponseDto<UserMinimalInfoProjection> findOneByUsername(String username) {
+	public BaseResponseJsonDto findOneByUsername(String username) {
 		log.debug("[UserManagement/findOneById]:: Execution started. ID: {}", username);
 		try {
-			UserMinimalInfoProjection data = this.userRepository
-				.findOneByUsernameWithMinimalInfo(username)
+			String data = this.userRepository
+				.findOneByUsernameWithImages(username)
 				.orElseThrow(
 					() -> new UserNotFoundException("User with ID " + username + " not found")
 				);
 
 			log.debug("[UserManagement/findOneById]:: Found user. ID: {}", username);
 
-			return new BaseResponseDto<>(
+			return new BaseResponseJsonDto(
 				HttpStatus.OK,
 				HttpStatus.OK.value(),
 				"User retrieved successfully",

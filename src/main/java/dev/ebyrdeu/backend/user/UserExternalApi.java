@@ -1,6 +1,7 @@
 package dev.ebyrdeu.backend.user;
 
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
+import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
 import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
@@ -13,7 +14,12 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import java.util.List;
 
 /**
- * API that can be used by different modules if needed
+ * External API for user-related operations, exposing endpoints for authentication,
+ * user retrieval and updates, and role management.
+ * <p>
+ * Implementations of this interface serve as the facade for external modules
+ * to interact with user data without exposing internal persistence details.
+ * </p>
  *
  * @author Maxim Khnykin
  * @version 1.0
@@ -21,72 +27,83 @@ import java.util.List;
 public interface UserExternalApi {
 
 	/**
-	 * Retrieves authentication data for the currently authenticated user.
+	 * Returns authentication details for the current user.
 	 * <p>
-	 * If the provided {@code authentication} is {@code null} or not authenticated, a response with an empty
-	 * {@link AuthUserDto} is returned. Otherwise, the user's email and roles are extracted from the OIDC user,
-	 * and additional user information is fetched from the database.
+	 * If the provided {@code authentication} object is null or unauthenticated,
+	 * an empty {@link AuthUserDto} is returned with {@code authenticated=false}.
+	 * Otherwise, extracts the email and roles from the OIDC user, loads
+	 * minimal user info from the database, and wraps it in an {@link AuthResponseDto}.
 	 * </p>
 	 *
-	 * @param authentication the authentication object representing the current user session.
-	 * @return a {@link  BaseResponseDto} containing an {@link  AuthResponseDto} with user authentication data and
-	 * a flag indicating whether the user is authenticated.
-	 * @throws UserNotFoundException            if the user with the given email is not found.
-	 * @throws UserInternalServerErrorException if an unexpected error occurs during processing.
+	 * @param authentication the security context of the current request
+	 * @return a {@link BaseResponseDto} containing an {@link AuthResponseDto}
+	 * with user details and authentication status
+	 * @throws UserNotFoundException            if no user is found for the given email
+	 * @throws UserInternalServerErrorException if an unexpected error occurs
 	 */
 	BaseResponseDto<AuthResponseDto> getAuth(Authentication authentication);
 
 	/**
-	 * Retrieves all users with minimal information.
+	 * Retrieves all users with minimal profile information.
+	 * <p>
+	 * Each user is represented by a {@link UserMinimalInfoProjection} containing
+	 * only username, first name and last name.
+	 * </p>
 	 *
-	 * @return a {@link BaseResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
-	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
+	 * @return a {@link BaseResponseDto} wrapping a list of minimal user projections
+	 * @throws UserInternalServerErrorException if retrieval fails unexpectedly
 	 */
 	BaseResponseDto<List<UserMinimalInfoProjection>> findAll();
 
 	/**
-	 * Retrieves a single user by their unique identifier.
-	 *
-	 * @param username the unique identifier of the user.
-	 * @return a {@link BaseResponseDto} containing a {@link UserMinimalInfoProjection} for the specified user.
-	 * @throws UserNotFoundException            if the user with the given ID is not found.
-	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
-	 */
-	BaseResponseDto<UserMinimalInfoProjection> findOneByUsername(String username);
-
-	/**
-	 * Updates the username of a user identified by their unique ID.
+	 * Retrieves a single user's detailed profile and associated images as JSON.
 	 * <p>
-	 * The method retrieves the user from the database, and if the provided {@link  UsernameDto} contains a non-null username,
-	 * it updates the user's username. The updated user is then saved back to the database.
+	 * The response DTO wraps a raw JSON string payload that includes username,
+	 * first name, last name, email and an array of images (title, description,
+	 * price, and URL). If the user has no images, the array is empty.
 	 * </p>
 	 *
-	 * @param id  the unique identifier of the user to update.
-	 * @param req the {@link UsernameDto} containing the new username.
-	 * @return a {@link BaseResponseDto} containing a {@link UsernameDto} of the updated user.
-	 * @throws UserNotFoundException            if the user with the given ID is not found.
-	 * @throws UserInternalServerErrorException if an unexpected error occurs during the update.
+	 * @param username the unique username identifier
+	 * @return a {@link BaseResponseJsonDto} containing the JSON payload
+	 * @throws UserNotFoundException            if no user is found for the given username
+	 * @throws UserInternalServerErrorException if retrieval fails unexpectedly
+	 */
+	BaseResponseJsonDto findOneByUsername(String username);
+
+	/**
+	 * Updates a user's username.
+	 * <p>
+	 * Only non-null values in the provided {@link UsernameDto} are applied.
+	 * Saves and returns the updated username.
+	 * </p>
+	 *
+	 * @param id  the database ID of the user to update
+	 * @param req a {@link UsernameDto} containing the new username
+	 * @return a {@link BaseResponseDto} wrapping a {@link UsernameDto} of the updated user
+	 * @throws UserNotFoundException            if no user is found for the given ID
+	 * @throws UserInternalServerErrorException if update fails unexpectedly
 	 */
 	BaseResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req);
 
 	/**
-	 * Retrieves the roles associated with a user based on their email address.
+	 * Fetches role names for a user by their email.
 	 *
-	 * @param email the email address of the user.
-	 * @return a list of role names associated with the user.
-	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
+	 * @param email the user's email address
+	 * @return a list of role names (e.g. "USER", "ADMIN")
+	 * @throws UserInternalServerErrorException if retrieval fails unexpectedly
 	 */
 	List<String> findUserRolesByEmail(String email);
 
 	/**
 	 * Retrieves an existing OIDC user or creates a new one if not found in the database.
 	 * <p>
-	 * This method checks if a user with the OIDC user's email already exists. If the user does not exist, a new user is created
-	 * using information from the provided {@code OidcUser}. The new user is saved, and a default role is assigned.
+	 * If no user exists with the OIDC email, a new {@link dev.ebyrdeu.backend.user.internal.model.User}
+	 * is created using the OIDC claims (subject as username, given/family names, email)
+	 * and assigned a default role.
 	 * </p>
 	 *
-	 * @param oidcUser the {@link  OidcUser} object containing user information from the OIDC provider.
-	 * @throws UserInternalServerErrorException if an unexpected error occurs during user retrieval or creation.
+	 * @param oidcUser the authenticated {@link OidcUser} from the OIDC provider
+	 * @throws UserInternalServerErrorException if creation or lookup fails unexpectedly
 	 */
 	void createOrGetOidcUser(OidcUser oidcUser);
 
