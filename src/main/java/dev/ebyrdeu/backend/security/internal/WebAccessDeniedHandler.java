@@ -32,7 +32,7 @@ class WebAccessDeniedHandler implements AccessDeniedHandler {
 		log.debug("[WebAccessDeniedHandler/handle]:: forwarding to 404 page");
 		// TODO: if this is become a problem implement differently
 		// NOTE: because of how tanstack router works with react and spring
-		// NOTE: / route will redirect 404 page which is desired behavior
+		//  / route will redirect 404 page which is desired behavior
 		request.getRequestDispatcher("/").forward(request, response);
 	}
 }

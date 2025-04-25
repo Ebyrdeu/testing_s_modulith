@@ -99,7 +99,7 @@ class UserManagementITest {
 		}
 
 		@Test
-		@DisplayName("Should throw UserNotFoundException when an invalid user Id is provided")
+		@DisplayName("Should throw ImageNotFoundException when an invalid user Id is provided")
 		void should_ThrowUserNotFoundException_whenAnInvalidUserIdIsProvided() {
 			// Given
 			String errorMessage = "User with ID JohnJohn100 not found";
@@ -141,7 +141,7 @@ class UserManagementITest {
 		}
 
 		@Test
-		@DisplayName("Should throw UserNotFoundException when an invalid user Id is provided")
+		@DisplayName("Should throw ImageNotFoundException when an invalid user Id is provided")
 		void should_ThrowUserNotFoundException_whenAnInvalidUserIdIsProvided() {
 			// Given
 			String errorMessage = "User with ID " + 999 + " not found";

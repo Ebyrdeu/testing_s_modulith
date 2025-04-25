@@ -66,8 +66,7 @@ class SecurityConfig {
 				"/index.html",
 				"/vite.svg",
 				"/static/**",
-				"/assets/**",
-				"users/**"
+				"/assets/**"
 			).permitAll()
 			.requestMatchers(request -> {
 				boolean requestedUri = request.getRequestURI().startsWith("/api/");
