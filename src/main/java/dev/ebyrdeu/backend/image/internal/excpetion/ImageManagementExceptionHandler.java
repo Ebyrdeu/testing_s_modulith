@@ -1,4 +1,4 @@
-package dev.ebyrdeu.backend.image.excpetion;
+package dev.ebyrdeu.backend.image.internal.excpetion;
 
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import org.springframework.http.HttpStatus;
