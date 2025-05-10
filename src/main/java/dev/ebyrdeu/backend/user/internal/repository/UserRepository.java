@@ -42,8 +42,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @return an {@link Optional} containing the matching {@link User}, or empty if none found.
 	 */
 	@Query(
-		value = "select * from users u where u.email = :email",
-		nativeQuery = true
+			value = "select * from users u where u.email = :email",
+			nativeQuery = true
 	)
 	Optional<User> findOneByEmail(@Param("email") String email);
 
@@ -55,8 +55,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @return an {@link Optional} containing the matching {@link User}, or empty if none found.
 	 */
 	@Query(
-		value = "select * from users u where u.username = :username",
-		nativeQuery = true
+			value = "select * from users u where u.username = :username",
+			nativeQuery = true
 	)
 	Optional<User> findOneByUsername(@Param("username") String username);
 
@@ -70,14 +70,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @return a {@link List} of projections, never null (empty list if no users).
 	 */
 	@Query(
-		value = """
-			select
-			    u.username    as username,
-			    u.first_name  as firstName,
-			    u.last_name   as lastName
-			from users u
-			""",
-		nativeQuery = true
+			value = """
+					select
+					    u.username    as username,
+					    u.first_name  as firstName,
+					    u.last_name   as lastName
+					from users u
+					""",
+			nativeQuery = true
 	)
 	List<UserMinimalInfoProjection> findAllWithMinimalInfo();
 
@@ -114,36 +114,36 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * or empty if no user with the given username exists.
 	 */
 	@Query(
-		value = """
-			select json_build_object(
-			         'username', u.username,
-			         'firstName', u.first_name,
-			         'lastName', u.last_name,
-			         'email', u.email,
-			         'aboutMe', u.about_me
-			         'images', coalesce(
-			                      json_agg(
-			                        json_build_object(
-			                          'title',       i.title,
-			                          'description', i.description,
-			                          'price',       i.price,
-			                          'imageUrl',    i.image_url
-			                        )
-			                      ) filter (where i.id is not null),
-			                      '[]'::json
-			                    )
-			       ) as user_with_images
-			from users u
-			left join images i
-			  on u.id = i.user_id
-			where u.username = :username
-			group by
-			  u.username,
-			  u.first_name,
-			  u.last_name,
-			  u.email
-			""",
-		nativeQuery = true
+			value = """
+					select json_build_object(
+					         'username', u.username,
+					         'firstName', u.first_name,
+					         'lastName', u.last_name,
+					         'email', u.email,
+					         'aboutMe', u.about_me
+					         'images', coalesce(
+					                      json_agg(
+					                        json_build_object(
+					                          'title',       i.title,
+					                          'description', i.description,
+					                          'price',       i.price,
+					                          'imageUrl',    i.image_url
+					                        )
+					                      ) filter (where i.id is not null),
+					                      '[]'::json
+					                    )
+					       ) as user_with_images
+					from users u
+					left join images i
+					  on u.id = i.user_id
+					where u.username = :username
+					group by
+					  u.username,
+					  u.first_name,
+					  u.last_name,
+					  u.email
+					""",
+			nativeQuery = true
 	)
 	Optional<String> findOneByUsernameWithImages(@Param("username") String username);
 
@@ -158,15 +158,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @return an {@link Optional} containing the projection, or empty if no match.
 	 */
 	@Query(
-		value = """
-			select
-			    u.username    as username,
-			    u.first_name  as firstName,
-			    u.last_name   as lastName
-			from users u
-			where u.email = :email
-			""",
-		nativeQuery = true
+			value = """
+					select
+					    u.username    as username,
+					    u.first_name  as firstName,
+					    u.last_name   as lastName
+					from users u
+					where u.email = :email
+					""",
+			nativeQuery = true
 	)
 	Optional<UserMinimalInfoProjection> findOneByEmailWithMinimalInfo(@Param("email") String email);
 
@@ -180,14 +180,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @return a {@link List} of role names (e.g. "ROLE_ADMIN"), empty if none.
 	 */
 	@Query(
-		value = """
-			select r.role
-			from roles r
-			join user_role ur on r.id = ur.role_id
-			join users u     on u.id = ur.user_id
-			where u.email = :email
-			""",
-		nativeQuery = true
+			value = """
+					select r.role
+					from roles r
+					join user_role ur on r.id = ur.role_id
+					join users u     on u.id = ur.user_id
+					where u.email = :email
+					""",
+			nativeQuery = true
 	)
 	List<String> findRolesByEmail(@Param("email") String email);
 
@@ -202,11 +202,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 */
 	@Modifying
 	@Query(
-		value = """
-			insert into user_role (user_id, role_id)
-			values (:userId, :roleId)
-			""",
-		nativeQuery = true
+			value = """
+					insert into user_role (user_id, role_id)
+					values (:userId, :roleId)
+					""",
+			nativeQuery = true
 	)
 	void addSingleRole(@Param("userId") Long userId, @Param("roleId") Long roleId);
 }

@@ -39,9 +39,9 @@ class RoleRefresherFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(
-		@NonNull HttpServletRequest request,
-		@NonNull HttpServletResponse response,
-		@NonNull FilterChain filterChain
+			@NonNull HttpServletRequest request,
+			@NonNull HttpServletResponse response,
+			@NonNull FilterChain filterChain
 	) throws ServletException, IOException {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -54,11 +54,12 @@ class RoleRefresherFilter extends OncePerRequestFilter {
 
 		DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
 		String oidcUserEmail = oidcUser.getEmail();
-		List<String> oidcUserRoles = oidcUser.getAuthorities()
-			.stream()
-			.map(GrantedAuthority::getAuthority)
-			.map((role) -> role.substring(5))
-			.toList();
+		List<String> oidcUserRoles = oidcUser
+				.getAuthorities()
+				.stream()
+				.map(GrantedAuthority::getAuthority)
+				.map((role) -> role.substring(5))
+				.toList();
 
 
 		// NOTE: May not be the most optimal approach to call this method each update request.
@@ -72,24 +73,24 @@ class RoleRefresherFilter extends OncePerRequestFilter {
 		}
 
 		Collection<GrantedAuthority> updatedRoles = dbUserRoles
-			.stream()
-			.map(role -> (GrantedAuthority) () -> "ROLE_" + role)
-			.collect(Collectors.toSet());
+				.stream()
+				.map(role -> (GrantedAuthority) () -> "ROLE_" + role)
+				.collect(Collectors.toSet());
 
 		DefaultOidcUser updatedOidcUser = new DefaultOidcUser(
-			updatedRoles,
-			oidcUser.getIdToken(),
-			oidcUser.getUserInfo(),
-			"sub"
+				updatedRoles,
+				oidcUser.getIdToken(),
+				oidcUser.getUserInfo(),
+				"sub"
 		);
 
 
 		String registrationId = ((OAuth2AuthenticationToken) authentication).getAuthorizedClientRegistrationId();
 
 		Authentication newAuthToken = new OAuth2AuthenticationToken(
-			updatedOidcUser,
-			updatedRoles,
-			registrationId
+				updatedOidcUser,
+				updatedRoles,
+				registrationId
 		);
 
 

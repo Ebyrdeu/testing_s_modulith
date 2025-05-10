@@ -43,9 +43,9 @@ import java.io.Serializable;
  * @see BaseResponseJsonDto for raw-JSON payload scenarios
  */
 public record BaseResponseDto<T>(
-	HttpStatus status,
-	int code,
-	String message,
-	T data
+		HttpStatus status,
+		int code,
+		String message,
+		T data
 ) implements Serializable {
 }

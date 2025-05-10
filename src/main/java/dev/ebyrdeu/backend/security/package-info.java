@@ -5,10 +5,10 @@
  * @see org.springframework.modulith.ApplicationModule
  */
 @org.springframework.modulith.ApplicationModule(
-	displayName = "Security",
-	allowedDependencies = {
-		"user",
-	}
+		displayName = "Security",
+		allowedDependencies = {
+				"user",
+		}
 )
 @org.springframework.lang.NonNullApi
 package dev.ebyrdeu.backend.security;

@@ -55,6 +55,7 @@ public class DefaultEntity {
 	public final boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null) return false;
+		//@formatter:off
 		Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
 		Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
 		if (thisEffectiveClass != oEffectiveClass) return false;
@@ -64,6 +65,7 @@ public class DefaultEntity {
 
 	@Override
 	public final int hashCode() {
+		//@formatter:off
 		return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
 	}
 }

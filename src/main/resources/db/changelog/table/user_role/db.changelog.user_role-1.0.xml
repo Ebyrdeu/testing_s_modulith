@@ -39,12 +39,12 @@
 			<tableExists tableName="user_role"/>
 		</preConditions>
 		<addForeignKeyConstraint
-			baseTableName="user_role"
-			baseColumnNames="user_id"
-			referencedTableName="users"
-			referencedColumnNames="id"
-			constraintName="fk_user_role_users"
-			onDelete="CASCADE"/>
+				baseTableName="user_role"
+				baseColumnNames="user_id"
+				referencedTableName="users"
+				referencedColumnNames="id"
+				constraintName="fk_user_role_users"
+				onDelete="CASCADE"/>
 	</changeSet>
 
 	<changeSet id="1738609146940-1" author="Maxim Khnykin">
@@ -52,12 +52,12 @@
 			<tableExists tableName="user_role"/>
 		</preConditions>
 		<addForeignKeyConstraint
-			baseTableName="user_role"
-			baseColumnNames="role_id"
-			referencedTableName="roles"
-			referencedColumnNames="id"
-			constraintName="fk_user_role_roles"
-			onDelete="CASCADE"/>
+				baseTableName="user_role"
+				baseColumnNames="role_id"
+				referencedTableName="roles"
+				referencedColumnNames="id"
+				constraintName="fk_user_role_roles"
+				onDelete="CASCADE"/>
 	</changeSet>
 
 </databaseChangeLog>

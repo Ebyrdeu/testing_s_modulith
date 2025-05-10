@@ -31,16 +31,16 @@ class WebConfig implements WebMvcConfigurer {
 		// NOTE: This can likely be done programmatically for deeper paths if needed.
 		// And no... fori loops - is not an option
 		registry
-			.addViewController("/{s1:[^\\.]*}")
-			.setViewName("forward:/index.html");
+				.addViewController("/{s1:[^\\.]*}")
+				.setViewName("forward:/index.html");
 
 		registry
-			.addViewController("/{s1:[^\\.]*}/{s2:[^\\.]*}")
-			.setViewName("forward:/index.html");
+				.addViewController("/{s1:[^\\.]*}/{s2:[^\\.]*}")
+				.setViewName("forward:/index.html");
 
 		registry
-			.addViewController("/{s1:[^\\.]*}/{s2:[^\\.]*}/{s3:[^\\\\.]*}")
-			.setViewName("forward:/index.html");
+				.addViewController("/{s1:[^\\.]*}/{s2:[^\\.]*}/{s3:[^\\\\.]*}")
+				.setViewName("forward:/index.html");
 	}
 
 }

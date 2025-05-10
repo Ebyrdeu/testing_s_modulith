@@ -20,10 +20,10 @@ import java.util.List;
  * @see Serializable
  */
 public record AuthUserDto(
-	String firstName,
-	String lastName,
-	String username,
-	String avatar,
-	List<String> roles
+		String firstName,
+		String lastName,
+		String username,
+		String avatar,
+		List<String> roles
 ) implements Serializable {
 }

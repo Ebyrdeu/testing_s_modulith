@@ -55,12 +55,12 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public record UserInfoReqDto(
 
-	@NotBlank(message = "Username cannot be Blank")
-	@Size(min = 3, max = 25)
-	String username,
+		@NotBlank(message = "Username cannot be Blank")
+		@Size(min = 3, max = 25)
+		String username,
 
-	@Size(max = 150)
-	String aboutMe
+		@Size(max = 150)
+		String aboutMe
 
 ) implements Serializable {
 }

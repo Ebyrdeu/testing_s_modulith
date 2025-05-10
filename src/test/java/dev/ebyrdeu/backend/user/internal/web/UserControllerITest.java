@@ -59,37 +59,37 @@ class UserControllerITest {
 			int expectedCode = HttpStatus.OK.value();
 			String expectedMessage = "Users retrieved successfully";
 			String expectedResponse = """
-				{
-				"status":"OK",
-				"code":200,
-				"message":"Users retrieved successfully",
-				"data": [{"username":"JohnJohn", "firstName":"John","lastName":"Johnson"}]
-				}
-				""";
+					{
+					"status":"OK",
+					"code":200,
+					"message":"Users retrieved successfully",
+					"data": [{"username":"JohnJohn", "firstName":"John","lastName":"Johnson"}]
+					}
+					""";
 
 
 			// When
 			ResultActions response = mockMvc
-				.perform(
-					get("/api/v1/users")
-						.with(csrf())
-						.with(oidcLogin()
-							.idToken(token -> token.claim("email", "email@email.com"))
-						)
-						.accept(MediaType.APPLICATION_JSON)
-						.contentType(MediaType.APPLICATION_JSON)
-				);
+					.perform(
+							get("/api/v1/users")
+									.with(csrf())
+									.with(oidcLogin()
+											.idToken(token -> token.claim("email", "email@email.com"))
+									)
+									.accept(MediaType.APPLICATION_JSON)
+									.contentType(MediaType.APPLICATION_JSON)
+					);
 
 			// Then
 			response
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.status").value(expectedStatus))
-				.andExpect(jsonPath("$.code").value(expectedCode))
-				.andExpect(jsonPath("$.message").value(expectedMessage))
-				.andExpect(jsonPath("$.data").isArray())
-				.andExpect(content().json(expectedResponse))
-				.andDo(print());
+					.andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+					.andExpect(jsonPath("$.status").value(expectedStatus))
+					.andExpect(jsonPath("$.code").value(expectedCode))
+					.andExpect(jsonPath("$.message").value(expectedMessage))
+					.andExpect(jsonPath("$.data").isArray())
+					.andExpect(content().json(expectedResponse))
+					.andDo(print());
 
 
 		}
@@ -107,35 +107,35 @@ class UserControllerITest {
 			int expectedCode = HttpStatus.OK.value();
 			String expectedMessage = "User retrieved successfully";
 			String expectedResponse = """
-					{
-					"status":"OK",
-					"code":200,
-					"message":"User retrieved successfully",
-					"data":{"username" : "JohnJohn", "firstName" : "John", "lastName" : "Johnson", "email" : "email@email.com", "images" : []}	
-					}
-				""";
+						{
+						"status":"OK",
+						"code":200,
+						"message":"User retrieved successfully",
+						"data":{"username" : "JohnJohn", "firstName" : "John", "lastName" : "Johnson", "email" : "email@email.com", "images" : []}	
+						}
+					""";
 
 			// When
 
 			ResultActions response = mockMvc
-				.perform(
-					get("/api/v1/users/JohnJohn")
-						.with(csrf())
-						.with(oidcLogin().idToken(token -> token.claim("email", "email@email.com")))
-						.accept(MediaType.APPLICATION_JSON)
-						.contentType(MediaType.APPLICATION_JSON)
-				);
+					.perform(
+							get("/api/v1/users/JohnJohn")
+									.with(csrf())
+									.with(oidcLogin().idToken(token -> token.claim("email", "email@email.com")))
+									.accept(MediaType.APPLICATION_JSON)
+									.contentType(MediaType.APPLICATION_JSON)
+					);
 
 
 			// Then
 			response
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.status").value(expectedStatus))
-				.andExpect(jsonPath("$.code").value(expectedCode))
-				.andExpect(jsonPath("$.message").value(expectedMessage))
-				.andExpect(content().json(expectedResponse))
-				.andDo(print());
+					.andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+					.andExpect(jsonPath("$.status").value(expectedStatus))
+					.andExpect(jsonPath("$.code").value(expectedCode))
+					.andExpect(jsonPath("$.message").value(expectedMessage))
+					.andExpect(content().json(expectedResponse))
+					.andDo(print());
 
 		}
 
@@ -149,42 +149,42 @@ class UserControllerITest {
 		void should_ReturnUpdatedUser_whenValidUsernameAndDataIsProvided() throws Exception {
 			// Given
 			UserInfoReqDto dto = new UserInfoReqDto(
-				"Changed Username",
-				"         "
+					"Changed Username",
+					"         "
 			);
 			String expectedStatus = "OK";
 			int expectedCode = HttpStatus.OK.value();
 			String expectedMessage = "User patched successfully";
 			String expectedResponse = """
-				{
-				"status":"OK",
-				"code":200,
-				"message":"User patched successfully",
-				"data":{"username":"Changed Username"}
-				}
-				""";
+					{
+					"status":"OK",
+					"code":200,
+					"message":"User patched successfully",
+					"data":{"username":"Changed Username"}
+					}
+					""";
 
 			// When
 
 			ResultActions response = mockMvc.perform(
-				patch("/api/v1/users/JohnJohn")
-					.with(csrf())
-					.with(oidcLogin().idToken(token -> token.claim("email", "email@email.com")))
-					.content(jsonConverterAdapter.valueOf(dto))
-					.contentType(MediaType.APPLICATION_JSON)
-					.accept(MediaType.APPLICATION_JSON)
+					patch("/api/v1/users/JohnJohn")
+							.with(csrf())
+							.with(oidcLogin().idToken(token -> token.claim("email", "email@email.com")))
+							.content(jsonConverterAdapter.valueOf(dto))
+							.contentType(MediaType.APPLICATION_JSON)
+							.accept(MediaType.APPLICATION_JSON)
 			);
 
 
 			// Then
 			response
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.status").value(expectedStatus))
-				.andExpect(jsonPath("$.code").value(expectedCode))
-				.andExpect(jsonPath("$.message").value(expectedMessage))
-				.andExpect(content().json(expectedResponse))
-				.andDo(print());
+					.andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+					.andExpect(jsonPath("$.status").value(expectedStatus))
+					.andExpect(jsonPath("$.code").value(expectedCode))
+					.andExpect(jsonPath("$.message").value(expectedMessage))
+					.andExpect(content().json(expectedResponse))
+					.andDo(print());
 
 		}
 

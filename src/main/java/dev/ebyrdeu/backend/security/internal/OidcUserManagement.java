@@ -40,15 +40,15 @@ class OidcUserManagement extends OidcUserService {
 		List<String> retrievedUserRoles = this.userExternalApi.findUserRolesByEmail(oidcUser.getEmail());
 
 		Collection<GrantedAuthority> roleAuthorities = retrievedUserRoles
-			.stream()
-			.map(role -> (GrantedAuthority) () -> "ROLE_" + role)
-			.collect(Collectors.toSet());
+				.stream()
+				.map(role -> (GrantedAuthority) () -> "ROLE_" + role)
+				.collect(Collectors.toSet());
 
 		return new DefaultOidcUser(
-			roleAuthorities,
-			oidcUser.getIdToken(),
-			oidcUser.getUserInfo(),
-			"sub"
+				roleAuthorities,
+				oidcUser.getIdToken(),
+				oidcUser.getUserInfo(),
+				"sub"
 		);
 
 	}

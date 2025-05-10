@@ -51,7 +51,9 @@ class UserRepositoryITest {
 	}
 
 	@Test
-	@DisplayName("Should Return all users with UserMinimalInfo successfully when repository returns data")
+	@DisplayName(
+			"Should Return all users with UserMinimalInfo successfully when repository returns data"
+	)
 	void should_ReturnAllUsersWithUserMinimalInfo_whenRepositoryReturnsData() {
 
 		// Given
@@ -74,19 +76,21 @@ class UserRepositoryITest {
 
 		// Then
 		assertAll(
-			() -> assertFalse(res.isEmpty()),
-			() -> assertEquals(2, res.size()),
-			() -> assertEquals("first_one", res.getFirst().getFirstName()),
-			() -> assertEquals("one", res.getFirst().getUsername()),
-			() -> assertEquals("last_one", res.getFirst().getLastName()),
-			() -> assertEquals("first_two", res.getLast().getFirstName()),
-			() -> assertEquals("two", res.getLast().getUsername()),
-			() -> assertEquals("last_two", res.getLast().getLastName())
+				() -> assertFalse(res.isEmpty()),
+				() -> assertEquals(2, res.size()),
+				() -> assertEquals("first_one", res.getFirst().getFirstName()),
+				() -> assertEquals("one", res.getFirst().getUsername()),
+				() -> assertEquals("last_one", res.getFirst().getLastName()),
+				() -> assertEquals("first_two", res.getLast().getFirstName()),
+				() -> assertEquals("two", res.getLast().getUsername()),
+				() -> assertEquals("last_two", res.getLast().getLastName())
 		);
 	}
 
 	@Test
-	@DisplayName("Should Return user with UserMinimalInfo successfully when a valid user ID is provided")
+	@DisplayName(
+			"Should Return user with UserMinimalInfo successfully when a valid user ID is provided"
+	)
 	void should_ReturnUserWithUserMinimalInfoSuccessfully_whenAValidUserIdIsProvided() throws JsonProcessingException {
 		// Given
 		User user = new User();
@@ -101,10 +105,10 @@ class UserRepositoryITest {
 		assertThat(res).isPresent();
 
 		assertAll(
-			() -> assertNotNull(res),
-			() -> assertEquals("user", JsonPath.read(res.get(), "$.username")),
-			() -> assertEquals("first_user", JsonPath.read(res.get(), "$.firstName")),
-			() -> assertEquals("last_user", JsonPath.read(res.get(), "$.lastName"))
+				() -> assertNotNull(res),
+				() -> assertEquals("user", JsonPath.read(res.get(), "$.username")),
+				() -> assertEquals("first_user", JsonPath.read(res.get(), "$.firstName")),
+				() -> assertEquals("last_user", JsonPath.read(res.get(), "$.lastName"))
 		);
 	}
 
@@ -131,9 +135,9 @@ class UserRepositoryITest {
 		this.entityManager.flush();
 
 		this.jdbcTemplate.update(
-			"insert into user_role (user_id, role_id) values (?, ?)",
-			user.getId(),
-			3L
+				"insert into user_role (user_id, role_id) values (?, ?)",
+				user.getId(),
+				3L
 		);
 
 		// When
@@ -143,8 +147,8 @@ class UserRepositoryITest {
 		// Then
 
 		assertAll(
-			() -> assertEquals(1, res.size()),
-			() -> assertEquals("ADMIN", res.getFirst())
+				() -> assertEquals(1, res.size()),
+				() -> assertEquals("ADMIN", res.getFirst())
 		);
 	}
 
@@ -163,9 +167,9 @@ class UserRepositoryITest {
 
 		// Then
 		Long count = this.jdbcTemplate.queryForObject(
-			"SELECT COUNT(*) FROM user_role WHERE user_id = ? ",
-			Long.class,
-			user.getId()
+				"SELECT COUNT(*) FROM user_role WHERE user_id = ? ",
+				Long.class,
+				user.getId()
 		);
 
 		assertEquals(2, count);

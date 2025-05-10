@@ -21,8 +21,8 @@ public class UsernameMapper {
 		}
 
 		return new UserInfoReqDto(
-			entity.getUsername(),
-			entity.getAboutMe()
+				entity.getUsername(),
+				entity.getAboutMe()
 		);
 	}
 

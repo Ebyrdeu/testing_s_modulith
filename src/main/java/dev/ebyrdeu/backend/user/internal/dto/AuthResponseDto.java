@@ -18,8 +18,8 @@ import java.io.Serializable;
  * @see AuthUserDto
  */
 public record AuthResponseDto(
-	@Nullable
-	AuthUserDto user,
-	boolean status
+		@Nullable
+		AuthUserDto user,
+		boolean status
 ) implements Serializable {
 }

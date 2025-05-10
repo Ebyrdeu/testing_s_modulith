@@ -42,8 +42,8 @@ class JsonConverter implements JsonConverterAdapter {
 		try {
 			if (prettyFormat) {
 				return this.objectMapper
-					.writerWithDefaultPrettyPrinter()
-					.writeValueAsString(obj);
+						.writerWithDefaultPrettyPrinter()
+						.writeValueAsString(obj);
 			}
 			return this.objectMapper.writeValueAsString(obj);
 		} catch (JsonProcessingException e) {

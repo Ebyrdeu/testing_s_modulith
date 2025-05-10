@@ -5,8 +5,8 @@
  * @see org.springframework.modulith.ApplicationModule
  */
 @org.springframework.modulith.ApplicationModule(
-	displayName = "Common",
-	allowedDependencies = {}
+		displayName = "Common",
+		allowedDependencies = {}
 )
 @org.springframework.lang.NonNullApi
 package dev.ebyrdeu.backend.common;

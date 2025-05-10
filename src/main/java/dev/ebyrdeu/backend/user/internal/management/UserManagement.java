@@ -49,42 +49,43 @@ class UserManagement implements UserExternalApi {
 			if (authentication == null || !authentication.isAuthenticated()) {
 				log.trace("[UserManagement/getAuth]:: Anonymous request detected");
 				return new BaseResponseDto<>(
-					HttpStatus.OK,
-					HttpStatus.OK.value(),
-					"Authentication data retrieved successfully",
-					new AuthResponseDto(null, false)
+						HttpStatus.OK,
+						HttpStatus.OK.value(),
+						"Authentication data retrieved successfully",
+						new AuthResponseDto(null, false)
 				);
 			}
 
 			OidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
 			String email = oidcUser.getEmail();
-			List<String> roles = oidcUser.getAuthorities()
-				.stream()
-				.map(GrantedAuthority::getAuthority)
-				.map(role -> role.substring(5))
-				.toList();
+			List<String> roles = oidcUser
+					.getAuthorities()
+					.stream()
+					.map(GrantedAuthority::getAuthority)
+					.map(role -> role.substring(5))
+					.toList();
 
 			UserMinimalInfoProjection res = this.userRepository
-				.findOneByEmailWithMinimalInfo(email)
-				.orElseThrow(
-					() -> new UserNotFoundException("User with Email " + email + " not found")
-				);
+					.findOneByEmailWithMinimalInfo(email)
+					.orElseThrow(
+							() -> new UserNotFoundException("User with Email " + email + " not found")
+					);
 
 			log.debug("[UserManagement/getAuth]:: User found. Email: {}", email);
 
 			AuthUserDto data = new AuthUserDto(
-				res.getFirstName(),
-				res.getLastName(),
-				res.getUsername(),
-				oidcUser.getPicture(),
-				roles
+					res.getFirstName(),
+					res.getLastName(),
+					res.getUsername(),
+					oidcUser.getPicture(),
+					roles
 			);
 
 			return new BaseResponseDto<>(
-				HttpStatus.OK,
-				HttpStatus.OK.value(),
-				"Authentication data retrieved successfully",
-				new AuthResponseDto(data, true)
+					HttpStatus.OK,
+					HttpStatus.OK.value(),
+					"Authentication data retrieved successfully",
+					new AuthResponseDto(data, true)
 			);
 
 		} catch (UserNotFoundException ex) {
@@ -107,10 +108,10 @@ class UserManagement implements UserExternalApi {
 			log.debug("[UserManagement/findAll]:: Found {} user records", data.size());
 
 			return new BaseResponseDto<>(
-				HttpStatus.OK,
-				HttpStatus.OK.value(),
-				"Users retrieved successfully",
-				data
+					HttpStatus.OK,
+					HttpStatus.OK.value(),
+					"Users retrieved successfully",
+					data
 			);
 		} catch (RuntimeException ex) {
 			log.error("[UserManagement/findAll]:: Database error. Message: {}", ex.getMessage());
@@ -126,18 +127,18 @@ class UserManagement implements UserExternalApi {
 		log.debug("[UserManagement/findOneById]:: Execution started. ID: {}", username);
 		try {
 			String data = this.userRepository
-				.findOneByUsernameWithImages(username)
-				.orElseThrow(
-					() -> new UserNotFoundException("User with ID " + username + " not found")
-				);
+					.findOneByUsernameWithImages(username)
+					.orElseThrow(
+							() -> new UserNotFoundException("User with ID " + username + " not found")
+					);
 
 			log.debug("[UserManagement/findOneById]:: Found user. ID: {}", username);
 
 			return new BaseResponseJsonDto(
-				HttpStatus.OK,
-				HttpStatus.OK.value(),
-				"User retrieved successfully",
-				data
+					HttpStatus.OK,
+					HttpStatus.OK.value(),
+					"User retrieved successfully",
+					data
 			);
 		} catch (UserNotFoundException ex) {
 			log.error("[UserManagement/findOneById]:: Lookup failed. ID: {} | Message: {}", username, ex.getMessage());
@@ -156,10 +157,10 @@ class UserManagement implements UserExternalApi {
 		log.debug("[UserManagement/patchUsername]:: Execution started. Username: {}", username);
 		try {
 			User retrievedUser = this.userRepository
-				.findOneByUsername(username)
-				.orElseThrow(
-					() -> new UserNotFoundException("User with Username " + username + " not found")
-				);
+					.findOneByUsername(username)
+					.orElseThrow(
+							() -> new UserNotFoundException("User with Username " + username + " not found")
+					);
 
 			log.debug("[UserManagement/patchUsername]:: Retrieved user. Username: {}", username);
 
@@ -170,10 +171,10 @@ class UserManagement implements UserExternalApi {
 			log.trace("[UserManagement/patchUsername]:: Updated username: {}", updatedUser.getUsername());
 
 			return new BaseResponseDto<>(
-				HttpStatus.OK,
-				HttpStatus.OK.value(),
-				"User patched successfully",
-				UsernameMapper.map(updatedUser)
+					HttpStatus.OK,
+					HttpStatus.OK.value(),
+					"User patched successfully",
+					UsernameMapper.map(updatedUser)
 			);
 		} catch (UserNotFoundException ex) {
 			log.error("[UserManagement/patchUsername]:: Update failed. Username: {} | Message: {}", username, ex.getMessage());

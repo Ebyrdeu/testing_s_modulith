@@ -17,10 +17,10 @@ class UserManagementExceptionHandler {
 	@ExceptionHandler(UserInternalServerErrorException.class)
 	public BaseResponseDto<?> handleUserInternalServerErrorException(UserInternalServerErrorException exception) {
 		return new BaseResponseDto<>(
-			HttpStatus.INTERNAL_SERVER_ERROR,
-			HttpStatus.INTERNAL_SERVER_ERROR.value(),
-			exception.getMessage(),
-			null
+				HttpStatus.INTERNAL_SERVER_ERROR,
+				HttpStatus.INTERNAL_SERVER_ERROR.value(),
+				exception.getMessage(),
+				null
 		);
 	}
 
@@ -28,10 +28,10 @@ class UserManagementExceptionHandler {
 	@ExceptionHandler(UserNotFoundException.class)
 	public BaseResponseDto<?> handleUserNotFoundException(UserNotFoundException exception) {
 		return new BaseResponseDto<>(
-			HttpStatus.NOT_FOUND,
-			HttpStatus.NOT_FOUND.value(),
-			exception.getMessage(),
-			null
+				HttpStatus.NOT_FOUND,
+				HttpStatus.NOT_FOUND.value(),
+				exception.getMessage(),
+				null
 		);
 	}
 }

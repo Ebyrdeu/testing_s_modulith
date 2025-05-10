@@ -69,11 +69,11 @@ class UserManagementITest {
 
 			// Then
 			assertAll(
-				() -> assertNotNull(response),
-				() -> assertEquals(HttpStatus.OK, response.status()),
-				() -> assertEquals(HttpStatus.OK.value(), response.code()),
-				() -> assertEquals(message, response.message()),
-				() -> assertEquals(1, response.data().size())
+					() -> assertNotNull(response),
+					() -> assertEquals(HttpStatus.OK, response.status()),
+					() -> assertEquals(HttpStatus.OK.value(), response.code()),
+					() -> assertEquals(message, response.message()),
+					() -> assertEquals(1, response.data().size())
 			);
 		}
 	}
@@ -91,10 +91,10 @@ class UserManagementITest {
 
 			// Then
 			assertAll(
-				() -> assertNotNull(response),
-				() -> assertEquals(HttpStatus.OK, response.status()),
-				() -> assertEquals(HttpStatus.OK.value(), response.code()),
-				() -> assertEquals(message, response.message())
+					() -> assertNotNull(response),
+					() -> assertEquals(HttpStatus.OK, response.status()),
+					() -> assertEquals(HttpStatus.OK.value(), response.code()),
+					() -> assertEquals(message, response.message())
 			);
 		}
 
@@ -106,8 +106,8 @@ class UserManagementITest {
 
 			// When
 			UserNotFoundException exception = assertThrowsExactly(
-				UserNotFoundException.class,
-				() -> userExternalApi.findOneByUsername("JohnJohn100")
+					UserNotFoundException.class,
+					() -> userExternalApi.findOneByUsername("JohnJohn100")
 			);
 
 			// Then
@@ -124,8 +124,8 @@ class UserManagementITest {
 			// Given
 			String message = "User patched successfully";
 			UserInfoReqDto dto = new UserInfoReqDto(
-				" ",
-				"changed about me"
+					" ",
+					"changed about me"
 			);
 
 			// When
@@ -133,11 +133,11 @@ class UserManagementITest {
 
 			// Then
 			assertAll(
-				() -> assertNotNull(response),
-				() -> assertEquals(HttpStatus.OK, response.status()),
-				() -> assertEquals(HttpStatus.OK.value(), response.code()),
-				() -> assertEquals(message, response.message()),
-				() -> assertEquals("changed about me", response.data().aboutMe())
+					() -> assertNotNull(response),
+					() -> assertEquals(HttpStatus.OK, response.status()),
+					() -> assertEquals(HttpStatus.OK.value(), response.code()),
+					() -> assertEquals(message, response.message()),
+					() -> assertEquals("changed about me", response.data().aboutMe())
 			);
 		}
 
@@ -147,14 +147,14 @@ class UserManagementITest {
 			// Given
 			String errorMessage = "User with Username James not found";
 			UserInfoReqDto dto = new UserInfoReqDto(
-				null,
-				"changed about me"
+					null,
+					"changed about me"
 			);
 
 			// When
 			UserNotFoundException exception = assertThrowsExactly(
-				UserNotFoundException.class,
-				() -> userExternalApi.patchUserInfo("James", dto)
+					UserNotFoundException.class,
+					() -> userExternalApi.patchUserInfo("James", dto)
 			);
 
 			// Then
@@ -179,8 +179,8 @@ class UserManagementITest {
 			// Then
 
 			assertAll(
-				() -> assertEquals(1, res.size()),
-				() -> assertEquals("ADMIN", res.getFirst())
+					() -> assertEquals(1, res.size()),
+					() -> assertEquals("ADMIN", res.getFirst())
 			);
 
 		}
@@ -205,10 +205,10 @@ class UserManagementITest {
 			assertThat(res).isPresent();
 
 			assertAll(
-				() -> assertEquals(newEmail, res.get().getEmail()),
-				() -> assertEquals("123", res.get().getUsername()),
-				() -> assertEquals("John", res.get().getFirstName()),
-				() -> assertEquals("John", res.get().getLastName())
+					() -> assertEquals(newEmail, res.get().getEmail()),
+					() -> assertEquals("123", res.get().getUsername()),
+					() -> assertEquals("John", res.get().getFirstName()),
+					() -> assertEquals("John", res.get().getLastName())
 			);
 		}
 

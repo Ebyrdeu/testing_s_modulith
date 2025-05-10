@@ -31,11 +31,11 @@ import java.io.Serializable;
  * @version 1.0
  */
 public record BaseResponseJsonDto(
-	HttpStatus status,
-	int code,
-	String message,
+		HttpStatus status,
+		int code,
+		String message,
 
-	@JsonRawValue
-	String data
+		@JsonRawValue
+		String data
 ) implements Serializable {
 }

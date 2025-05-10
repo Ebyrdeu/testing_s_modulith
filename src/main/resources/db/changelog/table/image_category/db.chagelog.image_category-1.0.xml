@@ -38,12 +38,12 @@
 			<tableExists tableName="image_category"/>
 		</preConditions>
 		<addForeignKeyConstraint
-			baseTableName="image_category"
-			baseColumnNames="image_id"
-			referencedTableName="images"
-			referencedColumnNames="id"
-			constraintName="fk_image_category_images"
-			onDelete="CASCADE"/>
+				baseTableName="image_category"
+				baseColumnNames="image_id"
+				referencedTableName="images"
+				referencedColumnNames="id"
+				constraintName="fk_image_category_images"
+				onDelete="CASCADE"/>
 	</changeSet>
 
 	<changeSet id="1738609409842-1" author="Maxim Khnykin">
@@ -51,12 +51,12 @@
 			<tableExists tableName="image_category"/>
 		</preConditions>
 		<addForeignKeyConstraint
-			baseTableName="image_category"
-			baseColumnNames="category_id"
-			referencedTableName="categories"
-			referencedColumnNames="id"
-			constraintName="fk_image_category_categories"
-			onDelete="CASCADE"/>
+				baseTableName="image_category"
+				baseColumnNames="category_id"
+				referencedTableName="categories"
+				referencedColumnNames="id"
+				constraintName="fk_image_category_categories"
+				onDelete="CASCADE"/>
 	</changeSet>
 
 </databaseChangeLog>

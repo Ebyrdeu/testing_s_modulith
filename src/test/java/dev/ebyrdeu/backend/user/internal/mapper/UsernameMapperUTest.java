@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class UsernameMapperUTest {
 	private UserInfoReqDto createValidUsernameDto() {
 		return new UserInfoReqDto(
-			"Valid Username",
-			"Valid about me"
+				"Valid Username",
+				"Valid about me"
 		);
 	}
 
@@ -34,8 +34,8 @@ class UsernameMapperUTest {
 
 		// Then
 		assertAll(
-			() -> assertNotNull(dto),
-			() -> assertEquals("Valid Username", dto.username())
+				() -> assertNotNull(dto),
+				() -> assertEquals("Valid Username", dto.username())
 		);
 	}
 
@@ -51,8 +51,8 @@ class UsernameMapperUTest {
 		// Then
 
 		assertAll(
-			() -> assertNotNull(entity),
-			() -> assertEquals("Valid Username", entity.getUsername())
+				() -> assertNotNull(entity),
+				() -> assertEquals("Valid Username", entity.getUsername())
 		);
 
 	}

@@ -17,10 +17,10 @@ class ImageManagementExceptionHandler {
 	@ExceptionHandler(ImageInternalServerErrorException.class)
 	public BaseResponseDto<?> handleImageInternalServerErrorException(ImageInternalServerErrorException exception) {
 		return new BaseResponseDto<>(
-			HttpStatus.INTERNAL_SERVER_ERROR,
-			HttpStatus.INTERNAL_SERVER_ERROR.value(),
-			exception.getMessage(),
-			null
+				HttpStatus.INTERNAL_SERVER_ERROR,
+				HttpStatus.INTERNAL_SERVER_ERROR.value(),
+				exception.getMessage(),
+				null
 		);
 	}
 
@@ -28,10 +28,10 @@ class ImageManagementExceptionHandler {
 	@ExceptionHandler(ImageNotFoundException.class)
 	public BaseResponseDto<?> handleImageNotFoundException(ImageNotFoundException exception) {
 		return new BaseResponseDto<>(
-			HttpStatus.NOT_FOUND,
-			HttpStatus.NOT_FOUND.value(),
-			exception.getMessage(),
-			null
+				HttpStatus.NOT_FOUND,
+				HttpStatus.NOT_FOUND.value(),
+				exception.getMessage(),
+				null
 		);
 	}
 }

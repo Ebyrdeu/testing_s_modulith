@@ -65,8 +65,8 @@ class UserController {
 
 	@PatchMapping("/{username}")
 	public ResponseEntity<BaseResponseDto<UserInfoReqDto>> updateUserInfo(
-		@PathVariable String username,
-		@RequestBody @Valid UserInfoReqDto dto
+			@PathVariable String username,
+			@RequestBody @Valid UserInfoReqDto dto
 	) {
 		log.debug("[UserController/patch]:: Username: {}", username);
 

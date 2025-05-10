@@ -5,11 +5,11 @@
  * @see org.springframework.modulith.ApplicationModule
  */
 @org.springframework.modulith.ApplicationModule(
-	displayName = "User",
-	allowedDependencies = {
-		"common :: entity",
-		"common :: dto",
-		"common :: util",
-	}
+		displayName = "User",
+		allowedDependencies = {
+				"common :: entity",
+				"common :: dto",
+				"common :: util",
+		}
 )
 package dev.ebyrdeu.backend.user;
