@@ -2,10 +2,11 @@ package dev.ebyrdeu.backend.user.internal.management;
 
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
+import dev.ebyrdeu.backend.common.util.Utils;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
-import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserInternalServerErrorException;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
 import dev.ebyrdeu.backend.user.internal.mapper.UsernameMapper;
@@ -31,11 +32,14 @@ import java.util.List;
 @Service
 class UserManagement implements UserExternalApi {
 	private static final Logger log = LoggerFactory.getLogger(UserManagement.class);
+	private final Utils utils;
 	private final UserRepository userRepository;
 
-	public UserManagement(UserRepository userRepository) {
+	public UserManagement(UserRepository userRepository, Utils utils) {
 		this.userRepository = userRepository;
+		this.utils = utils;
 	}
+
 
 	@Override
 	@Transactional(readOnly = true)
@@ -94,12 +98,6 @@ class UserManagement implements UserExternalApi {
 		}
 	}
 
-	/**
-	 * Retrieves all users with minimal information.
-	 *
-	 * @return a {@link BaseResponseDto} containing a list of {@link UserMinimalInfoProjection} objects representing all users.
-	 * @throws UserInternalServerErrorException if an unexpected error occurs during retrieval.
-	 */
 	@Override
 	@Transactional(readOnly = true)
 	public BaseResponseDto<List<UserMinimalInfoProjection>> findAll() {
@@ -154,20 +152,19 @@ class UserManagement implements UserExternalApi {
 
 	@Override
 	@Transactional
-	public BaseResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req) {
-		log.debug("[UserManagement/patchUsername]:: Execution started. ID: {}", id);
+	public BaseResponseDto<UserInfoReqDto> patchUserInfo(String username, UserInfoReqDto req) {
+		log.debug("[UserManagement/patchUsername]:: Execution started. Username: {}", username);
 		try {
 			User retrievedUser = this.userRepository
-				.findById(id)
+				.findOneByUsername(username)
 				.orElseThrow(
-					() -> new UserNotFoundException("User with ID " + id + " not found")
+					() -> new UserNotFoundException("User with Username " + username + " not found")
 				);
 
-			log.debug("[UserManagement/patchUsername]:: Retrieved user. ID: {}", id);
+			log.debug("[UserManagement/patchUsername]:: Retrieved user. Username: {}", username);
 
-			if (req.username() != null) {
-				retrievedUser.setUsername(req.username());
-			}
+			this.utils.isStringPatchable(req.username(), retrievedUser::setUsername, true);
+			this.utils.isStringPatchable(req.aboutMe(), retrievedUser::setAboutMe);
 
 			User updatedUser = this.userRepository.save(retrievedUser);
 			log.trace("[UserManagement/patchUsername]:: Updated username: {}", updatedUser.getUsername());
@@ -179,7 +176,7 @@ class UserManagement implements UserExternalApi {
 				UsernameMapper.map(updatedUser)
 			);
 		} catch (UserNotFoundException ex) {
-			log.error("[UserManagement/patchUsername]:: Update failed. ID: {} | Message: {}", id, ex.getMessage());
+			log.error("[UserManagement/patchUsername]:: Update failed. Username: {} | Message: {}", username, ex.getMessage());
 			throw ex;
 		} catch (RuntimeException ex) {
 			log.error("[UserManagement/patchUsername]:: Database error. Message: {}", ex.getMessage());

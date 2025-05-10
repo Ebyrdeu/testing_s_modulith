@@ -4,7 +4,7 @@ import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
-import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserInternalServerErrorException;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
@@ -71,19 +71,26 @@ public interface UserExternalApi {
 	BaseResponseJsonDto findOneByUsername(String username);
 
 	/**
-	 * Updates a user's username.
+	 * Updates a user's information.
 	 * <p>
-	 * Only non-null values in the provided {@link UsernameDto} are applied.
-	 * Saves and returns the updated username.
+	 * This method performs a partial update (patch) on the user identified by {@code username},
+	 * applying only the non-null or non-empty fields from the provided {@link UserInfoReqDto}.
+	 * Specifically:
+	 * <ul>
+	 *   <li>{@code username} field in {@code req} is applied only if non-null and non-empty.</li>
+	 *   <li>{@code aboutMe} field in {@code req} is applied only if non-null.</li>
+	 * </ul>
+	 * The updated user is saved in the repository, and a response DTO is returned containing
+	 * the updated user information.
 	 * </p>
 	 *
-	 * @param id  the database ID of the user to update
-	 * @param req a {@link UsernameDto} containing the new username
-	 * @return a {@link BaseResponseDto} wrapping a {@link UsernameDto} of the updated user
-	 * @throws UserNotFoundException            if no user is found for the given ID
-	 * @throws UserInternalServerErrorException if update fails unexpectedly
+	 * @param username the username of the user to update
+	 * @param req      a {@link UserInfoReqDto} containing patch data (new username, about me)
+	 * @return a {@link BaseResponseDto} wrapping the updated {@link UserInfoReqDto}
+	 * @throws UserNotFoundException            if no user is found for the given username
+	 * @throws UserInternalServerErrorException if the update fails due to an unexpected error
 	 */
-	BaseResponseDto<UsernameDto> patchUsername(Long id, UsernameDto req);
+	BaseResponseDto<UserInfoReqDto> patchUserInfo(String username, UserInfoReqDto req);
 
 	/**
 	 * Fetches role names for a user by their email.

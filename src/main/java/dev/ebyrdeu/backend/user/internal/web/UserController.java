@@ -5,7 +5,7 @@ import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
 import dev.ebyrdeu.backend.user.UserExternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
-import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -63,20 +63,20 @@ class UserController {
 		return ResponseEntity.status(response.status()).body(response);
 	}
 
-	@PatchMapping("/{id}")
-	public ResponseEntity<BaseResponseDto<UsernameDto>> updateUsername(
-		@PathVariable Long id,
-		@RequestBody @Valid UsernameDto dto
+	@PatchMapping("/{username}")
+	public ResponseEntity<BaseResponseDto<UserInfoReqDto>> updateUserInfo(
+		@PathVariable String username,
+		@RequestBody @Valid UserInfoReqDto dto
 	) {
-		log.debug("[UserController/patch]:: ID: {}", id);
+		log.debug("[UserController/patch]:: Username: {}", username);
 
-		log.trace("[UserController/patch]:: ID: {} | Request body: {}", id, this.jsonConverter.valueOf(dto));
+		log.trace("[UserController/patch]:: Username: {} | Request body: {}", username, this.jsonConverter.valueOf(dto));
 
-		BaseResponseDto<UsernameDto> response = this.userExternalApi.patchUsername(id, dto);
+		BaseResponseDto<UserInfoReqDto> response = this.userExternalApi.patchUserInfo(username, dto);
 
-		log.debug("[UserController/patch]:: ID: {} | Response status: {}", id, response.status());
+		log.debug("[UserController/patch]:: Username: {} | Response status: {}", username, response.status());
 
-		log.trace("[UserController/patch]:: ID: {} | Response data: {}", id, this.jsonConverter.valueOf(response.data()));
+		log.trace("[UserController/patch]:: Username: {} | Response data: {}", username, this.jsonConverter.valueOf(response.data()));
 
 		return ResponseEntity.status(response.status()).body(response);
 	}

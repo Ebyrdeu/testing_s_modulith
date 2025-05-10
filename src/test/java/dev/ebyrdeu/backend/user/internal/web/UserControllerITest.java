@@ -3,7 +3,7 @@ package dev.ebyrdeu.backend.user.internal.web;
 import dev.ebyrdeu.backend.TestOAuth2Client;
 import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
-import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -145,11 +145,12 @@ class UserControllerITest {
 	class Patch {
 
 		@Test
-		@DisplayName("Should return updated user when valid ID and data is provided")
-		void should_ReturnUpdatedUser_whenValidIdAndDataIsProvided() throws Exception {
+		@DisplayName("Should return updated user when valid Username and data is provided")
+		void should_ReturnUpdatedUser_whenValidUsernameAndDataIsProvided() throws Exception {
 			// Given
-			UsernameDto dto = new UsernameDto(
-				"Changed Username"
+			UserInfoReqDto dto = new UserInfoReqDto(
+				"Changed Username",
+				"         "
 			);
 			String expectedStatus = "OK";
 			int expectedCode = HttpStatus.OK.value();
@@ -166,7 +167,7 @@ class UserControllerITest {
 			// When
 
 			ResultActions response = mockMvc.perform(
-				patch("/api/v1/users/1")
+				patch("/api/v1/users/JohnJohn")
 					.with(csrf())
 					.with(oidcLogin().idToken(token -> token.claim("email", "email@email.com")))
 					.content(jsonConverterAdapter.valueOf(dto))

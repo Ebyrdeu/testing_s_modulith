@@ -5,7 +5,7 @@ import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
-import dev.ebyrdeu.backend.user.internal.dto.UsernameDto;
+import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
 import dev.ebyrdeu.backend.user.internal.model.User;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
@@ -123,12 +123,13 @@ class UserManagementITest {
 		void should_UpdateAnEntityAndReturnResponseDto_whenValidDataIsProvided() {
 			// Given
 			String message = "User patched successfully";
-			UsernameDto dto = new UsernameDto(
-				"changed username"
+			UserInfoReqDto dto = new UserInfoReqDto(
+				" ",
+				"changed about me"
 			);
 
 			// When
-			BaseResponseDto<UsernameDto> response = userExternalApi.patchUsername(1L, dto);
+			BaseResponseDto<UserInfoReqDto> response = userExternalApi.patchUserInfo("JohnJohn", dto);
 
 			// Then
 			assertAll(
@@ -136,7 +137,7 @@ class UserManagementITest {
 				() -> assertEquals(HttpStatus.OK, response.status()),
 				() -> assertEquals(HttpStatus.OK.value(), response.code()),
 				() -> assertEquals(message, response.message()),
-				() -> assertEquals("changed username", response.data().username())
+				() -> assertEquals("changed about me", response.data().aboutMe())
 			);
 		}
 
@@ -144,15 +145,16 @@ class UserManagementITest {
 		@DisplayName("Should throw ImageNotFoundException when an invalid user Id is provided")
 		void should_ThrowUserNotFoundException_whenAnInvalidUserIdIsProvided() {
 			// Given
-			String errorMessage = "User with ID " + 999 + " not found";
-			UsernameDto dto = new UsernameDto(
-				"changed  username"
+			String errorMessage = "User with Username James not found";
+			UserInfoReqDto dto = new UserInfoReqDto(
+				null,
+				"changed about me"
 			);
 
 			// When
 			UserNotFoundException exception = assertThrowsExactly(
 				UserNotFoundException.class,
-				() -> userExternalApi.patchUsername(999L, dto)
+				() -> userExternalApi.patchUserInfo("James", dto)
 			);
 
 			// Then

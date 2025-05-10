@@ -24,7 +24,6 @@
 			<column name="description" type="text"/>
 			<column name="price" type="decimal(10,2)"/>
 			<column name="image_url" type="varchar(255)"/>
-			<column name="watermarked_image_url" type="varchar(255)"/>
 
 			<column name="created_at"
 			        type="timestamp"

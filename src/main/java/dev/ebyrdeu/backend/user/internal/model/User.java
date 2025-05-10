@@ -27,6 +27,9 @@ public class User extends DefaultEntity {
 	@Column(name = "email", length = 100)
 	private String email;
 
+	@Column(name = "about_me", length = 150)
+	private String aboutMe;
+
 	public User() {
 	}
 
@@ -62,4 +65,11 @@ public class User extends DefaultEntity {
 		this.email = email;
 	}
 
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
 }

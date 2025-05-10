@@ -28,10 +28,6 @@ public class Image extends DefaultEntity {
 	@Column(name = "image_url")
 	private String imageUrl;
 
-	@Size(max = 255)
-	@Column(name = "watermarked_image_url")
-	private String watermarkedImageUrl;
-
 	public String getTitle() {
 		return title;
 	}
@@ -62,14 +58,6 @@ public class Image extends DefaultEntity {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
-	}
-
-	public String getWatermarkedImageUrl() {
-		return watermarkedImageUrl;
-	}
-
-	public void setWatermarkedImageUrl(String watermarkedImageUrl) {
-		this.watermarkedImageUrl = watermarkedImageUrl;
 	}
 
 }

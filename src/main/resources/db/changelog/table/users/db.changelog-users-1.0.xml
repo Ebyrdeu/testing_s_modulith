@@ -20,6 +20,7 @@
 				<constraints unique="true" nullable="false"/>
 			</column>
 
+			<column name="about_me" type="varchar(150)"/>
 			<column name="first_name" type="varchar(50)"/>
 			<column name="last_name" type="varchar(50)"/>
 			<column name="email" type="varchar(100)"/>
@@ -42,8 +43,18 @@
 		<sql>
 			alter table users
 				add constraint username_length
-					check ( char_length(username) between 3 and 50)
+					check ( char_length(username) between 3 and 25)
 		</sql>
 	</changeSet>
 
+	<changeSet id="1746860798263-1" author="Maxim Khnykin">
+		<preConditions>
+			<tableExists tableName="users"/>
+		</preConditions>
+		<sql>
+			alter table users
+				add constraint about_me_length
+					check ( char_length(about_me) between 0 and 150)
+		</sql>
+	</changeSet>
 </databaseChangeLog>

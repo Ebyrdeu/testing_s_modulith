@@ -47,6 +47,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	)
 	Optional<User> findOneByEmail(@Param("email") String email);
 
+
+	/**
+	 * Find a {@link User} entity by its email address.
+	 *
+	 * @param username the email address to search for (non-null, unique).
+	 * @return an {@link Optional} containing the matching {@link User}, or empty if none found.
+	 */
+	@Query(
+		value = "select * from users u where u.username = :username",
+		nativeQuery = true
+	)
+	Optional<User> findOneByUsername(@Param("username") String username);
+
 	/**
 	 * Retrieve all users with minimal information.
 	 * <p>
@@ -78,6 +91,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 *   "firstName":  "...",
 	 *   "lastName":   "...",
 	 *   "email":      "...",
+	 *   "aboutMe":    "...",
 	 *   "images": [
 	 *     {
 	 *       "title":       "...",
@@ -106,13 +120,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			         'firstName', u.first_name,
 			         'lastName', u.last_name,
 			         'email', u.email,
+			         'aboutMe', u.about_me
 			         'images', coalesce(
 			                      json_agg(
 			                        json_build_object(
 			                          'title',       i.title,
 			                          'description', i.description,
 			                          'price',       i.price,
-			                          'imageUrl',    i.watermarked_image_url
+			                          'imageUrl',    i.image_url
 			                        )
 			                      ) filter (where i.id is not null),
 			                      '[]'::json
