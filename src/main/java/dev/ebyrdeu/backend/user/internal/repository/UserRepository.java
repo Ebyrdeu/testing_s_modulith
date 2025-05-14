@@ -120,7 +120,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 					         'firstName', u.first_name,
 					         'lastName', u.last_name,
 					         'email', u.email,
-					         'aboutMe', u.about_me
+					         'aboutMe', u.about_me,
 					         'images', coalesce(
 					                      json_agg(
 					                        json_build_object(
@@ -141,7 +141,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 					  u.username,
 					  u.first_name,
 					  u.last_name,
-					  u.email
+					  u.about_me,
+					  u.email;
 					""",
 			nativeQuery = true
 	)
