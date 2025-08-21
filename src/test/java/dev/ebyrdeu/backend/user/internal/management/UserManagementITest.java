@@ -5,6 +5,7 @@ import dev.ebyrdeu.backend.TestWithPostgresContainer;
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.user.UserExternalApi;
+import dev.ebyrdeu.backend.user.UserInternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
 import dev.ebyrdeu.backend.user.internal.excpetion.UserNotFoundException;
 import dev.ebyrdeu.backend.user.internal.model.User;
@@ -38,6 +39,9 @@ class UserManagementITest {
 
 
 	@Autowired
+	private UserInternalApi userInternalApi;
+
+	@Autowired
 	private UserExternalApi userExternalApi;
 
 	@Autowired
@@ -65,7 +69,7 @@ class UserManagementITest {
 			// Given
 			String message = "Users retrieved successfully";
 			// When
-			BaseResponseDto<List<UserMinimalInfoProjection>> response = userExternalApi.findAll();
+			BaseResponseDto<List<UserMinimalInfoProjection>> response = userInternalApi.findAll();
 
 			// Then
 			assertAll(
@@ -87,7 +91,7 @@ class UserManagementITest {
 			String message = "User retrieved successfully";
 
 			// When
-			BaseResponseJsonDto response = userExternalApi.findOneByUsername("JohnJohn");
+			BaseResponseJsonDto response = userInternalApi.findOneByUsername("JohnJohn");
 
 			// Then
 			assertAll(
@@ -107,7 +111,7 @@ class UserManagementITest {
 			// When
 			UserNotFoundException exception = assertThrowsExactly(
 					UserNotFoundException.class,
-					() -> userExternalApi.findOneByUsername("JohnJohn100")
+					() -> userInternalApi.findOneByUsername("JohnJohn100")
 			);
 
 			// Then
@@ -129,7 +133,7 @@ class UserManagementITest {
 			);
 
 			// When
-			BaseResponseDto<UserInfoReqDto> response = userExternalApi.patchUserInfo("JohnJohn", dto);
+			BaseResponseDto<UserInfoReqDto> response = userInternalApi.patchUserInfo("JohnJohn", dto);
 
 			// Then
 			assertAll(
@@ -154,7 +158,7 @@ class UserManagementITest {
 			// When
 			UserNotFoundException exception = assertThrowsExactly(
 					UserNotFoundException.class,
-					() -> userExternalApi.patchUserInfo("James", dto)
+					() -> userInternalApi.patchUserInfo("James", dto)
 			);
 
 			// Then

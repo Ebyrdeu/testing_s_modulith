@@ -4,6 +4,7 @@ import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.common.util.Utils;
 import dev.ebyrdeu.backend.user.UserExternalApi;
+import dev.ebyrdeu.backend.user.UserInternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.AuthUserDto;
 import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
@@ -30,7 +31,7 @@ import java.util.List;
  * @version 1.0
  */
 @Service
-class UserManagement implements UserExternalApi {
+class UserManagement implements UserInternalApi, UserExternalApi {
 	private static final Logger log = LoggerFactory.getLogger(UserManagement.class);
 	private final Utils utils;
 	private final UserRepository userRepository;

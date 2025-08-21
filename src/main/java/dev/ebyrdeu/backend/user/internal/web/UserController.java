@@ -3,7 +3,7 @@ package dev.ebyrdeu.backend.user.internal.web;
 import dev.ebyrdeu.backend.common.dto.BaseResponseDto;
 import dev.ebyrdeu.backend.common.dto.BaseResponseJsonDto;
 import dev.ebyrdeu.backend.common.util.JsonConverterAdapter;
-import dev.ebyrdeu.backend.user.UserExternalApi;
+import dev.ebyrdeu.backend.user.UserInternalApi;
 import dev.ebyrdeu.backend.user.internal.dto.AuthResponseDto;
 import dev.ebyrdeu.backend.user.internal.dto.UserInfoReqDto;
 import dev.ebyrdeu.backend.user.internal.projection.UserMinimalInfoProjection;
@@ -21,11 +21,11 @@ import java.util.List;
 class UserController {
 
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
-	private final UserExternalApi userExternalApi;
+	private final UserInternalApi userInternalApi;
 	private final JsonConverterAdapter jsonConverter;
 
-	public UserController(UserExternalApi userExternalApi, JsonConverterAdapter jsonConverter) {
-		this.userExternalApi = userExternalApi;
+	private UserController(UserInternalApi userInternalApi, JsonConverterAdapter jsonConverter) {
+		this.userInternalApi = userInternalApi;
 		this.jsonConverter = jsonConverter;
 	}
 
@@ -34,7 +34,7 @@ class UserController {
 	public ResponseEntity<BaseResponseDto<AuthResponseDto>> getAuth(Authentication authentication) {
 		log.debug("[UserController/auth]:: Getting auth status.");
 
-		BaseResponseDto<AuthResponseDto> response = this.userExternalApi.getAuth(authentication);
+		BaseResponseDto<AuthResponseDto> response = this.userInternalApi.getAuth(authentication);
 
 		log.trace("[UserController/auth]:: Response data: {}", this.jsonConverter.valueOf(response.data()));
 
@@ -45,7 +45,7 @@ class UserController {
 	public ResponseEntity<BaseResponseDto<List<UserMinimalInfoProjection>>> findAllWithMinimalInfo() {
 		log.debug("[UserController/findAll]:: Fetching all users.");
 
-		BaseResponseDto<List<UserMinimalInfoProjection>> response = this.userExternalApi.findAll();
+		BaseResponseDto<List<UserMinimalInfoProjection>> response = this.userInternalApi.findAll();
 
 		log.trace("[UserController/findAll]:: Response data: {}", this.jsonConverter.valueOf(response.data()));
 
@@ -56,7 +56,7 @@ class UserController {
 	public ResponseEntity<BaseResponseJsonDto> findOneUserWithMinimalInfo(@PathVariable String username) {
 		log.debug("[UserController/findOne]:: Fetching user with Username: {}", username);
 
-		BaseResponseJsonDto response = this.userExternalApi.findOneByUsername(username);
+		BaseResponseJsonDto response = this.userInternalApi.findOneByUsername(username);
 
 		log.trace("[UserController/findOne]:: Username: {} | Response data: {}", username, this.jsonConverter.valueOf(response.data()));
 
@@ -72,7 +72,7 @@ class UserController {
 
 		log.trace("[UserController/patch]:: Username: {} | Request body: {}", username, this.jsonConverter.valueOf(dto));
 
-		BaseResponseDto<UserInfoReqDto> response = this.userExternalApi.patchUserInfo(username, dto);
+		BaseResponseDto<UserInfoReqDto> response = this.userInternalApi.patchUserInfo(username, dto);
 
 		log.debug("[UserController/patch]:: Username: {} | Response status: {}", username, response.status());
 
